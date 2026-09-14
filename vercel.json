@@ -1,4 +1,7 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/:rubro([a-z0-9-]+)", "destination": "/index.html" }
+  ]
 }

@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MABAI — Asistente de IA para WhatsApp inmobiliario</title>
-  <meta name="description" content="MABAI es un agente de inteligencia artificial que atiende WhatsApp 24/7 para inmobiliarias: califica leads, agenda visitas y deriva a un asesor humano cuando hace falta." />
-  <meta property="og:title" content="MABAI — Asistente de IA para WhatsApp inmobiliario" />
-  <meta property="og:description" content="Atiende, califica y agenda — automáticamente, en WhatsApp." />
+  <title>MABAI — Tu agente de IA, respondiendo como vos 24/7</title>
+  <meta name="description" content="MABAI es un agente de inteligencia artificial que responde en WhatsApp, Instagram y el chat de tu web con la voz de tu empresa, 24/7. Califica leads, agenda y deriva a tu equipo cuando hace falta." />
+  <meta property="og:title" content="MABAI — Tu agente de IA, respondiendo como vos 24/7" />
+  <meta property="og:description" content="Responde, califica y agenda — en WhatsApp, Instagram y tu web." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mabai.site" />
   <link rel="canonical" href="https://mabai.site" />
@@ -19,6 +19,37 @@
       background-size: 20px 20px;
     }
     html { scroll-behavior: smooth; }
+
+    /* ---- Chat animado del hero ---- */
+    .chat-body {
+      background-color: #efeae2;
+      background-image: radial-gradient(circle, rgba(0,0,0,.035) 1px, transparent 1px);
+      background-size: 14px 14px;
+      scroll-behavior: smooth;
+    }
+    .bubble { animation: bubble-in .28s cubic-bezier(.2,.8,.2,1) both; }
+    @keyframes bubble-in {
+      from { opacity: 0; transform: translateY(10px) scale(.97); }
+      to   { opacity: 1; transform: none; }
+    }
+    .typing span {
+      width: 6px; height: 6px; border-radius: 9999px; background: #9ca3af; display: inline-block;
+      animation: typing 1.2s infinite ease-in-out;
+    }
+    .typing span:nth-child(2) { animation-delay: .15s; }
+    .typing span:nth-child(3) { animation-delay: .3s; }
+    @keyframes typing {
+      0%, 60%, 100% { transform: translateY(0); opacity: .5; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+    .badge { transition: opacity .35s ease, transform .35s ease; }
+    .badge.hidden-badge { opacity: 0; transform: translateY(6px); pointer-events: none; }
+    .pulse-dot { animation: pulse-dot 1.6s infinite; }
+    @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+    @media (prefers-reduced-motion: reduce) {
+      .bubble, .typing span, .pulse-dot { animation: none; }
+      .badge { transition: none; }
+    }
   </style>
 </head>
 <body class="bg-white text-gray-900 antialiased">
@@ -39,25 +70,62 @@
   </nav>
 
   <!-- Hero -->
-  <section class="grid-pattern">
-    <div class="max-w-5xl mx-auto px-6 pt-20 pb-24 md:pt-28 md:pb-32">
-      <div class="max-w-2xl">
-        <span class="inline-block text-xs font-medium text-gray-500 tracking-wider uppercase mb-4">Asistente de IA · WhatsApp Business API</span>
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">
-          Tu equipo comercial de WhatsApp,<br>
-          <span class="text-gray-500">funcionando solo.</span>
-        </h1>
-        <p class="mt-6 text-lg text-gray-600 leading-relaxed">
-          MABAI atiende, califica y agenda visitas en WhatsApp por vos. Conectado al CRM y al calendario de tu inmobiliaria, responde 24/7 con la voz que vos definas — y deriva al asesor humano cuando hace falta.
-        </p>
-        <div class="mt-8 flex flex-col sm:flex-row gap-3">
-          <a href="#contacto" class="inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-gray-700 transition-colors">
-            Solicitar demo
-          </a>
-          <a href="#como-funciona" class="inline-flex items-center justify-center text-sm font-medium px-5 py-3 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
-            Cómo funciona
-          </a>
+  <section class="grid-pattern overflow-hidden">
+    <div class="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
+      <div class="grid lg:grid-cols-[1.2fr_1fr] gap-14 lg:gap-8 items-center">
+
+        <!-- Texto -->
+        <div class="max-w-xl">
+          <span class="inline-block text-xs font-medium text-gray-500 tracking-wider uppercase mb-4">Agente de IA · WhatsApp · Instagram · Web</span>
+          <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">
+            Tu agente de IA,<br>
+            respondiendo como vos<br>
+            <span class="text-gray-500">24/7.</span>
+          </h1>
+          <p class="mt-6 text-lg text-gray-600 leading-relaxed">
+            MABAI responde en WhatsApp, Instagram y el chat de tu web con la voz de tu empresa. Califica, agenda y deriva a tu equipo cuando hace falta — todo dentro de un CRM.
+          </p>
+          <p class="mt-4 text-sm text-gray-500 leading-relaxed">
+            Funciona sobre la API oficial de Meta y un widget para tu sitio. Se conecta a tu calendario, tu catálogo y tu pipeline. Pensado para equipos comerciales de cualquier rubro.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href="#contacto" class="inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-gray-700 transition-colors">
+              Solicitar demo
+            </a>
+            <a href="#como-funciona" class="inline-flex items-center justify-center text-sm font-medium px-5 py-3 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
+              Ver cómo funciona
+            </a>
+          </div>
         </div>
+
+        <!-- Chat animado -->
+        <div class="relative mx-auto w-full max-w-sm lg:max-w-[380px]">
+          <div class="absolute -inset-10 bg-gradient-to-br from-emerald-100/60 via-transparent to-gray-200/60 rounded-full blur-3xl -z-10"></div>
+
+          <div id="badge-top" class="badge hidden-badge absolute -top-4 -right-3 sm:-right-8 z-10 bg-white shadow-lg shadow-gray-200/70 rounded-full pl-3 pr-4 py-2 text-sm text-gray-800 flex items-center gap-2 border border-gray-100">
+            <span class="pulse-dot w-2 h-2 rounded-full bg-emerald-500"></span>
+            Respondiendo en tiempo real
+          </div>
+
+          <div class="rounded-3xl bg-white shadow-2xl shadow-gray-300/60 border border-gray-200 overflow-hidden">
+            <div class="bg-[#075e54] text-white px-4 py-3 flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center overflow-hidden">
+                <img src="/mabai-logo.svg" alt="" class="w-7">
+              </div>
+              <div class="leading-tight">
+                <div id="chat-nombre" class="font-semibold text-sm">MABAI</div>
+                <div id="chat-status" class="text-xs text-emerald-100/90">en línea</div>
+              </div>
+            </div>
+            <div id="chat-body" class="chat-body h-[400px] overflow-y-hidden px-3 py-4 flex flex-col gap-2"></div>
+          </div>
+
+          <div id="badge-bottom" class="badge hidden-badge absolute -bottom-5 -left-3 sm:-left-8 z-10 bg-white shadow-lg shadow-gray-200/70 rounded-full pl-3 pr-4 py-2 text-sm text-gray-800 flex items-center gap-2 border border-gray-100">
+            <span class="text-emerald-600">✓</span>
+            <span id="chat-resultado">Lead calificado</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -293,5 +361,84 @@
     </div>
   </footer>
 
+
+  <script src="/guiones.js"></script>
+  <script>
+    (function () {
+      var G = window.MABAI_GUIONES || {};
+      var path = location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+      var q = new URLSearchParams(location.search).get('rubro');
+      var guion = G[q] || G[path] || G.general;
+      if (!guion) return;
+
+      var body = document.getElementById('chat-body');
+      var status = document.getElementById('chat-status');
+      var badgeTop = document.getElementById('badge-top');
+      var badgeBottom = document.getElementById('badge-bottom');
+      document.getElementById('chat-nombre').textContent = guion.nombre || 'MABAI';
+      document.getElementById('chat-resultado').textContent = guion.resultado || 'Lead calificado';
+
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var timer;
+
+      function hora(i) {
+        var m = 32 + i;
+        return '14:' + (m < 10 ? '0' + m : m);
+      }
+      function bubble(msg, i) {
+        var cliente = msg.de === 'cliente';
+        var el = document.createElement('div');
+        el.className = 'bubble max-w-[85%] rounded-xl px-3 py-2 text-[13.5px] leading-snug shadow-sm ' +
+          (cliente ? 'self-end bg-[#d9fdd3] text-gray-900 rounded-tr-sm' : 'self-start bg-white text-gray-900 rounded-tl-sm');
+        el.innerHTML = '<span></span><span class="float-right ml-2 mt-1 text-[10px] text-gray-500 whitespace-nowrap">' +
+          hora(i) + (cliente ? ' <span class="text-sky-500">✓✓</span>' : '') + '</span>';
+        el.firstChild.textContent = msg.texto;
+        return el;
+      }
+      function typing() {
+        var el = document.createElement('div');
+        el.className = 'bubble typing self-start bg-white rounded-xl rounded-tl-sm px-3 py-2.5 flex gap-1 items-center shadow-sm';
+        el.innerHTML = '<span></span><span></span><span></span>';
+        return el;
+      }
+      function scrollDown() { body.scrollTop = body.scrollHeight; }
+      function wait(ms, fn) { timer = setTimeout(fn, reduced ? 0 : ms); }
+
+      function run() {
+        body.innerHTML = '';
+        status.textContent = 'en línea';
+        badgeTop.classList.add('hidden-badge');
+        badgeBottom.classList.add('hidden-badge');
+        var msgs = guion.mensajes || [];
+        var i = 0;
+
+        function next() {
+          if (i >= msgs.length) {
+            badgeBottom.classList.remove('hidden-badge');
+            status.textContent = 'en línea';
+            return wait(5000, run);
+          }
+          var msg = msgs[i];
+          if (msg.de === 'bot') {
+            status.textContent = 'escribiendo…';
+            if (i === 1) badgeTop.classList.remove('hidden-badge');
+            var t = typing();
+            body.appendChild(t); scrollDown();
+            wait(1100 + Math.min(msg.texto.length * 12, 900), function () {
+              t.remove();
+              body.appendChild(bubble(msg, i)); scrollDown();
+              status.textContent = 'en línea';
+              i++; wait(1300, next);
+            });
+          } else {
+            body.appendChild(bubble(msg, i)); scrollDown();
+            i++; wait(900, next);
+          }
+        }
+        wait(700, next);
+      }
+      run();
+    })();
+  </script>
 </body>
 </html>
