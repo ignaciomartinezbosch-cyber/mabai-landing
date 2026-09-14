@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agentes de IA — MABAI</title>
+  <meta name="description" content="Agentes de IA que atienden, califican y agendan por vos en WhatsApp, Instagram y tu web." />
+  <meta property="og:title" content="Agentes de IA — MABAI" />
+  <meta property="og:description" content="Agentes de IA que atienden, califican y agendan por vos en WhatsApp, Instagram y tu web." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mabai.com.ar/agentes-ia" />
+  <link rel="canonical" href="https://mabai.com.ar/agentes-ia" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+    .grid-pattern {
+      background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    html { scroll-behavior: smooth; }
+    .serif-i { font-family: "Instrument Serif", Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+
+    /* ---- Chat animado del hero ---- */
+    .chat-body {
+      background-color: #efeae2;
+      background-image: radial-gradient(circle, rgba(0,0,0,.035) 1px, transparent 1px);
+      background-size: 14px 14px;
+      scroll-behavior: smooth;
+    }
+    .bubble { animation: bubble-in .28s cubic-bezier(.2,.8,.2,1) both; }
+    @keyframes bubble-in {
+      from { opacity: 0; transform: translateY(10px) scale(.97); }
+      to   { opacity: 1; transform: none; }
+    }
+    .typing span {
+      width: 6px; height: 6px; border-radius: 9999px; background: #9ca3af; display: inline-block;
+      animation: typing 1.2s infinite ease-in-out;
+    }
+    .typing span:nth-child(2) { animation-delay: .15s; }
+    .typing span:nth-child(3) { animation-delay: .3s; }
+    @keyframes typing {
+      0%, 60%, 100% { transform: translateY(0); opacity: .5; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+    .badge { transition: opacity .35s ease, transform .35s ease; }
+    .badge.hidden-badge { opacity: 0; transform: translateY(6px); pointer-events: none; }
+    .pulse-dot { animation: pulse-dot 1.6s infinite; }
+    @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+    @media (prefers-reduced-motion: reduce) {
+      .bubble, .typing span, .pulse-dot { animation: none; }
+      .badge { transition: none; }
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- Nav -->
+  <nav class="border-b border-gray-100 bg-white/80 backdrop-blur sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <img src="/mabai-logo.svg" alt="MABAI" class="h-7 w-auto">
+      </a>
+      <div class="flex items-center gap-5 text-sm text-gray-600">
+        <div class="relative" id="nav-soluciones">
+          <button type="button" class="flex items-center gap-1 hover:text-gray-900 transition-colors" aria-haspopup="true" aria-expanded="false">
+            Soluciones
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="nav-menu absolute left-0 top-full pt-3 w-56" hidden>
+            <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 py-2">
+              <a href="/agentes-ia" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Agentes de IA</a>
+              <a href="/soluciones-a-medida" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Soluciones a medida</a>
+              <a href="/soluciones-comerciales" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Soluciones comerciales</a>
+            </div>
+          </div>
+        </div>
+        <a href="/#como-funciona" class="hover:text-gray-900 transition-colors hidden sm:inline">Cómo funciona</a>
+        <a href="/#integraciones" class="hover:text-gray-900 transition-colors hidden sm:inline">Integraciones</a>
+        <a href="/#faq" class="hover:text-gray-900 transition-colors hidden sm:inline">Preguntas</a>
+        <a href="/#contacto" class="hover:text-gray-900 transition-colors">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido -->
+  <section class="grid-pattern">
+    <div class="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
+      <div class="max-w-2xl">
+        <span class="inline-block text-xs font-medium text-gray-500 tracking-wider uppercase mb-4">Soluciones</span>
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">Agentes de IA</h1>
+        <p class="mt-6 text-lg text-gray-600 leading-relaxed">Agentes de IA que atienden, califican y agendan por vos en WhatsApp, Instagram y tu web.</p>
+        <div class="mt-8">
+          <a href="/#contacto" class="inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-gray-700 transition-colors">Solicitar demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-gray-100 py-10 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between gap-6 text-sm text-gray-500">
+        <div class="space-y-2">
+          <img src="/mabai-logo.svg" alt="MABAI" class="h-5 w-auto">
+          <p class="text-xs leading-relaxed max-w-sm">Agente de IA para WhatsApp, Instagram y web. Operado desde Buenos Aires, Argentina.</p>
+          <p class="text-xs">Contacto: <a href="mailto:hola@mabai.com.ar" class="underline hover:text-gray-700">hola@mabai.com.ar</a></p>
+        </div>
+        <div class="flex flex-col gap-2 md:items-end">
+          <div class="flex gap-5">
+            <a href="/privacy.html" class="hover:text-gray-900 transition-colors">Política de privacidad</a>
+            <a href="/terms.html" class="hover:text-gray-900 transition-colors">Términos</a>
+          </div>
+          <span class="text-xs">© 2026 MABAI. Todos los derechos reservados.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      var wrap = document.getElementById('nav-soluciones');
+      if (!wrap) return;
+      var btn = wrap.querySelector('button'), menu = wrap.querySelector('.nav-menu');
+      var hover = window.matchMedia('(hover: hover)').matches;
+      function set(open) { menu.hidden = !open; btn.setAttribute('aria-expanded', open); }
+      btn.addEventListener('click', function (e) { e.stopPropagation(); set(menu.hidden); });
+      if (hover) {
+        wrap.addEventListener('mouseenter', function () { set(true); });
+        wrap.addEventListener('mouseleave', function () { set(false); });
+      }
+      document.addEventListener('click', function () { set(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+    })();
+  </script>
+</body>
+</html>

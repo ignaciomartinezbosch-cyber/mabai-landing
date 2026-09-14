@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soluciones a medida — MABAI</title>
+  <meta name="description" content="Sistemas a medida para tu negocio: pedidos, stock, clientes, cobranzas y reportes en una sola pantalla, con un agente de IA integrado." />
+  <meta property="og:title" content="Soluciones a medida — MABAI" />
+  <meta property="og:description" content="Sistemas a medida para tu negocio: pedidos, stock, clientes, cobranzas y reportes en una sola pantalla, con un agente de IA integrado." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mabai.com.ar/soluciones-a-medida" />
+  <link rel="canonical" href="https://mabai.com.ar/soluciones-a-medida" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+    .grid-pattern {
+      background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    html { scroll-behavior: smooth; }
+    .serif-i { font-family: "Instrument Serif", Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+
+    /* ---- Chat animado del hero ---- */
+    .chat-body {
+      background-color: #efeae2;
+      background-image: radial-gradient(circle, rgba(0,0,0,.035) 1px, transparent 1px);
+      background-size: 14px 14px;
+      scroll-behavior: smooth;
+    }
+    .bubble { animation: bubble-in .28s cubic-bezier(.2,.8,.2,1) both; }
+    @keyframes bubble-in {
+      from { opacity: 0; transform: translateY(10px) scale(.97); }
+      to   { opacity: 1; transform: none; }
+    }
+    .typing span {
+      width: 6px; height: 6px; border-radius: 9999px; background: #9ca3af; display: inline-block;
+      animation: typing 1.2s infinite ease-in-out;
+    }
+    .typing span:nth-child(2) { animation-delay: .15s; }
+    .typing span:nth-child(3) { animation-delay: .3s; }
+    @keyframes typing {
+      0%, 60%, 100% { transform: translateY(0); opacity: .5; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+    .badge { transition: opacity .35s ease, transform .35s ease; }
+    .badge.hidden-badge { opacity: 0; transform: translateY(6px); pointer-events: none; }
+    .pulse-dot { animation: pulse-dot 1.6s infinite; }
+    @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+    @media (prefers-reduced-motion: reduce) {
+      .bubble, .typing span, .pulse-dot { animation: none; }
+      .badge { transition: none; }
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- Nav -->
+  <nav class="border-b border-gray-100 bg-white/80 backdrop-blur sticky top-0 z-10">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <img src="/mabai-logo.svg" alt="MABAI" class="h-7 w-auto">
+      </a>
+      <div class="flex items-center gap-5 text-sm text-gray-600">
+        <div class="relative" id="nav-soluciones">
+          <button type="button" class="flex items-center gap-1 hover:text-gray-900 transition-colors" aria-haspopup="true" aria-expanded="false">
+            Soluciones
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="nav-menu absolute left-0 top-full pt-3 w-56" hidden>
+            <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 py-2">
+              <a href="/agentes-ia" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Agentes de IA</a>
+              <a href="/soluciones-a-medida" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Soluciones a medida</a>
+              <a href="/soluciones-comerciales" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Soluciones comerciales</a>
+            </div>
+          </div>
+        </div>
+        <a href="/#como-funciona" class="hover:text-gray-900 transition-colors hidden sm:inline">Cómo funciona</a>
+        <a href="/#integraciones" class="hover:text-gray-900 transition-colors hidden sm:inline">Integraciones</a>
+        <a href="/#faq" class="hover:text-gray-900 transition-colors hidden sm:inline">Preguntas</a>
+        <a href="/#contacto" class="hover:text-gray-900 transition-colors">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="grid-pattern">
+    <div class="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
+      <div class="max-w-2xl">
+        <span class="inline-block text-xs font-medium text-gray-500 tracking-wider uppercase mb-4">Soluciones a medida · Sistemas para tu negocio</span>
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">Todo tu negocio,<br><span class="serif-i text-[1.15em] text-gray-500">en una sola pantalla.</span></h1>
+        <p class="mt-6 text-lg text-gray-600 leading-relaxed">Dejá de saltar entre planillas, WhatsApp y mil pestañas. Construimos el sistema que tu negocio necesita — pedidos, stock, clientes, cobranzas, reportes — y te devolvemos la información clara, ordenada y en tiempo real.</p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="#empezar" class="inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-gray-700 transition-colors">Quiero el mío</a>
+          <a href="#como-funciona" class="inline-flex items-center justify-center text-sm font-medium px-5 py-3 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">Ver cómo funciona</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="modulos" class="border-t border-gray-100 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-6 py-20">
+      <div class="max-w-2xl mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Lo que construimos</h2>
+        <p class="mt-3 text-gray-600">Módulos que se combinan según tu operación.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-colors bg-white">
+          <h3 class="font-semibold text-gray-900">Analytics</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Ingresos del mes, clientes nuevos, pedidos activos, conversión. Los números de tu negocio en un tablero que se actualiza solo.</p>
+        </div>
+        <div class="border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-colors bg-white">
+          <h3 class="font-semibold text-gray-900">Chatbot</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Un agente de IA que atiende consultas por WhatsApp e Instagram y carga los datos directo en el sistema. Es el mismo agente de MABAI.</p>
+        </div>
+        <div class="border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-colors bg-white">
+          <h3 class="font-semibold text-gray-900">Pipeline</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Cada oportunidad en su etapa, con responsable y próximo paso. Configurado para cómo vende tu equipo, no al revés.</p>
+        </div>
+        <div class="border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-colors bg-white">
+          <h3 class="font-semibold text-gray-900">Clientes</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Historial completo de cada cliente: qué compró, qué debe, qué preguntó. Una ficha, sin duplicados.</p>
+        </div>
+        <div class="border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-colors bg-white">
+          <h3 class="font-semibold text-gray-900">Stock</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Se actualiza con cada venta y avisa antes de que falte. Productos, variantes y proveedores en un solo lugar.</p>
+        </div>
+        <div class="border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-colors bg-white">
+          <h3 class="font-semibold text-gray-900">Finanzas</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Cobranzas, cuotas, vencimientos y cierre del día armado solo. Con alertas cuando algo se atrasa.</p>
+        </div>
+      </div>
+      <p class="mt-8 text-sm text-gray-500 max-w-2xl">Cada sistema se arma con los módulos que tu negocio necesita — ni uno más. Si ya tenés planillas o un sistema viejo, migramos los datos.</p>
+    </div>
+  </section>
+
+  <section id="un-dia" class="border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-6 py-20">
+      <div class="max-w-2xl mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Un día en tu negocio</h2>
+        <p class="mt-3 text-gray-600">Así se siente tenerlo todo resuelto.</p>
+      </div>
+      <ol class="relative border-l border-gray-200 ml-3 space-y-8">
+        <li class="ml-6">
+          <span class="absolute -left-[5px] mt-1.5 w-2.5 h-2.5 rounded-full bg-gray-900"></span>
+          <div class="text-xs font-semibold text-gray-400">8:00</div>
+          <p class="mt-1 text-sm text-gray-700 leading-relaxed max-w-xl">Tomás el primer café. El reporte de ayer ya está en el sistema. El agente de IA respondió las consultas de la noche por WhatsApp.</p>
+        </li>
+        <li class="ml-6">
+          <span class="absolute -left-[5px] mt-1.5 w-2.5 h-2.5 rounded-full bg-gray-900"></span>
+          <div class="text-xs font-semibold text-gray-400">11:30</div>
+          <p class="mt-1 text-sm text-gray-700 leading-relaxed max-w-xl">Estás atendiendo a un cliente. Cada venta que se carga actualiza stock, caja y ficha del cliente al mismo tiempo.</p>
+        </li>
+        <li class="ml-6">
+          <span class="absolute -left-[5px] mt-1.5 w-2.5 h-2.5 rounded-full bg-gray-900"></span>
+          <div class="text-xs font-semibold text-gray-400">14:00</div>
+          <p class="mt-1 text-sm text-gray-700 leading-relaxed max-w-xl">Almorzás tranquilo. Las facturas del día ya se emitieron y las cobranzas atrasadas tienen su recordatorio enviado.</p>
+        </li>
+        <li class="ml-6">
+          <span class="absolute -left-[5px] mt-1.5 w-2.5 h-2.5 rounded-full bg-gray-900"></span>
+          <div class="text-xs font-semibold text-gray-400">18:00</div>
+          <p class="mt-1 text-sm text-gray-700 leading-relaxed max-w-xl">Cerrás el local. El cierre del día se armó solo: ventas, cobros, faltantes.</p>
+        </li>
+        <li class="ml-6">
+          <span class="absolute -left-[5px] mt-1.5 w-2.5 h-2.5 rounded-full bg-gray-900"></span>
+          <div class="text-xs font-semibold text-gray-400">22:00</div>
+          <p class="mt-1 text-sm text-gray-700 leading-relaxed max-w-xl">Cenás con tu familia. El negocio sigue funcionando sin que estés mirando el celular.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="como-funciona" class="border-t border-gray-100 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-6 py-20">
+      <div class="max-w-2xl mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">De la reunión a la propuesta</h2>
+        <p class="mt-3 text-gray-600">Reunión un lunes. Auditoría antes del viernes.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white border border-gray-100 rounded-xl p-6">
+          <div class="text-xs font-semibold text-gray-400 mb-2">PASO 1</div>
+          <h3 class="font-semibold text-gray-900">Reunión</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Nos contás cómo funciona tu negocio hoy: qué hacés a mano, dónde se pierde tiempo, qué información te falta.</p>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-xl p-6">
+          <div class="text-xs font-semibold text-gray-400 mb-2">PASO 2</div>
+          <h3 class="font-semibold text-gray-900">Auditoría</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">En la misma semana te entregamos un diagnóstico escrito: qué se automatiza, el sistema propuesto, precio y plazo. Gratis.</p>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-xl p-6">
+          <div class="text-xs font-semibold text-gray-400 mb-2">PASO 3</div>
+          <h3 class="font-semibold text-gray-900">Construcción</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Armamos el sistema por etapas. Empezás a usar el primer módulo mientras seguimos con el resto.</p>
+        </div>
+        <div class="bg-white border border-gray-100 rounded-xl p-6">
+          <div class="text-xs font-semibold text-gray-400 mb-2">PASO 4</div>
+          <h3 class="font-semibold text-gray-900">Puesta en marcha</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Migramos tus datos, capacitamos al equipo y quedamos a cargo del mantenimiento y las mejoras.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-6 py-20">
+      <div class="max-w-2xl mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Preguntas frecuentes</h2>
+        <p class="mt-3 text-gray-600">Lo que suelen preguntarnos antes de empezar.</p>
+      </div>
+      <div class="max-w-3xl space-y-6">
+        <details class="border border-gray-100 rounded-xl p-5 group">
+          <summary class="font-semibold text-gray-900 cursor-pointer list-none flex justify-between items-center">
+            ¿Qué diferencia hay con comprar un software armado?
+            <span class="text-gray-400 group-open:rotate-180 transition-transform">▾</span>
+          </summary>
+          <p class="mt-3 text-sm text-gray-600 leading-relaxed">Un software genérico te obliga a adaptar tu negocio a él. Acá el sistema se construye alrededor de cómo trabajás vos: tus etapas, tus productos, tus reglas de cobranza.</p>
+        </details>
+        <details class="border border-gray-100 rounded-xl p-5 group">
+          <summary class="font-semibold text-gray-900 cursor-pointer list-none flex justify-between items-center">
+            ¿Cuánto tarda?
+            <span class="text-gray-400 group-open:rotate-180 transition-transform">▾</span>
+          </summary>
+          <p class="mt-3 text-sm text-gray-600 leading-relaxed">Depende de los módulos. Un primer módulo suele estar en uso en pocas semanas; el sistema completo se entrega por etapas para que no tengas que esperar a que esté todo listo.</p>
+        </details>
+        <details class="border border-gray-100 rounded-xl p-5 group">
+          <summary class="font-semibold text-gray-900 cursor-pointer list-none flex justify-between items-center">
+            ¿Qué pasa con mis planillas y datos actuales?
+            <span class="text-gray-400 group-open:rotate-180 transition-transform">▾</span>
+          </summary>
+          <p class="mt-3 text-sm text-gray-600 leading-relaxed">Los migramos. Y si querés seguir usando alguna planilla, la conectamos para que se sincronice con el sistema.</p>
+        </details>
+        <details class="border border-gray-100 rounded-xl p-5 group">
+          <summary class="font-semibold text-gray-900 cursor-pointer list-none flex justify-between items-center">
+            ¿Funciona desde el celular?
+            <span class="text-gray-400 group-open:rotate-180 transition-transform">▾</span>
+          </summary>
+          <p class="mt-3 text-sm text-gray-600 leading-relaxed">Sí. Todo lo que construimos es web y responsive: se usa desde la compu del local y desde el celular del dueño.</p>
+        </details>
+        <details class="border border-gray-100 rounded-xl p-5 group">
+          <summary class="font-semibold text-gray-900 cursor-pointer list-none flex justify-between items-center">
+            ¿Quién lo mantiene después?
+            <span class="text-gray-400 group-open:rotate-180 transition-transform">▾</span>
+          </summary>
+          <p class="mt-3 text-sm text-gray-600 leading-relaxed">Nosotros. El sistema queda alojado y monitoreado por MABAI, con un fee mensual que incluye soporte y mejoras.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="empezar" class="border-t border-gray-100 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-6 py-20">
+      <div class="max-w-xl">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Empezá con una auditoría gratis.</h2>
+        <p class="mt-3 text-gray-600">Coordinamos una reunión, y en la misma semana tenés el diagnóstico escrito con el sistema propuesto, precio y plazo.</p>
+        <ul class="mt-6 space-y-2 text-sm text-gray-700">
+          <li class="flex gap-2"><span class="text-emerald-600">✓</span> Diagnóstico escrito sin costo</li>
+          <li class="flex gap-2"><span class="text-emerald-600">✓</span> Precio y plazo cerrados antes de empezar</li>
+          <li class="flex gap-2"><span class="text-emerald-600">✓</span> Sin compromiso</li>
+        </ul>
+        <div class="mt-8">
+          <a href="mailto:hola@mabai.com.ar" class="inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-gray-700 transition-colors">Quiero mi auditoría</a>
+        </div>
+        <p class="mt-4 text-xs text-gray-500">O escribinos a <a href="mailto:hola@mabai.com.ar" class="underline">hola@mabai.com.ar</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-gray-100 py-10 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between gap-6 text-sm text-gray-500">
+        <div class="space-y-2">
+          <img src="/mabai-logo.svg" alt="MABAI" class="h-5 w-auto">
+          <p class="text-xs leading-relaxed max-w-sm">Agente de IA para WhatsApp, Instagram y web. Operado desde Buenos Aires, Argentina.</p>
+          <p class="text-xs">Contacto: <a href="mailto:hola@mabai.com.ar" class="underline hover:text-gray-700">hola@mabai.com.ar</a></p>
+        </div>
+        <div class="flex flex-col gap-2 md:items-end">
+          <div class="flex gap-5">
+            <a href="/privacy.html" class="hover:text-gray-900 transition-colors">Política de privacidad</a>
+            <a href="/terms.html" class="hover:text-gray-900 transition-colors">Términos</a>
+          </div>
+          <span class="text-xs">© 2026 MABAI. Todos los derechos reservados.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      var wrap = document.getElementById('nav-soluciones');
+      if (!wrap) return;
+      var btn = wrap.querySelector('button'), menu = wrap.querySelector('.nav-menu');
+      var hover = window.matchMedia('(hover: hover)').matches;
+      function set(open) { menu.hidden = !open; btn.setAttribute('aria-expanded', open); }
+      btn.addEventListener('click', function (e) { e.stopPropagation(); set(menu.hidden); });
+      if (hover) {
+        wrap.addEventListener('mouseenter', function () { set(true); });
+        wrap.addEventListener('mouseleave', function () { set(false); });
+      }
+      document.addEventListener('click', function () { set(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+    })();
+  </script>
+</body>
+</html>
