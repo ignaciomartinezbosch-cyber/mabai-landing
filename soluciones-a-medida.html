@@ -147,11 +147,13 @@
           <p>Por eso ofrecemos una instancia inicial de análisis y presupuesto sin costo. No es una llamada comercial vacía: es una primera etapa de trabajo orientada a entender tu operación, ordenar prioridades y ofrecer una primera demostración concreta del proyecto.</p>
           <p>El objetivo es que cada empresa pueda tomar decisiones con información clara, incluso si luego decide no avanzar con el proyecto. Esa claridad inicial reduce incertidumbre, evita decisiones apresuradas y permite validar el proyecto antes de invertir.</p>
         </div>
-        <div class="mt-8">
-          <a href="mailto:hola@mabai.com.ar" class="inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-gray-700 transition-colors">Agendar reunión</a>
-        </div>
-        <p class="mt-4 text-xs text-gray-500">O escribinos a <a href="mailto:hola@mabai.com.ar" class="underline">hola@mabai.com.ar</a>.</p>
       </div>
+
+      <!-- Cal.com: reserva inline (30 min, Google Meet) -->
+      <div class="mt-12 border border-gray-200 rounded-2xl overflow-hidden bg-white">
+        <div id="cal-inline" style="width:100%;min-height:640px;overflow:auto"></div>
+      </div>
+      <p class="mt-4 text-xs text-gray-500">¿No ves el calendario? Reservá directo en <a href="https://cal.com/hola-mabai/llamada-inicial" target="_blank" rel="noopener" class="underline">cal.com/hola-mabai/llamada-inicial</a> o escribinos a <a href="mailto:hola@mabai.com.ar" class="underline">hola@mabai.com.ar</a>.</p>
     </div>
   </section>
 
@@ -188,6 +190,12 @@
       document.addEventListener('click', function () { set(false); });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
     })();
+  </script>
+  <script type="text/javascript">
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "llamada-inicial", { origin: "https://app.cal.com" });
+    Cal.ns["llamada-inicial"]("inline", { elementOrSelector: "#cal-inline", calLink: "hola-mabai/llamada-inicial", config: { layout: "month_view", theme: "light" } });
+    Cal.ns["llamada-inicial"]("ui", { theme: "light", styles: { branding: { brandColor: "#111827" } }, hideEventTypeDetails: false, layout: "month_view" });
   </script>
   <script src="/logo-anim.js"></script>
   <script src="https://demo-inmobiliaria-production.up.railway.app/web/widget.js?key=mw_5Y9a4CVi5P1Xjs1pehjsJXY0hxyEp2Gj" async></script>
