@@ -23,6 +23,41 @@
       background-size: 20px 20px;
     }
     html { scroll-behavior: smooth; }
+
+    /* ---- Polish (better-ui / design-eng) ---- */
+    :root {
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      --shadow-border: 0 0 0 1px rgba(0,0,0,.06), 0 1px 2px -1px rgba(0,0,0,.06), 0 2px 4px 0 rgba(0,0,0,.04);
+      --shadow-border-hover: 0 0 0 1px rgba(0,0,0,.08), 0 1px 2px -1px rgba(0,0,0,.08), 0 2px 4px 0 rgba(0,0,0,.06);
+    }
+    /* Tarjetas: sombra para profundidad, sin borde */
+    .card { box-shadow: var(--shadow-border); transition: box-shadow 150ms ease-out; }
+    @media (hover: hover) and (pointer: fine) { .card:hover { box-shadow: var(--shadow-border-hover); } }
+    /* Botones: feedback al presionar */
+    .btn { transition-property: transform, background-color, color; transition-duration: 150ms; transition-timing-function: ease-out; }
+    .btn:active { transform: scale(0.96); }
+    /* Links de nav */
+    .nav-link { transition: color 150ms ease-out; }
+    /* Desplegable: entra desde el trigger, interrumpible */
+    .nav-menu { opacity: 0; transform: translateY(-4px) scale(0.97); transform-origin: top left; visibility: hidden;
+      transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out), visibility 0s linear 150ms; }
+    .nav-menu.open { opacity: 1; transform: none; visibility: visible; transition-delay: 0s, 0s, 0s; }
+    .nav-menu a { transition: background-color 100ms ease-out, color 100ms ease-out; }
+    /* Hero: entrada escalonada (una sola vez, al cargar) */
+    .hero-in > * { opacity: 0; transform: translateY(12px); filter: blur(4px); animation: hero-in 500ms var(--ease-out) forwards; }
+    .hero-in > *:nth-child(1) { animation-delay: 0ms; }
+    .hero-in > *:nth-child(2) { animation-delay: 90ms; }
+    .hero-in > *:nth-child(3) { animation-delay: 180ms; }
+    .hero-in > *:nth-child(4) { animation-delay: 270ms; }
+    .hero-in > *:nth-child(5) { animation-delay: 360ms; }
+    @keyframes hero-in { to { opacity: 1; transform: none; filter: blur(0); } }
+    .hero-visual { opacity: 0; transform: translateY(12px) scale(0.98); animation: hero-in 600ms var(--ease-out) 250ms forwards; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-in > *, .hero-visual { transform: none; filter: none; animation: hero-fade 300ms ease forwards; }
+      @keyframes hero-fade { to { opacity: 1; } }
+      .btn:active { transform: none; }
+      .nav-menu { transform: none; }
+    }
     .serif-i { font-family: "Instrument Serif", Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
 
 
@@ -41,10 +76,13 @@
     .lc-step.active .lc-num { color: #059669; }
     .lc-step.active .lc-title { color: #111827; }
     .lc-step.active .lc-desc { display: block; }
-    .lc-panel { animation: lc-in .35s ease both; width: 100%; }
-    .lc-panel[hidden] { display: none !important; }
-    @keyframes lc-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-    @media (prefers-reduced-motion: reduce) { .lc-panel { animation: none; } }
+    .lc-stack { display: grid; width: 100%; }
+    .lc-panel { grid-area: 1 / 1; opacity: 0; transform: translateY(8px); visibility: hidden; pointer-events: none;
+      transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out), visibility 0s linear 200ms; }
+    .lc-panel.active { opacity: 1; transform: none; visibility: visible; pointer-events: auto; transition-delay: 0s, 0s, 0s; }
+    .lc-step .lc-title, .lc-step .lc-num { transition: color 150ms ease-out; }
+    .lc-step { transition: border-color 150ms ease-out; }
+    @media (prefers-reduced-motion: reduce) { .lc-panel { transform: none; } }
 
     /* ---- Chat animado del hero ---- */
     .chat-body {
@@ -88,20 +126,20 @@
       </a>
       <div class="flex items-center gap-5 text-sm text-gray-600">
         <div class="relative" id="nav-soluciones">
-          <button type="button" class="flex items-center gap-1 hover:text-gray-900 transition-colors" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="nav-link flex items-center gap-1 hover:text-gray-900" aria-haspopup="true" aria-expanded="false">
             Soluciones
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform"><path d="m6 9 6 6 6-6"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div class="nav-menu absolute left-0 top-full pt-3 w-56" hidden>
+          <div class="nav-menu absolute left-0 top-full pt-3 w-56">
             <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 py-2">
               <a href="/agentes-ia" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Agentes de IA</a>
               <a href="/soluciones-a-medida" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Soluciones a medida</a>
             </div>
           </div>
         </div>
-        <a href="#como-funciona" class="hover:text-gray-900 transition-colors hidden sm:inline">Cómo funciona</a>
-        <a href="#integraciones" class="hover:text-gray-900 transition-colors hidden sm:inline">Integraciones</a>
-        <a href="#contacto" class="hover:text-gray-900 transition-colors">Contacto</a>
+        <a href="#como-funciona" class="nav-link hover:text-gray-900 hidden sm:inline">Cómo funciona</a>
+        <a href="#integraciones" class="nav-link hover:text-gray-900 hidden sm:inline">Integraciones</a>
+        <a href="#contacto" class="nav-link hover:text-gray-900">Contacto</a>
       </div>
     </div>
   </nav>
@@ -112,7 +150,7 @@
       <div class="grid lg:grid-cols-[1.2fr_1fr] gap-14 lg:gap-8 items-center">
 
         <!-- Texto -->
-        <div class="max-w-xl">
+        <div class="max-w-xl hero-in">
           <span class="inline-block text-xs font-medium text-gray-500 tracking-wider uppercase mb-4">Agente de IA · WhatsApp · Instagram · Web</span>
           <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">
             Tu agente de IA,<br>
@@ -126,17 +164,17 @@
             Funciona sobre la API oficial de Meta y un widget para tu sitio. Se conecta a tu calendario, tu catálogo y tu pipeline. Pensado para equipos comerciales de cualquier rubro.
           </p>
           <div class="mt-8 flex flex-col sm:flex-row gap-3">
-            <a href="#contacto" class="inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-gray-700 transition-colors">
+            <a href="#contacto" class="inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-gray-700 btn">
               Solicitar demo
             </a>
-            <a href="#como-funciona" class="inline-flex items-center justify-center text-sm font-medium px-5 py-3 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
+            <a href="#como-funciona" class="inline-flex items-center justify-center text-sm font-medium px-5 py-3 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 btn">
               Ver cómo funciona
             </a>
           </div>
         </div>
 
         <!-- Chat animado -->
-        <div class="relative mx-auto w-full max-w-sm lg:max-w-[380px]">
+        <div class="hero-visual relative mx-auto w-full max-w-sm lg:max-w-[380px]">
           <div class="absolute -inset-10 bg-gradient-to-br from-emerald-100/60 via-transparent to-gray-200/60 rounded-full blur-3xl -z-10"></div>
 
           <div id="badge-top" class="badge hidden-badge absolute -top-4 -right-3 sm:-right-8 z-10 bg-white shadow-lg shadow-gray-200/70 rounded-full pl-3 pr-4 py-2 text-sm text-gray-800 flex items-center gap-2 border border-gray-100">
@@ -176,7 +214,7 @@
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-colors">
+        <div class="card rounded-xl p-6 bg-white">
           <div class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center mb-4">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
@@ -186,7 +224,7 @@
           <p class="mt-2 text-sm text-gray-600 leading-relaxed">Responde cada consulta en WhatsApp, Instagram o tu web con el tono de tu empresa. Recuerda la conversación y los datos del cliente, entiende notas de voz y nunca duerme.</p>
         </div>
 
-        <div class="border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-colors">
+        <div class="card rounded-xl p-6 bg-white">
           <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center mb-4">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/>
@@ -196,7 +234,7 @@
           <p class="mt-2 text-sm text-gray-600 leading-relaxed">Identifica intención, necesidad y urgencia; etiqueta cada conversación, la mueve por tu pipeline y prioriza a los que están listos para comprar.</p>
         </div>
 
-        <div class="border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-colors">
+        <div class="card rounded-xl p-6 bg-white">
           <div class="w-10 h-10 rounded-lg bg-purple-50 text-purple-700 flex items-center justify-center mb-4">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <rect x="3" y="4" width="18" height="18" rx="2"/>
@@ -209,7 +247,7 @@
           <p class="mt-2 text-sm text-gray-600 leading-relaxed">Sincronizado con el Google Calendar de cada vendedor — el bot propone horarios, confirma la cita y envía recordatorios automáticos.</p>
         </div>
 
-        <div class="border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-colors">
+        <div class="card rounded-xl p-6 bg-white">
           <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center mb-4">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -221,7 +259,7 @@
           <p class="mt-2 text-sm text-gray-600 leading-relaxed">Cuando la conversación lo requiere — negociación, casos sensibles, urgencias — el bot pasa el chat a alguien de tu equipo en segundos y le avisa con una notificación.</p>
         </div>
 
-        <div class="border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-colors">
+        <div class="card rounded-xl p-6 bg-white">
           <div class="w-10 h-10 rounded-lg bg-rose-50 text-rose-700 flex items-center justify-center mb-4">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M4 4v5h5"/><path d="M20 20v-5h-5"/><path d="M20 9A8 8 0 0 0 5.6 5.6L4 9"/><path d="M4 15a8 8 0 0 0 14.4 3.4L20 15"/>
@@ -231,7 +269,7 @@
           <p class="mt-2 text-sm text-gray-600 leading-relaxed">Si un lead deja de responder, el agente vuelve a escribirle con la secuencia y los tiempos que vos definas. Ningún interesado se enfría por falta de seguimiento.</p>
         </div>
 
-        <div class="border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-colors">
+        <div class="card rounded-xl p-6 bg-white">
           <div class="w-10 h-10 rounded-lg bg-gray-100 text-gray-700 flex items-center justify-center mb-4">
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="10" rx="1"/>
@@ -254,29 +292,30 @@
           <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Cómo funciona</h2>
           <p class="mt-3 text-gray-600">De la activación al primer lead respondido en menos de un día.</p>
           <div class="mt-8 space-y-1" id="lc-steps">
-          <button type="button" class="lc-step w-full text-left border-l-2 pl-5 py-3 transition-colors" data-step="0" aria-expanded="true">
+          <button type="button" class="lc-step w-full text-left border-l-2 pl-5 py-3" data-step="0" aria-expanded="true">
             <div class="flex items-baseline gap-3"><span class="lc-num text-sm font-medium tabular-nums">01</span><span class="lc-title text-lg font-semibold">Conectamos tus canales</span></div>
             <p class="lc-desc mt-2 text-sm text-gray-600 leading-relaxed pr-2">Vinculamos tu WhatsApp Business API, tu cuenta de Instagram y el chat de tu sitio web. Sin cambiar de número ni de cuenta visible para el cliente. Cada vendedor conecta su Google Calendar.</p>
           </button>
-          <button type="button" class="lc-step w-full text-left border-l-2 pl-5 py-3 transition-colors" data-step="1" aria-expanded="false">
+          <button type="button" class="lc-step w-full text-left border-l-2 pl-5 py-3" data-step="1" aria-expanded="false">
             <div class="flex items-baseline gap-3"><span class="lc-num text-sm font-medium tabular-nums">02</span><span class="lc-title text-lg font-semibold">Entrenamos al agente</span></div>
             <p class="lc-desc mt-2 text-sm text-gray-600 leading-relaxed pr-2">Cargamos tu catálogo, precios y preguntas frecuentes — desde archivos o una planilla de Google Sheets que se sincroniza sola — y definimos el tono de voz, las reglas de derivación y los criterios de calificación.</p>
           </button>
-          <button type="button" class="lc-step w-full text-left border-l-2 pl-5 py-3 transition-colors" data-step="2" aria-expanded="false">
+          <button type="button" class="lc-step w-full text-left border-l-2 pl-5 py-3" data-step="2" aria-expanded="false">
             <div class="flex items-baseline gap-3"><span class="lc-num text-sm font-medium tabular-nums">03</span><span class="lc-title text-lg font-semibold">Activamos el agente</span></div>
             <p class="lc-desc mt-2 text-sm text-gray-600 leading-relaxed pr-2">Tu equipo accede al panel CRM en tiempo real, también desde el celular. El agente empieza a atender consultas, calificar leads y agendar citas automáticamente — y reparte los leads entre los vendedores.</p>
           </button>
-          <button type="button" class="lc-step w-full text-left border-l-2 pl-5 py-3 transition-colors" data-step="3" aria-expanded="false">
+          <button type="button" class="lc-step w-full text-left border-l-2 pl-5 py-3" data-step="3" aria-expanded="false">
             <div class="flex items-baseline gap-3"><span class="lc-num text-sm font-medium tabular-nums">04</span><span class="lc-title text-lg font-semibold">Mejoramos semana a semana</span></div>
             <p class="lc-desc mt-2 text-sm text-gray-600 leading-relaxed pr-2">Medimos respuestas, citas y conversiones; ajustamos instrucciones, seguimientos y etiquetas con lo que vemos en las conversaciones reales. El agente mejora con tu operación, no queda fijo.</p>
           </button>
           </div>
-          <a href="#contacto" class="mt-8 inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-gray-700 transition-colors">Solicitar demo</a>
+          <a href="#contacto" class="mt-8 inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-gray-700 btn">Solicitar demo</a>
         </div>
 
         <!-- Panel -->
         <div class="lc-dark relative p-6 md:p-8 flex items-center min-h-[420px]">
-          <div class="lc-panel grid sm:grid-cols-2 gap-3 auto-rows-min" data-step="0">
+          <div class="lc-stack">
+          <div class="lc-panel grid sm:grid-cols-2 gap-3 auto-rows-min active" data-step="0">
             <div class="lc-card bg-white rounded-xl p-4 shadow-lg shadow-black/20 lg:col-span-1">
               <div class="text-sm font-semibold text-gray-900 mb-2">Canales</div>
               <div class="flex items-center justify-between py-1.5"><div class="flex items-center gap-2 text-sm text-gray-800"><span class="w-6 h-6 rounded-md bg-emerald-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span>WhatsApp Business API</div><span class="w-9 h-5 rounded-full bg-emerald-500 justify-end flex items-center px-0.5"><span class="w-4 h-4 bg-white rounded-full shadow"></span></span></div><div class="flex items-center justify-between py-1.5"><div class="flex items-center gap-2 text-sm text-gray-800"><span class="w-6 h-6 rounded-md bg-pink-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E4405F" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#E4405F" stroke="none"/></svg></span>Instagram</div><span class="w-9 h-5 rounded-full bg-emerald-500 justify-end flex items-center px-0.5"><span class="w-4 h-4 bg-white rounded-full shadow"></span></span></div><div class="flex items-center justify-between py-1.5"><div class="flex items-center gap-2 text-sm text-gray-800"><span class="w-6 h-6 rounded-md bg-gray-100 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#111827" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Widget web</div><span class="w-9 h-5 rounded-full bg-emerald-500 justify-end flex items-center px-0.5"><span class="w-4 h-4 bg-white rounded-full shadow"></span></span></div>
@@ -294,7 +333,7 @@
               <div class="text-xs font-mono text-gray-600 bg-gray-50 rounded-md px-2 py-1.5 truncate">/webhook/meta/2a46…/f3c9</div><div class="mt-2"><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">Verificado</span></div>
             </div>
           </div>
-          <div class="lc-panel grid sm:grid-cols-2 gap-3 auto-rows-min" data-step="1" hidden>
+          <div class="lc-panel grid sm:grid-cols-2 gap-3 auto-rows-min" data-step="1">
             <div class="lc-card bg-white rounded-xl p-4 shadow-lg shadow-black/20 ">
               <div class="text-sm font-semibold text-gray-900 mb-2">Identidad</div>
               <div class="text-sm text-gray-800">Nombre: <span class="font-medium">Sofi</span></div><div class="text-sm text-gray-800 mt-1">Tono: cercano, profesional, sin tecnicismos</div>
@@ -312,7 +351,7 @@
               <div class="flex flex-wrap gap-1.5"><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">negociación</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">reclamo</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">pide hablar con alguien</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">financiación</span></div>
             </div>
           </div>
-          <div class="lc-panel grid sm:grid-cols-2 gap-3 auto-rows-min" data-step="2" hidden>
+          <div class="lc-panel grid sm:grid-cols-2 gap-3 auto-rows-min" data-step="2">
             <div class="lc-card bg-white rounded-xl p-4 shadow-lg shadow-black/20 ">
               <div class="text-sm font-semibold text-gray-900 mb-2">Agente</div>
               <div class="flex items-center justify-between py-1.5"><div class="flex items-center gap-2 text-sm text-gray-800"><span class="w-2 h-2 rounded-full bg-emerald-500 mr-1"></span>Activo · 24/7</div><span class="w-9 h-5 rounded-full bg-emerald-500 justify-end flex items-center px-0.5"><span class="w-4 h-4 bg-white rounded-full shadow"></span></span></div>
@@ -330,7 +369,7 @@
               <div class="flex items-start gap-2 text-sm text-gray-800"><span class="w-2 h-2 mt-1.5 rounded-full bg-emerald-500 shrink-0"></span><span>Nuevo lead asignado a Juan: Martín G. — quiere visitar mañana 18 hs</span></div>
             </div>
           </div>
-          <div class="lc-panel grid sm:grid-cols-2 gap-3 auto-rows-min" data-step="3" hidden>
+          <div class="lc-panel grid sm:grid-cols-2 gap-3 auto-rows-min" data-step="3">
             <div class="lc-card bg-white rounded-xl p-4 shadow-lg shadow-black/20 lg:col-span-2">
               <div class="text-sm font-semibold text-gray-900 mb-2">Esta semana</div>
               <div class="grid grid-cols-3 gap-1.5 text-center"><div><div class="text-lg font-semibold text-gray-900">1.240</div><div class="text-[10px] text-gray-500">respuestas</div></div><div><div class="text-lg font-semibold text-gray-900">4 s</div><div class="text-[10px] text-gray-500">tiempo resp.</div></div><div><div class="text-lg font-semibold text-gray-900">38</div><div class="text-[10px] text-gray-500">citas</div></div></div>
@@ -343,6 +382,7 @@
               <div class="text-sm font-semibold text-gray-900 mb-2">Etiquetas automáticas</div>
               <div class="flex flex-wrap gap-1.5"><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">interesado</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-700">pide precio</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">urgente</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">no responde</span></div>
             </div>
+          </div>
           </div>
         </div>
 
@@ -359,42 +399,42 @@
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="border border-gray-100 rounded-xl p-5 flex gap-4 items-start">
+        <div class="card rounded-xl p-5 bg-white flex gap-4 items-start">
           <div class="w-10 h-10 shrink-0 rounded-lg bg-emerald-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="22" height="22" fill="#25D366" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></div>
           <div>
           <div class="font-semibold text-gray-900 text-sm">WhatsApp Business API</div>
           <p class="mt-1 text-xs text-gray-500 leading-relaxed">Mensajería oficial vía Meta Cloud API.</p>
           </div>
         </div>
-        <div class="border border-gray-100 rounded-xl p-5 flex gap-4 items-start">
+        <div class="card rounded-xl p-5 bg-white flex gap-4 items-start">
           <div class="w-10 h-10 shrink-0 rounded-lg bg-pink-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="22" height="22" fill="#E4405F" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></div>
           <div>
           <div class="font-semibold text-gray-900 text-sm">Instagram</div>
           <p class="mt-1 text-xs text-gray-500 leading-relaxed">Mensajes directos de tu cuenta, en la misma bandeja.</p>
           </div>
         </div>
-        <div class="border border-gray-100 rounded-xl p-5 flex gap-4 items-start">
+        <div class="card rounded-xl p-5 bg-white flex gap-4 items-start">
           <div class="w-10 h-10 shrink-0 rounded-lg bg-gray-100 flex items-center justify-center"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#111827" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
           <div>
           <div class="font-semibold text-gray-900 text-sm">Widget web</div>
           <p class="mt-1 text-xs text-gray-500 leading-relaxed">Chat en tu sitio, atendido por el mismo agente.</p>
           </div>
         </div>
-        <div class="border border-gray-100 rounded-xl p-5 flex gap-4 items-start">
+        <div class="card rounded-xl p-5 bg-white flex gap-4 items-start">
           <div class="w-10 h-10 shrink-0 rounded-lg bg-blue-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="22" height="22" fill="#4285F4" aria-hidden="true"><path d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zm-7.207 6.25v-.065c.272-.144.5-.349.687-.617s.279-.595.279-.982c0-.379-.099-.72-.3-1.025a2.05 2.05 0 0 0-.832-.714 2.703 2.703 0 0 0-1.197-.257c-.6 0-1.094.156-1.481.467-.386.311-.65.671-.793 1.078l1.085.452c.086-.249.224-.461.413-.633.189-.172.445-.257.767-.257.33 0 .602.088.816.264a.86.86 0 0 1 .322.703c0 .33-.12.589-.36.778-.24.19-.535.284-.886.284h-.567v1.085h.633c.407 0 .748.109 1.02.327.272.218.407.499.407.843 0 .336-.129.614-.387.832s-.565.327-.924.327c-.351 0-.651-.103-.897-.311-.248-.208-.422-.502-.521-.881l-1.096.452c.178.616.505 1.082.977 1.401.472.319.984.478 1.538.477a2.84 2.84 0 0 0 1.293-.291c.382-.193.684-.458.902-.794.218-.336.327-.72.327-1.149 0-.429-.115-.797-.344-1.105a2.067 2.067 0 0 0-.881-.689zm2.093-1.931l.602.913L15 10.045v5.744h1.187V8.446h-.827l-2.158 1.557zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zm-3.289 23.5l4.684-4.684h-4.684V23.5zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z"/></svg></div>
           <div>
           <div class="font-semibold text-gray-900 text-sm">Google Calendar</div>
           <p class="mt-1 text-xs text-gray-500 leading-relaxed">Citas y recordatorios en la agenda de cada vendedor.</p>
           </div>
         </div>
-        <div class="border border-gray-100 rounded-xl p-5 flex gap-4 items-start">
+        <div class="card rounded-xl p-5 bg-white flex gap-4 items-start">
           <div class="w-10 h-10 shrink-0 rounded-lg bg-green-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="22" height="22" fill="#34A853" aria-hidden="true"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></svg></div>
           <div>
           <div class="font-semibold text-gray-900 text-sm">Google Sheets</div>
           <p class="mt-1 text-xs text-gray-500 leading-relaxed">Catálogo y leads sincronizados desde tus planillas.</p>
           </div>
         </div>
-        <div class="border border-gray-100 rounded-xl p-5 flex gap-4 items-start">
+        <div class="card rounded-xl p-5 bg-white flex gap-4 items-start">
           <div class="w-10 h-10 shrink-0 rounded-lg bg-orange-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="22" height="22" fill="#D97757" aria-hidden="true"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg></div>
           <div>
           <div class="font-semibold text-gray-900 text-sm">Claude · Anthropic</div>
@@ -415,7 +455,7 @@
       </div>
 
       <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
-        <button type="button" data-cal-namespace="llamada-inicial" data-cal-link="hola-mabai/llamada-inicial" data-cal-config='{"layout":"month_view","theme":"light"}' class="inline-flex items-center justify-center gap-2 bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-gray-700 transition-colors">
+        <button type="button" data-cal-namespace="llamada-inicial" data-cal-link="hola-mabai/llamada-inicial" data-cal-config='{"layout":"month_view","theme":"light"}' class="inline-flex items-center justify-center gap-2 bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-gray-700 btn">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           Agendar llamada · 30 min
         </button>
@@ -435,8 +475,8 @@
         </div>
         <div class="flex flex-col gap-2 md:items-end">
           <div class="flex gap-5">
-            <a href="/privacy.html" class="hover:text-gray-900 transition-colors">Política de privacidad</a>
-            <a href="/terms.html" class="hover:text-gray-900 transition-colors">Términos</a>
+            <a href="/privacy.html" class="nav-link hover:text-gray-900">Política de privacidad</a>
+            <a href="/terms.html" class="nav-link hover:text-gray-900">Términos</a>
           </div>
           <span class="text-xs">© 2026 MABAI. Todos los derechos reservados.</span>
         </div>
@@ -451,8 +491,8 @@
       if (!wrap) return;
       var btn = wrap.querySelector('button'), menu = wrap.querySelector('.nav-menu');
       var hover = window.matchMedia('(hover: hover)').matches;
-      function set(open) { menu.hidden = !open; btn.setAttribute('aria-expanded', open); }
-      btn.addEventListener('click', function (e) { e.stopPropagation(); set(menu.hidden); });
+      function set(open) { menu.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); }
+      btn.addEventListener('click', function (e) { e.stopPropagation(); set(!menu.classList.contains('open')); });
       if (hover) {
         wrap.addEventListener('mouseenter', function () { set(true); });
         wrap.addEventListener('mouseleave', function () { set(false); });
@@ -470,7 +510,7 @@
       function show(i) {
         cur = i;
         steps.forEach(function (s, k) { s.classList.toggle('active', k === i); s.setAttribute('aria-expanded', k === i); });
-        panels.forEach(function (p, k) { p.hidden = k !== i; });
+        panels.forEach(function (p, k) { p.classList.toggle('active', k === i); });
       }
       function auto() { timer = setInterval(function () { show((cur + 1) % steps.length); }, 5000); }
       steps.forEach(function (s, i) { s.addEventListener('click', function () { clearInterval(timer); show(i); }); });
