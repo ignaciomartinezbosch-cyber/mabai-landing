@@ -23,7 +23,7 @@
 
   <main class="max-w-3xl mx-auto px-6 py-16">
     <h1 class="text-3xl font-bold tracking-tight text-gray-900">Política de privacidad</h1>
-    <p class="text-sm text-gray-500 mt-2">Última actualización: 6 de mayo de 2026</p>
+    <p class="text-sm text-gray-500 mt-2">Última actualización: 18 de octubre de 2026</p>
 
     <div class="mt-8 space-y-8 text-gray-700 leading-relaxed">
 
@@ -85,10 +85,20 @@
           <li><strong>Anthropic, PBC</strong> — generación de respuestas mediante el modelo Claude.</li>
           <li><strong>OpenAI, L.L.C.</strong> — transcripción de mensajes de audio recibidos.</li>
           <li><strong>Supabase Inc.</strong> — almacenamiento cifrado de conversaciones, contactos y configuración.</li>
-          <li><strong>Google LLC</strong> — sincronización de calendarios cuando el cliente conecta su cuenta de Google.</li>
+          <li><strong>Google LLC</strong> — sincronización de calendarios y lectura de planillas cuando el cliente conecta su cuenta de Google.</li>
           <li><strong>Railway / Vercel</strong> — alojamiento de la infraestructura y del sitio web.</li>
         </ul>
         <p class="mt-3">No vendemos información personal a terceros y no realizamos transferencias con fines publicitarios externos al servicio contratado.</p>
+        <h3 class="mt-5 text-lg font-semibold text-gray-900">Uso de datos de Google (Google Calendar y Google Sheets)</h3>
+        <p class="mt-2">Cuando un cliente conecta su cuenta de Google desde el panel de MABAI, solicitamos únicamente los permisos necesarios para las funciones que el cliente activa:</p>
+        <ul class="list-disc pl-6 mt-2 space-y-1">
+          <li><strong>Google Calendar</strong> (permiso <code>calendar.events</code>): leer, crear y actualizar eventos en el calendario del cliente para agendar, confirmar y cancelar las citas que coordina el agente de IA.</li>
+          <li><strong>Google Sheets</strong> (permiso <code>spreadsheets.readonly</code>): leer las planillas que el cliente indique expresamente, para que el agente las use como fuente de información (por ejemplo, listados de productos o propiedades).</li>
+          <li><strong>Dirección de email</strong> de la cuenta conectada, para identificar la cuenta vinculada en el panel.</li>
+        </ul>
+        <p class="mt-3">Los tokens de acceso se almacenan de forma segura y se usan exclusivamente para brindar estas funciones al cliente que los otorgó. No usamos datos obtenidos de Google con fines publicitarios, no los vendemos ni los cedemos a terceros, salvo a los proveedores de infraestructura indicados en esta sección y en la medida necesaria para prestar el servicio. El personal de MABAI no accede a estos datos, salvo para soporte solicitado por el cliente, por motivos de seguridad o cuando la ley lo exija.</p>
+        <p class="mt-3">El uso y la transferencia a cualquier otra aplicación de la información recibida de las APIs de Google por parte de MABAI se ajustan a la <a class="underline" href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Política de Datos de Usuario de los Servicios API de Google</a>, incluidos los requisitos de Uso Limitado.</p>
+        <p class="mt-3">El cliente puede desconectar su cuenta de Google en cualquier momento desde el panel de MABAI (lo que elimina los tokens asociados) o revocar el acceso desde <a class="underline" href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</p>
       </section>
 
       <section>
