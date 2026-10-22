@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agentes de IA — MABAI</title>
-  <meta name="description" content="Agentes de IA que atienden, califican y agendan por vos en WhatsApp, Instagram y tu web." />
+  <meta name="description" content="Agentes de IA que atienden, califican y agendan por vos en todos tus canales." />
   <meta property="og:title" content="Agentes de IA — MABAI" />
-  <meta property="og:description" content="Agentes de IA que atienden, califican y agendan por vos en WhatsApp, Instagram y tu web." />
+  <meta property="og:description" content="Agentes de IA que atienden, califican y agendan por vos en todos tus canales." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mabai.com.ar/agentes-ia" />
   <link rel="canonical" href="https://mabai.com.ar/agentes-ia" />
@@ -57,6 +57,7 @@
     .nav-menu { opacity: 0; transform: translateY(-4px) scale(0.97); transform-origin: top left; visibility: hidden;
       transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out), visibility 0s linear 150ms; }
     .nav-menu.open { opacity: 1; transform: none; visibility: visible; transition-delay: 0s, 0s, 0s; }
+    @media (max-width: 639px) { .nav-menu { transform-origin: top right; } }
     .nav-menu a { transition: background-color 100ms ease-out, color 100ms ease-out; }
     /* Hero: entrada escalonada (una sola vez, al cargar) */
     .hero-in > * { opacity: 0; transform: translateY(12px); filter: blur(4px); animation: hero-in 500ms var(--ease-out) forwards; }
@@ -121,7 +122,7 @@
             Soluciones
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div class="nav-menu absolute left-0 top-full pt-3 w-56">
+          <div class="nav-menu absolute right-0 sm:right-auto sm:left-0 top-full pt-3 w-56">
             <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 py-2">
               <a href="/agentes-ia" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Agentes de IA</a>
               <a href="/soluciones-a-medida" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Soluciones a medida</a>
@@ -129,7 +130,6 @@
           </div>
         </div>
         <a href="/#como-funciona" class="nav-link hover:text-gray-900 hidden sm:inline">Cómo funciona</a>
-        <a href="/#integraciones" class="nav-link hover:text-gray-900 hidden sm:inline">Integraciones</a>
         <a href="/#contacto" class="nav-link accent-ink font-medium">Contacto</a>
       </div>
     </div>
@@ -141,7 +141,7 @@
       <div class="max-w-2xl">
         <span class="inline-block text-xs font-medium accent-ink tracking-wider uppercase mb-4">Soluciones</span>
         <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">Agentes de IA</h1>
-        <p class="mt-6 text-lg text-gray-600 leading-relaxed">Agentes de IA que atienden, califican y agendan por vos en WhatsApp, Instagram y tu web.</p>
+        <p class="mt-6 text-lg text-gray-600 leading-relaxed">Agentes de IA que atienden, califican y agendan por vos en todos tus canales.</p>
         <div class="mt-8">
           <a href="/#contacto" class="inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-[#b8731a] btn">Solicitar demo</a>
         </div>
