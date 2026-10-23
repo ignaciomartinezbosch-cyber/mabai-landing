@@ -1,6 +1,9 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/agentes-ia", "destination": "/", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/:rubro([a-z0-9-]+)", "destination": "/index.html" }
   ]
