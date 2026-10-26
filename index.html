@@ -57,7 +57,11 @@
     .nav-menu { opacity: 0; transform: translateY(-4px) scale(0.97); transform-origin: top left; visibility: hidden;
       transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out), visibility 0s linear 150ms; }
     .nav-menu.open { opacity: 1; transform: none; visibility: visible; transition-delay: 0s, 0s, 0s; }
-    @media (max-width: 639px) { .nav-menu { transform-origin: top right; } }
+    @media (max-width: 639px) {
+      .nav-menu { transform-origin: top center; }
+      .nav-menu.nav-menu-full { left: 1rem; right: 1rem; top: 100%; width: auto; padding-top: .25rem; }
+    }
+    @media (min-width: 640px) { .nav-menu.nav-menu-full { left: 0; } }
     .nav-menu a { transition: background-color 100ms ease-out, color 100ms ease-out; }
     /* Hero: entrada escalonada (una sola vez, al cargar) */
     .hero-in > * { opacity: 0; transform: translateY(12px); filter: blur(4px); animation: hero-in 500ms var(--ease-out) forwards; }
@@ -142,24 +146,44 @@
 
   <!-- Nav -->
   <nav class="border-b border-gray-100 bg-white/80 backdrop-blur sticky top-0 z-10">
-    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
       <a href="/" class="flex items-center gap-2">
-        <img src="/mabai-logo.svg" alt="MABAI" class="h-7 w-auto">
+        <img src="/mabai-logo.svg" alt="MABAI" class="h-6 sm:h-7 w-auto">
       </a>
-      <div class="flex items-center gap-5 text-sm text-gray-600">
-        <div class="relative" id="nav-soluciones">
+      <div class="flex items-center gap-2.5 sm:gap-5 text-[13px] sm:text-sm text-gray-600">
+        <div class="sm:relative" data-dropdown>
           <button type="button" class="nav-link flex items-center gap-1 hover:text-gray-900" aria-haspopup="true" aria-expanded="false">
             Soluciones
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div class="nav-menu absolute right-0 sm:right-auto sm:left-0 top-full pt-3 w-56">
+          <div class="nav-menu nav-menu-full absolute top-full pt-3 w-56">
             <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 py-2">
               <a href="/" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Agentes de IA</a>
               <a href="/soluciones-a-medida" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Soluciones a medida</a>
+              <a href="/partners" class="block sm:hidden px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Partners</a>
             </div>
           </div>
         </div>
-        <a href="#como-funciona" class="nav-link hover:text-gray-900 hidden sm:inline">Cómo funciona</a>
+        <div class="sm:relative" data-dropdown>
+          <button type="button" class="nav-link flex items-center gap-1 hover:text-gray-900" aria-haspopup="true" aria-expanded="false">
+            Rubros
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="nav-menu nav-menu-full absolute top-full pt-3 w-72">
+            <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 p-2">
+              <a href="/inmobiliarias" class="block rounded-lg px-3 py-2.5 hover:bg-gray-50">
+                <span class="block font-medium text-gray-900">Inmobiliarias</span>
+                <span class="block mt-0.5 text-xs leading-snug text-gray-500">Conectado a Tokko: ofrece tus propiedades con foto y ficha.</span>
+              </a>
+              <a href="/retail" class="block rounded-lg px-3 py-2.5 hover:bg-gray-50">
+                <span class="block font-medium text-gray-900">Retail</span>
+                <span class="block mt-0.5 text-xs leading-snug text-gray-500">Catálogo en el chat de tu web: recomienda, compara y lleva al carrito.</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="/partners" class="nav-link hover:text-gray-900 hidden sm:inline">Partners</a>
+        <a href="#como-funciona" class="nav-link hover:text-gray-900 hidden md:inline">Cómo funciona</a>
         <a href="#contacto" class="nav-link accent-ink font-medium">Contacto</a>
       </div>
     </div>
@@ -452,18 +476,24 @@
 
   <script>
     (function () {
-      var wrap = document.getElementById('nav-soluciones');
-      if (!wrap) return;
-      var btn = wrap.querySelector('button'), menu = wrap.querySelector('.nav-menu');
+      var wraps = [].slice.call(document.querySelectorAll('[data-dropdown]'));
       var hover = window.matchMedia('(hover: hover)').matches;
-      function set(open) { menu.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); }
-      btn.addEventListener('click', function (e) { e.stopPropagation(); set(!menu.classList.contains('open')); });
-      if (hover) {
-        wrap.addEventListener('mouseenter', function () { set(true); });
-        wrap.addEventListener('mouseleave', function () { set(false); });
-      }
-      document.addEventListener('click', function () { set(false); });
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+      function closeAll() { wraps.forEach(function (w) { w._set(false); }); }
+      wraps.forEach(function (wrap) {
+        var btn = wrap.querySelector('button'), menu = wrap.querySelector('.nav-menu');
+        wrap._set = function (open) { menu.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); };
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var open = !menu.classList.contains('open');
+          closeAll(); wrap._set(open);
+        });
+        if (hover) {
+          wrap.addEventListener('mouseenter', function () { wrap._set(true); });
+          wrap.addEventListener('mouseleave', function () { wrap._set(false); });
+        }
+      });
+      document.addEventListener('click', closeAll);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
     })();
   </script>
   <script src="/guiones.js"></script>

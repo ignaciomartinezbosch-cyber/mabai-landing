@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retail — MABAI</title>
+  <meta name="description" content="Un agente de IA en el chat de tu web que recomienda, compara y lleva al carrito. Siempre con precios reales de tu catálogo." />
+  <meta property="og:title" content="Retail — MABAI" />
+  <meta property="og:description" content="Un agente de IA en el chat de tu web que recomienda, compara y lleva al carrito. Siempre con precios reales de tu catálogo." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mabai.com.ar/retail" />
+  <link rel="canonical" href="https://mabai.com.ar/retail" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      --accent: #e8a33d;
+      --accent-soft: #fdf3e3;
+      --accent-ink: #b8731a;
+      --shadow-border: 0 0 0 1px rgba(0,0,0,.06), 0 1px 2px -1px rgba(0,0,0,.06), 0 2px 4px 0 rgba(0,0,0,.04);
+    }
+    .grid-pattern { background-image: radial-gradient(circle, rgba(232,163,61,.28) 1px, transparent 1px); background-size: 20px 20px; }
+    .card { box-shadow: var(--shadow-border); transition: box-shadow 150ms ease-out; }
+    @media (hover: hover) and (pointer: fine) { .card:hover { box-shadow: 0 0 0 1px rgba(232,163,61,.45), 0 1px 2px -1px rgba(0,0,0,.08), 0 4px 10px -2px rgba(232,163,61,.18); } }
+    .accent { color: var(--accent); }
+    .accent-ink { color: var(--accent-ink); }
+    .accent-bg { background: var(--accent-soft); }
+    .eyebrow { display: block; width: 40px; height: 3px; border-radius: 9999px; background: var(--accent); margin-bottom: 14px; }
+    .nav-link:hover, .nav-menu a:hover { color: var(--accent-ink); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent-ink); }
+    .btn-accent { background: var(--accent); color: #111827; }
+    .btn-accent:hover { background: #d9932f; }
+    footer a:hover { color: var(--accent-ink); }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    ::selection { background: var(--accent-soft); }
+    .btn { transition-property: transform, background-color, color; transition-duration: 150ms; transition-timing-function: ease-out; }
+    .btn:active { transform: scale(0.96); }
+    .nav-link { transition: color 150ms ease-out; }
+    .nav-menu { opacity: 0; transform: translateY(-4px) scale(0.97); transform-origin: top left; visibility: hidden;
+      transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out), visibility 0s linear 150ms; }
+    .nav-menu.open { opacity: 1; transform: none; visibility: visible; transition-delay: 0s, 0s, 0s; }
+    @media (max-width: 639px) {
+      .nav-menu { transform-origin: top center; }
+      .nav-menu.nav-menu-full { left: 1rem; right: 1rem; top: 100%; width: auto; padding-top: .25rem; }
+    }
+    @media (min-width: 640px) { .nav-menu.nav-menu-full { left: 0; } }
+    .nav-menu a { transition: background-color 100ms ease-out, color 100ms ease-out; }
+    .hero-in > * { opacity: 0; transform: translateY(12px); filter: blur(4px); animation: hero-in 500ms var(--ease-out) forwards; }
+    .hero-in > *:nth-child(2) { animation-delay: 90ms; }
+    .hero-in > *:nth-child(3) { animation-delay: 180ms; }
+    .hero-in > *:nth-child(4) { animation-delay: 270ms; }
+    @keyframes hero-in { to { opacity: 1; transform: none; filter: blur(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-in > * { transform: none; filter: none; animation: hero-fade 300ms ease forwards; }
+      @keyframes hero-fade { to { opacity: 1; } }
+      .btn:active, .nav-menu { transform: none; }
+    }
+    .serif-i { font-family: "Instrument Serif", Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+    /* Paneles oscuros de muestra */
+    .lc-dark { background-color: #111827; background-image: radial-gradient(circle, rgba(232,163,61,.18) 1px, transparent 1px); background-size: 18px 18px; }
+    .step-num { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 9999px; background: var(--accent-soft); color: var(--accent-ink); font-size: .875rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+    .tag { display: inline-block; font-size: 11px; padding: .125rem .5rem; border-radius: 9999px; white-space: nowrap; }
+    /* Chats de muestra */
+    .wa-body { background-color: #efeae2; background-image: radial-gradient(circle, rgba(0,0,0,.035) 1px, transparent 1px); background-size: 14px 14px; }
+    .msg { max-width: 85%; border-radius: .75rem; padding: .5rem .75rem; font-size: 13px; line-height: 1.35; box-shadow: 0 1px 1px rgba(0,0,0,.06); }
+    .msg-in { align-self: flex-start; background: #fff; color: #111827; border-top-left-radius: .25rem; }
+    .msg-out { align-self: flex-end; background: #d9fdd3; color: #111827; border-top-right-radius: .25rem; }
+    .msg-web { align-self: flex-end; background: var(--accent); color: #111827; border-top-right-radius: .25rem; }
+    /* Tarjetas de producto del widget */
+    .pcards { display: flex; gap: .5rem; overflow: hidden; }
+    .pcard { flex: 0 0 8.25rem; background: #fff; border-radius: .75rem; padding: .5rem; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); }
+    .pimg { aspect-ratio: 1; border-radius: .5rem; background: #f3f4f6; display: flex; align-items: center; justify-content: center; color: #9ca3af; }
+    .cmp { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .cmp th, .cmp td { padding: .45rem .4rem; border-top: 1px solid #f3f4f6; vertical-align: top; }
+    .cmp th { text-align: left; font-weight: 600; color: #374151; width: 34%; }
+    .cmp td { text-align: center; color: #111827; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- Nav -->
+  <nav class="border-b border-gray-100 bg-white/80 backdrop-blur sticky top-0 z-10">
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <img src="/mabai-logo.svg" alt="MABAI" class="h-6 sm:h-7 w-auto">
+      </a>
+      <div class="flex items-center gap-2.5 sm:gap-5 text-[13px] sm:text-sm text-gray-600">
+        <div class="sm:relative" data-dropdown>
+          <button type="button" class="nav-link flex items-center gap-1 hover:text-gray-900" aria-haspopup="true" aria-expanded="false">
+            Soluciones
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="nav-menu nav-menu-full absolute top-full pt-3 w-56">
+            <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 py-2">
+              <a href="/" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Agentes de IA</a>
+              <a href="/soluciones-a-medida" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Soluciones a medida</a>
+              <a href="/partners" class="block sm:hidden px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Partners</a>
+            </div>
+          </div>
+        </div>
+        <div class="sm:relative" data-dropdown>
+          <button type="button" class="nav-link flex items-center gap-1 hover:text-gray-900" aria-haspopup="true" aria-expanded="false">
+            Rubros
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="nav-menu nav-menu-full absolute top-full pt-3 w-72">
+            <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 p-2">
+              <a href="/inmobiliarias" class="block rounded-lg px-3 py-2.5 hover:bg-gray-50">
+                <span class="block font-medium text-gray-900">Inmobiliarias</span>
+                <span class="block mt-0.5 text-xs leading-snug text-gray-500">Conectado a Tokko: ofrece tus propiedades con foto y ficha.</span>
+              </a>
+              <a href="/retail" class="block rounded-lg px-3 py-2.5 hover:bg-gray-50">
+                <span class="block font-medium text-gray-900">Retail</span>
+                <span class="block mt-0.5 text-xs leading-snug text-gray-500">Catálogo en el chat de tu web: recomienda, compara y lleva al carrito.</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="/partners" class="nav-link hover:text-gray-900 hidden sm:inline">Partners</a>
+        <a href="/#como-funciona" class="nav-link hover:text-gray-900 hidden md:inline">Cómo funciona</a>
+        <a href="/#contacto" class="nav-link accent-ink font-medium">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="grid-pattern">
+    <div class="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
+      <div class="max-w-3xl hero-in">
+        <span class="inline-block text-xs font-medium accent-ink tracking-wider uppercase mb-4">Rubros · Retail</span>
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">Un vendedor que conoce<br><span class="serif-i text-[1.15em] accent">todo tu catálogo.</span></h1>
+        <p class="mt-6 text-lg text-gray-600 leading-relaxed">El agente del chat de tu web recomienda, compara y lleva al carrito sin salir de la conversación. Siempre con precios y stock reales de tu catálogo, las 24 horas.</p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="#agenda" class="inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-[#b8731a] btn">Agendá una demo</a>
+          <a href="#funciones" class="inline-flex items-center justify-center text-sm font-medium px-5 py-3 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 btn btn-secondary">Ver cómo funciona</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="funciones" class="border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-6 py-20">
+      <div class="max-w-2xl">
+        <span class="eyebrow" aria-hidden="true"></span>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Pensado para tiendas online</h2>
+        <p class="mt-3 text-gray-600">Todo lo que hace MABAI en cualquier negocio, más lo que necesita una tienda.</p>
+      </div>
+      <div class="mt-14 space-y-16 md:space-y-24">
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+          <div class="max-w-md">
+            <span class="step-num">01</span>
+            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Busca en todo tu catálogo</h3>
+            <p class="mt-3 text-gray-600 leading-relaxed">Con cada mensaje, el agente busca los productos que coinciden con lo que pide el cliente. Responde con precio, stock y características reales, tengas 200 o 100.000 productos.</p>
+          </div>
+          <div class="lc-dark rounded-3xl p-5 md:p-8 min-w-0">
+            <div class="bg-white rounded-2xl overflow-hidden shadow-lg shadow-black/20 max-w-sm mx-auto">
+              <div class="bg-gray-900 text-white px-4 py-2.5 flex items-center justify-between">
+                <div class="text-sm font-semibold">Asistente · Tu tienda</div><span class="text-white/60 text-sm" aria-hidden="true">×</span>
+              </div>
+              <div class="bg-gray-50 px-3 py-4 flex flex-col gap-2">
+                <div class="msg msg-web">¿Tienen la caja organizadora de 30 litros en blanco?</div>
+                <div class="msg msg-in">Sí, la Caja organizadora 30 L viene en blanco. Está $ 6.499 (antes $ 8.299) con stock disponible. Tiene tapa con traba, se puede apilar.</div>
+                <div class="msg msg-web">¿Y en transparente?</div>
+                <div class="msg msg-in">En transparente no la tenemos. Te puedo mostrar otras de 30 litros que sí lo son.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+          <div class="max-w-md lg:order-2">
+            <span class="step-num">02</span>
+            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Recomienda con tarjetas</h3>
+            <p class="mt-3 text-gray-600 leading-relaxed">Si el cliente pide una sugerencia, el agente elige de 1 a 4 productos con stock. Los muestra como tarjetas dentro del chat: foto, nombre, precio, precio anterior. Si le falta información para elegir, primero pregunta.</p>
+          </div>
+          <div class="lc-dark rounded-3xl p-5 md:p-8 min-w-0 lg:order-1">
+            <div class="bg-white rounded-2xl overflow-hidden shadow-lg shadow-black/20 max-w-sm mx-auto">
+              <div class="bg-gray-900 text-white px-4 py-2.5 flex items-center justify-between">
+                <div class="text-sm font-semibold">Asistente · Tu tienda</div><span class="text-white/60 text-sm" aria-hidden="true">×</span>
+              </div>
+              <div class="bg-gray-50 px-3 py-4 flex flex-col gap-2">
+                <div class="msg msg-web">¿Tenés algo para ordenar el placard?</div>
+                <div class="msg msg-in">¡Sí! Para ordenar el placard te recomiendo estos:</div>
+                <div class="pcards">
+                  <div class="pcard">
+                    <div class="pimg"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="1.5"/><path d="M9 7v12M15 7v12M3 13h6"/></svg></div>
+                    <div class="mt-2 text-[11.5px] font-semibold text-gray-900 leading-snug truncate">Organizador de cajón</div>
+                    <div class="text-[13px] font-semibold accent-ink tabular-nums">$ 3.999</div>
+                    <div class="text-[10.5px] text-gray-400 line-through tabular-nums">$ 5.899</div>
+                    <div class="mt-1.5 text-center text-[10.5px] font-medium rounded-full py-1 bg-gray-900 text-white">Agregar al carrito</div>
+                  </div>
+                  <div class="pcard">
+                    <div class="pimg"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 8h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M3 5h18v3H3z"/><path d="M10 12h4"/></svg></div>
+                    <div class="mt-2 text-[11.5px] font-semibold text-gray-900 leading-snug truncate">Caja organizadora 30 L</div>
+                    <div class="text-[13px] font-semibold accent-ink tabular-nums">$ 6.499</div>
+                    <div class="text-[10.5px] text-gray-400 line-through tabular-nums">$ 8.299</div>
+                    <div class="mt-1.5 text-center text-[10.5px] font-medium rounded-full py-1 bg-gray-900 text-white">Agregar al carrito</div>
+                  </div>
+                  <div class="pcard">
+                    <div class="pimg"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 8a2 2 0 1 1 2-2c0 1-2 1.5-2 3"/><path d="M12 9l-9 7a1 1 0 0 0 .6 1.8h16.8A1 1 0 0 0 21 16z"/></svg></div>
+                    <div class="mt-2 text-[11.5px] font-semibold text-gray-900 leading-snug truncate">Set de perchas x10</div>
+                    <div class="text-[13px] font-semibold accent-ink tabular-nums">$ 4.299</div>
+                    <div class="text-[10.5px]">&nbsp;</div>
+                    <div class="mt-1.5 text-center text-[10.5px] font-medium rounded-full py-1 bg-gray-900 text-white">Agregar al carrito</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+          <div class="max-w-md">
+            <span class="step-num">03</span>
+            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Compara para decidir</h3>
+            <p class="mt-3 text-gray-600 leading-relaxed">Si el cliente duda entre dos o tres productos, el agente arma un cuadro comparativo con sus características, más una recomendación con el motivo.</p>
+            <p class="mt-3 text-gray-600 leading-relaxed">Si un dato no está en el catálogo, pone «No especifica»: nunca lo inventa. Si los productos no se pueden comparar, lo explica.</p>
+          </div>
+          <div class="lc-dark rounded-3xl p-5 md:p-8 min-w-0">
+            <div class="bg-white rounded-2xl overflow-hidden shadow-lg shadow-black/20 max-w-sm mx-auto">
+              <div class="bg-gray-900 text-white px-4 py-2.5 flex items-center justify-between">
+                <div class="text-sm font-semibold">Asistente · Tu tienda</div><span class="text-white/60 text-sm" aria-hidden="true">×</span>
+              </div>
+              <div class="bg-gray-50 px-3 py-4 flex flex-col gap-2">
+                <div class="msg msg-web">¿Cuál me conviene, la batería de 5 o la de 7 piezas?</div>
+                <div class="bg-white rounded-xl p-2 shadow-[inset_0_0_0_1px_rgba(0,0,0,.08)]">
+                  <table class="cmp">
+                    <thead><tr><th class="border-t-0"></th>
+                      <td class="border-t-0"><div class="pimg w-12 mx-auto"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M2 10h2M20 10h2M9 7h6"/></svg></div><div class="mt-1 font-semibold">5 piezas</div><div class="accent-ink font-semibold tabular-nums">$ 54.999</div></td>
+                      <td class="border-t-0"><div class="pimg w-12 mx-auto"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M2 10h2M20 10h2M9 7h6"/></svg></div><div class="mt-1 font-semibold">7 piezas</div><div class="accent-ink font-semibold tabular-nums">$ 99.999</div></td></tr></thead>
+                    <tbody>
+                      <tr><th>Tapas</th><td>Vidrio</td><td>Vidrio templado</td></tr>
+                      <tr><th>Mango</th><td>Soft touch</td><td>Símil madera</td></tr>
+                      <tr><th>Color</th><td>Bordo</td><td>Gris granito</td></tr>
+                      <tr><th>Inducción</th><td>Sí</td><td class="text-gray-400">No especifica</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="msg msg-in">Si cocinás para 2 o 3, te conviene la de 5 piezas: sale $ 45.000 menos.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+          <div class="max-w-md lg:order-2">
+            <span class="step-num">04</span>
+            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Lleva al carrito</h3>
+            <p class="mt-3 text-gray-600 leading-relaxed">Cada tarjeta tiene el botón «Agregar al carrito», que abre el carrito de tu tienda con el producto cargado. Si el producto tiene talle o color, lleva a su página para elegir.</p>
+          </div>
+          <div class="lc-dark rounded-3xl p-5 md:p-8 min-w-0 lg:order-1">
+            <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20 max-w-sm mx-auto">
+              <div class="flex items-center justify-between gap-3">
+                <div class="text-sm font-semibold text-gray-900">Tu carrito</div>
+                <span class="text-[11px] text-gray-500">tutienda.com.ar</span>
+              </div>
+              <div class="mt-3 flex items-center gap-3">
+                <div class="pimg w-12 shrink-0"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="1.5"/><path d="M9 7v12M15 7v12M3 13h6"/></svg></div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm text-gray-900 truncate">Organizador de cajón</div>
+                  <div class="text-[11px] text-gray-500">Cantidad: 1</div>
+                </div>
+                <div class="text-sm font-semibold text-gray-900 tabular-nums">$ 3.999</div>
+              </div>
+              <div class="mt-4 rounded-lg bg-gray-900 text-white text-center text-sm font-medium py-2">Finalizar compra</div>
+              <div class="mt-2 text-center text-[11px] text-gray-500">Abierto desde el chat, con el producto ya cargado</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-6 py-16">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card rounded-xl p-6 bg-white">
+          <h3 class="font-semibold text-gray-900">Nunca inventa un dato</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Las tarjetas y el cuadro los arma el sistema con los datos de tu catálogo, no la IA. Ningún precio puede salir mal.</p>
+        </div>
+        <div class="card rounded-xl p-6 bg-white">
+          <h3 class="font-semibold text-gray-900">Con los colores de tu marca</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Pensado primero para celular. Tu equipo ve las mismas tarjetas en Chats, dentro del panel de MABAI.</p>
+        </div>
+        <div class="card rounded-xl p-6 bg-white">
+          <h3 class="font-semibold text-gray-900">También en WhatsApp e Instagram</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Ahí el agente usa el mismo catálogo, pero responde en texto. Las tarjetas, el comparador y el carrito son del chat de tu web.</p>
+        </div>
+      </div>
+      <p class="mt-8 text-sm text-gray-500 flex flex-wrap items-center gap-2"><span class="tag accent-bg accent-ink font-medium">Próximamente</span>Conexión con Tiendanube: tu catálogo, con precios y stock al día, sincronizado solo.</p>
+    </div>
+  </section>
+
+  <section id="agenda" class="border-t border-gray-100 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-6 py-20">
+      <div class="max-w-2xl">
+        <span class="eyebrow" aria-hidden="true"></span>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">¿Tenés una tienda online?</h2>
+        <p class="mt-3 text-lg text-gray-600">Agendá una demo de 30 minutos sin costo.</p>
+        <p class="mt-4 text-gray-600 leading-relaxed">Te mostramos el agente respondiendo con productos de tu catálogo, con tarjetas, comparador y carrito.</p>
+      </div>
+      <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+        <button type="button" data-cal-namespace="llamada-inicial" data-cal-link="hola-mabai/llamada-inicial" data-cal-config='{"layout":"month_view","theme":"light"}' class="inline-flex items-center justify-center gap-2 text-sm font-medium px-5 py-3 rounded-lg btn btn-accent">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Agendar demo · 30 min
+        </button>
+      </div>
+      <p class="mt-4 text-xs text-gray-500">También podés reservar en <a href="https://cal.com/hola-mabai/llamada-inicial" target="_blank" rel="noopener" class="underline">cal.com/hola-mabai/llamada-inicial</a> o escribirnos a <a href="mailto:hola@mabai.com.ar" class="underline">hola@mabai.com.ar</a>.</p>
+    </div>
+  </section>
+
+  <footer class="border-t border-gray-100 py-10 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between gap-6 text-sm text-gray-500">
+        <div class="space-y-2">
+          <img src="/mabai-logo.svg" alt="MABAI" class="h-5 w-auto">
+          <p class="text-xs leading-relaxed max-w-sm">IA powered solutions. Operado desde Buenos Aires, Argentina.</p>
+          <p class="text-xs">Contacto: <a href="mailto:hola@mabai.com.ar" class="underline hover:text-gray-700">hola@mabai.com.ar</a></p>
+          <p class="text-xs leading-relaxed max-w-md text-gray-500">MABAI es un servicio de Martinez Bosch Ignacio · CUIT 20-46501970-1 · Av. Pueyrredón 1993, Piso 4 Dpto A, CABA (1119) · <a href="tel:+5491144002351" class="hover:text-gray-700">+54 9 11 4400-2351</a></p>
+        </div>
+        <div class="flex flex-col gap-2 md:items-end">
+          <div class="flex gap-5">
+            <a href="/privacy" class="nav-link hover:text-gray-900">Política de privacidad</a>
+            <a href="/terms" class="nav-link hover:text-gray-900">Términos</a>
+          </div>
+          <span class="text-xs">© 2026 MABAI. Todos los derechos reservados.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      var wraps = [].slice.call(document.querySelectorAll('[data-dropdown]'));
+      var hover = window.matchMedia('(hover: hover)').matches;
+      function closeAll() { wraps.forEach(function (w) { w._set(false); }); }
+      wraps.forEach(function (wrap) {
+        var btn = wrap.querySelector('button'), menu = wrap.querySelector('.nav-menu');
+        wrap._set = function (open) { menu.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); };
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var open = !menu.classList.contains('open');
+          closeAll(); wrap._set(open);
+        });
+        if (hover) {
+          wrap.addEventListener('mouseenter', function () { wrap._set(true); });
+          wrap.addEventListener('mouseleave', function () { wrap._set(false); });
+        }
+      });
+      document.addEventListener('click', closeAll);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
+    })();
+  </script>
+  <script type="text/javascript">
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "llamada-inicial", { origin: "https://app.cal.com" });
+    Cal.ns["llamada-inicial"]("ui", { theme: "light", styles: { branding: { brandColor: "#111827" } }, hideEventTypeDetails: false, layout: "month_view" });
+  </script>
+  <script src="/logo-anim.js"></script>
+  <script src="https://api.mabai.app/web/widget.js?key=mw_5Y9a4CVi5P1Xjs1pehjsJXY0hxyEp2Gj" async></script>
+</body>
+</html>
