@@ -29,9 +29,9 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+    body { font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
     .grid-pattern {
       background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
       background-size: 20px 20px;
@@ -41,22 +41,29 @@
     /* ---- Polish (better-ui / design-eng) ---- */
     :root {
       --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-      --accent: #e8a33d;
-      --accent-soft: #fdf3e3;
-      --accent-ink: #b8731a;
+      /* ui-ux-pro-max · AI/Chatbot Platform */
+      --color-primary: #7C3AED; --color-secondary: #A78BFA; --color-accent: #0891B2; --color-on-accent: #000000;
+      --color-background: #FAF5FF; --color-foreground: #1E1B4B; --color-muted: #ECEEF9; --color-muted-foreground: #475569;
+      --color-border: #DDD6FE; --color-ring: #7C3AED;
+      --accent: var(--color-primary);
+      --accent-soft: var(--color-muted);
+      --accent-ink: var(--color-primary);
       --shadow-border: 0 0 0 1px rgba(0,0,0,.06), 0 1px 2px -1px rgba(0,0,0,.06), 0 2px 4px 0 rgba(0,0,0,.04);
       --shadow-border-hover: 0 0 0 1px rgba(0,0,0,.08), 0 1px 2px -1px rgba(0,0,0,.08), 0 2px 4px 0 rgba(0,0,0,.06);
     }
     /* Tarjetas: sombra para profundidad, sin borde */
-    .card { box-shadow: var(--shadow-border); transition: box-shadow 150ms ease-out; }
-    @media (hover: hover) and (pointer: fine) { .card:hover { box-shadow: 0 0 0 1px rgba(232,163,61,.45), 0 1px 2px -1px rgba(0,0,0,.08), 0 4px 10px -2px rgba(232,163,61,.18); } }
+    .card { border: 1px solid var(--color-border); transition: border-color 200ms ease-out; }
+    @media (hover: hover) and (pointer: fine) { .card:hover { border-color: var(--color-secondary); } }
     .accent { color: var(--accent); }
     .eyebrow { display: block; width: 40px; height: 3px; border-radius: 9999px; background: var(--accent); margin-bottom: 14px; }
     .nav-link:hover, .nav-menu a:hover { color: var(--accent-ink); }
     .btn-secondary:hover { border-color: var(--accent); color: var(--accent-ink); }
-    .btn-accent { background: var(--accent); color: #111827; }
-    .btn-accent:hover { background: #d9932f; }
-    .grid-pattern { background-image: radial-gradient(circle, rgba(232,163,61,.28) 1px, transparent 1px); }
+    .btn-accent { background: var(--color-accent); color: var(--color-on-accent); }
+    .btn-accent:hover { background: rgb(8 145 178 / .88); }
+    .grid-pattern { background-image: radial-gradient(circle, rgba(124,58,237,.16) 1px, transparent 1px); }
+    button, [data-cal-link] { cursor: pointer; }
+    /* Tarjeta de contexto (AI-Native): borde de acento a la izquierda */
+    .context-card { background: #fff; border: 1px solid var(--color-border); border-left: 3px solid var(--color-primary); border-radius: .5rem; }
     footer a:hover { color: var(--accent-ink); }
     .accent-ink { color: var(--accent-ink); }
     .accent-bg { background: var(--accent-soft); }
@@ -92,13 +99,12 @@
       .btn:active { transform: none; }
       .nav-menu { transform: none; }
     }
-    .serif-i { font-family: "Instrument Serif", Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
 
 
     /* ---- Paneles oscuros de muestra ---- */
     .lc-dark {
-      background-color: #111827;
-      background-image: radial-gradient(circle, rgba(232,163,61,.18) 1px, transparent 1px);
+      background-color: var(--color-foreground);
+      background-image: radial-gradient(circle, rgba(167,139,250,.2) 1px, transparent 1px);
       background-size: 18px 18px;
     }
     /* ---- Cómo funciona (bloques) ---- */
@@ -113,7 +119,7 @@
     .logos-track { display: flex; width: max-content; animation: logos 40s linear infinite; }
     .logos:hover .logos-track { animation-play-state: paused; }
     .logos-set { display: flex; align-items: center; gap: 3.5rem; padding-right: 3.5rem; }
-    .logo-item { display: flex; align-items: center; gap: .5rem; white-space: nowrap; color: #6b7280; font-size: 15px; font-weight: 600; filter: grayscale(1); opacity: .6; transition: filter 200ms ease-out, opacity 200ms ease-out; }
+    .logo-item { display: flex; align-items: center; gap: .5rem; white-space: nowrap; color: var(--color-muted-foreground); font-size: 15px; font-weight: 600; filter: grayscale(1); opacity: .6; transition: filter 200ms ease-out, opacity 200ms ease-out; }
     .logo-beta { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; padding: 1px 6px; border-radius: 9999px; box-shadow: inset 0 0 0 1px currentColor; }
     @media (hover: hover) and (pointer: fine) { .logo-item:hover { filter: none; opacity: 1; } }
     @keyframes logos { to { transform: translateX(-50%); } }
@@ -137,7 +143,7 @@
       to   { opacity: 1; transform: none; }
     }
     .typing span {
-      width: 6px; height: 6px; border-radius: 9999px; background: #9ca3af; display: inline-block;
+      width: 8px; height: 8px; border-radius: 9999px; background: #9ca3af; display: inline-block;
       animation: typing 1.2s infinite ease-in-out;
     }
     .typing span:nth-child(2) { animation-delay: .15s; }
@@ -157,48 +163,48 @@
   </style>
   <link rel="stylesheet" href="/tailwind.css" />
 </head>
-<body class="bg-white text-gray-900 antialiased">
+<body class="bg-background text-foreground antialiased">
 
   <!-- Nav -->
-  <nav class="border-b border-gray-100 bg-white/80 backdrop-blur sticky top-0 z-10">
+  <nav class="border-b border-line bg-background/80 backdrop-blur sticky top-0 z-10">
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
       <a href="/" class="flex items-center gap-2">
         <img src="/mabai-logo.svg" alt="MABAI" class="h-6 sm:h-7 w-auto">
       </a>
-      <div class="flex items-center gap-2.5 sm:gap-5 text-[13px] sm:text-sm text-gray-600">
+      <div class="flex items-center gap-2.5 sm:gap-5 text-[13px] sm:text-sm text-muted-foreground">
         <div class="sm:relative" data-dropdown>
-          <button type="button" class="nav-link flex items-center gap-1 hover:text-gray-900" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="nav-link flex items-center gap-1 hover:text-primary" aria-haspopup="true" aria-expanded="false">
             Soluciones
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="nav-menu nav-menu-full absolute top-full pt-3 w-56">
-            <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 py-2">
-              <a href="/" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Agentes de IA</a>
-              <a href="/soluciones-a-medida" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Soluciones a medida</a>
-              <a href="/partners" class="block sm:hidden px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Partners</a>
+            <div class="bg-white border border-line rounded-xl shadow-lg shadow-primary/10 py-2">
+              <a href="/" class="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary">Agentes de IA</a>
+              <a href="/soluciones-a-medida" class="block px-4 py-2 text-foreground hover:bg-muted hover:text-primary">Soluciones a medida</a>
+              <a href="/partners" class="block sm:hidden px-4 py-2 text-foreground hover:bg-muted hover:text-primary">Partners</a>
             </div>
           </div>
         </div>
         <div class="sm:relative" data-dropdown>
-          <button type="button" class="nav-link flex items-center gap-1 hover:text-gray-900" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="nav-link flex items-center gap-1 hover:text-primary" aria-haspopup="true" aria-expanded="false">
             Rubros
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="nav-menu nav-menu-full absolute top-full pt-3 w-72">
-            <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 p-2">
-              <a href="/inmobiliarias" class="block rounded-lg px-3 py-2.5 hover:bg-gray-50">
-                <span class="block font-medium text-gray-900">Inmobiliarias</span>
-                <span class="block mt-0.5 text-xs leading-snug text-gray-500">Conectado a Tokko: ofrece tus propiedades con foto y ficha.</span>
+            <div class="bg-white border border-line rounded-xl shadow-lg shadow-primary/10 p-2">
+              <a href="/inmobiliarias" class="block rounded-lg px-3 py-2.5 hover:bg-muted">
+                <span class="block font-medium text-foreground">Inmobiliarias</span>
+                <span class="block mt-0.5 text-xs leading-snug text-muted-foreground">Conectado a Tokko: ofrece tus propiedades con foto y ficha.</span>
               </a>
-              <a href="/retail" class="block rounded-lg px-3 py-2.5 hover:bg-gray-50">
-                <span class="block font-medium text-gray-900">Retail</span>
-                <span class="block mt-0.5 text-xs leading-snug text-gray-500">Catálogo en el chat de tu web: recomienda, compara y lleva al carrito.</span>
+              <a href="/retail" class="block rounded-lg px-3 py-2.5 hover:bg-muted">
+                <span class="block font-medium text-foreground">Retail</span>
+                <span class="block mt-0.5 text-xs leading-snug text-muted-foreground">Catálogo en el chat de tu web: recomienda, compara y lleva al carrito.</span>
               </a>
             </div>
           </div>
         </div>
-        <a href="/partners" class="nav-link hover:text-gray-900 hidden sm:inline">Partners</a>
-        <a href="#como-funciona" class="nav-link hover:text-gray-900 hidden md:inline">Cómo funciona</a>
+        <a href="/partners" class="nav-link hover:text-primary hidden sm:inline">Partners</a>
+        <a href="#como-funciona" class="nav-link hover:text-primary hidden md:inline">Cómo funciona</a>
         <a href="#contacto" class="nav-link accent-ink font-medium">Contacto</a>
       </div>
     </div>
@@ -207,41 +213,38 @@
   <!-- Hero -->
   <section class="grid-pattern overflow-hidden">
     <div class="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
-      <div class="grid lg:grid-cols-[1.2fr_1fr] gap-14 lg:gap-8 items-center">
+      <div class="max-w-3xl mx-auto text-center hero-in">
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-foreground leading-[1.08]" style="text-wrap: balance">
+          Inteligencia artificial<br>
+          para <span class="text-primary">impulsar</span><br>
+          tu negocio.
+        </h1>
+        <p class="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+          Agentes de IA que atienden tu WhatsApp, Instagram o tu web, campañas que reactivan a tus clientes y un CRM donde tu equipo ve todo.
+        </p>
+        <p class="mt-4 text-sm text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+          Funciona sobre las APIs oficiales de Meta y Mercado Libre, más un widget para tu sitio. Se conecta a tu calendario, tu catálogo y tu pipeline. Pensado para equipos comerciales de cualquier rubro.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="#contacto" class="inline-flex items-center justify-center bg-accent text-black text-sm font-semibold px-5 py-3 rounded-lg hover:bg-accent/90 btn">
+            Solicitar demo
+          </a>
+          <a href="#como-funciona" class="inline-flex items-center justify-center text-sm font-medium px-5 py-3 rounded-lg border border-line bg-white text-foreground hover:bg-muted btn btn-secondary">
+            Ver cómo funciona
+          </a>
+        </div>
+      </div>
 
-        <!-- Texto -->
-        <div class="max-w-xl hero-in">
-          <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">
-            Inteligencia artificial<br>
-            para <span class="serif-i text-[1.15em] accent">impulsar</span><br>
-            tu negocio.
-          </h1>
-          <p class="mt-6 text-lg text-gray-600 leading-relaxed">
-            Agentes de IA que atienden tu WhatsApp, Instagram o tu web, campañas que reactivan a tus clientes y un CRM donde tu equipo ve todo.
-          </p>
-          <p class="mt-4 text-sm text-gray-500 leading-relaxed">
-            Funciona sobre las APIs oficiales de Meta y Mercado Libre, más un widget para tu sitio. Se conecta a tu calendario, tu catálogo y tu pipeline. Pensado para equipos comerciales de cualquier rubro.
-          </p>
-          <div class="mt-8 flex flex-col sm:flex-row gap-3">
-            <a href="#contacto" class="inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-[#b8731a] btn">
-              Solicitar demo
-            </a>
-            <a href="#como-funciona" class="inline-flex items-center justify-center text-sm font-medium px-5 py-3 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 btn btn-secondary">
-              Ver cómo funciona
-            </a>
-          </div>
+      <!-- Demo del producto, al centro -->
+      <div class="hero-visual relative mx-auto mt-14 md:mt-16 w-full max-w-sm sm:max-w-md">
+        <div class="absolute -inset-12 bg-gradient-to-br from-primary/20 via-transparent to-accent/10 rounded-full blur-3xl -z-10"></div>
+
+        <div id="badge-top" class="badge hidden-badge context-card absolute -top-11 sm:-top-4 right-2 sm:-right-6 md:-right-28 z-10 pl-3 pr-4 py-2 text-sm text-foreground flex items-center gap-2">
+          <span class="pulse-dot w-2 h-2 rounded-full bg-emerald-500"></span>
+          Respondiendo en tiempo real
         </div>
 
-        <!-- Chat animado -->
-        <div class="hero-visual relative mx-auto w-full max-w-sm lg:max-w-[380px]">
-          <div class="absolute -inset-10 bg-gradient-to-br from-[#e8a33d]/25 via-transparent to-gray-200/60 rounded-full blur-3xl -z-10"></div>
-
-          <div id="badge-top" class="badge hidden-badge absolute -top-4 -right-3 sm:-right-8 z-10 bg-white shadow-lg shadow-gray-200/70 rounded-full pl-3 pr-4 py-2 text-sm text-gray-800 flex items-center gap-2 border border-gray-100">
-            <span class="pulse-dot w-2 h-2 rounded-full bg-emerald-500"></span>
-            Respondiendo en tiempo real
-          </div>
-
-          <div class="rounded-3xl bg-white shadow-2xl shadow-gray-300/60 border border-gray-200 overflow-hidden">
+          <div class="rounded-2xl bg-white border border-line shadow-xl shadow-primary/10 overflow-hidden">
             <div class="bg-[#075e54] text-white px-4 py-3 flex items-center gap-3">
               <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center overflow-hidden">
                 <img src="/mabai-isotipo.svg" alt="" class="w-7 h-7">
@@ -254,18 +257,16 @@
             <div id="chat-body" class="chat-body h-[400px] overflow-y-hidden px-3 py-4 flex flex-col gap-2"></div>
           </div>
 
-          <div id="badge-bottom" class="badge hidden-badge absolute -bottom-5 -left-3 sm:-left-8 z-10 bg-white shadow-lg shadow-gray-200/70 rounded-full pl-3 pr-4 py-2 text-sm text-gray-800 flex items-center gap-2 border border-gray-100">
-            <span class="accent font-semibold">✓</span>
-            <span id="chat-resultado">Lead calificado</span>
-          </div>
+        <div id="badge-bottom" class="badge hidden-badge context-card absolute -bottom-5 left-2 sm:-left-6 md:-left-28 z-10 pl-3 pr-4 py-2 text-sm text-foreground flex items-center gap-2">
+          <span class="text-primary font-semibold">✓</span>
+          <span id="chat-resultado">Lead calificado</span>
         </div>
-
       </div>
     </div>
   </section>
 
   <!-- Se conecta con -->
-  <section id="integraciones" aria-label="Se conecta con" class="border-t border-gray-100">
+  <section id="integraciones" aria-label="Se conecta con" class="border-t border-line">
     <div class="max-w-5xl mx-auto px-6 py-10">
       <p class="text-center text-xs font-medium tracking-wider uppercase accent-ink">Se conecta con</p>
       <div class="logos mt-6">
@@ -298,12 +299,12 @@
   </section>
 
   <!-- Cómo funciona -->
-  <section id="como-funciona" class="border-t border-gray-100">
+  <section id="como-funciona" class="border-t border-line">
     <div class="max-w-5xl mx-auto px-6 py-20">
       <div class="max-w-2xl">
         <span class="eyebrow" aria-hidden="true"></span>
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Cómo funciona</h2>
-        <p class="mt-3 text-gray-600">De la primera consulta a la venta, todo pasa por un mismo lugar.</p>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-foreground">Cómo funciona</h2>
+        <p class="mt-3 text-muted-foreground">De la primera consulta a la venta, todo pasa por un mismo lugar.</p>
       </div>
 
       <div class="mt-14 space-y-16 md:space-y-24">
@@ -312,27 +313,27 @@
         <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
           <div class="max-w-md">
             <span class="step-num">01</span>
-            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Creás tus agentes</h3>
-            <p class="mt-3 text-gray-600 leading-relaxed">Armás uno o varios agentes para atender conversaciones, comentarios o preguntas. Cada uno trabaja en el canal que le asignes: WhatsApp, Instagram, Facebook, Mercado Libre, TikTok o tu web.</p>
+            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-foreground">Creás tus agentes</h3>
+            <p class="mt-3 text-muted-foreground leading-relaxed">Armás uno o varios agentes para atender conversaciones, comentarios o preguntas. Cada uno trabaja en el canal que le asignes: WhatsApp, Instagram, Facebook, Mercado Libre, TikTok o tu web.</p>
           </div>
           <div class="lc-dark rounded-3xl p-5 md:p-8">
             <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
               <div class="flex items-center justify-between text-[11px] font-medium uppercase tracking-wider text-gray-400"><span>Canales</span><span>Agente</span></div>
               <div class="mt-3 space-y-3">
                 <div class="map-row">
-                  <div class="flex flex-wrap gap-1"><span class="w-6 h-6 rounded-md bg-emerald-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span><span class="w-6 h-6 rounded-md bg-pink-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E4405F" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#E4405F" stroke="none"/></svg></span><span class="w-6 h-6 rounded-md bg-blue-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="#0866FF"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></span><span class="w-6 h-6 rounded-md bg-gray-100 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#111827" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span></div>
+                  <div class="flex flex-wrap gap-1"><span class="w-6 h-6 rounded-md bg-emerald-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span><span class="w-6 h-6 rounded-md bg-pink-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E4405F" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#E4405F" stroke="none"/></svg></span><span class="w-6 h-6 rounded-md bg-blue-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="#0866FF"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></span><span class="w-6 h-6 rounded-md bg-muted flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#111827" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span></div>
                   <svg class="map-arrow" width="28" height="12" viewBox="0 0 28 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6h25"/><path d="M21 1l5 5-5 5"/></svg>
-                  <div class="map-agent"><div class="text-sm font-semibold text-gray-900">Ventas</div><div class="text-[11px] text-gray-500">Conversacional</div></div>
+                  <div class="map-agent"><div class="text-sm font-semibold text-foreground">Ventas</div><div class="text-[11px] text-muted-foreground">Conversacional</div></div>
                 </div>
                 <div class="map-row">
-                  <div class="flex items-center gap-1.5 text-xs text-gray-600"><span class="w-6 h-6 rounded-md bg-pink-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E4405F" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#E4405F" stroke="none"/></svg></span>Comentarios</div>
+                  <div class="flex items-center gap-1.5 text-xs text-muted-foreground"><span class="w-6 h-6 rounded-md bg-pink-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E4405F" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#E4405F" stroke="none"/></svg></span>Comentarios</div>
                   <svg class="map-arrow" width="28" height="12" viewBox="0 0 28 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6h25"/><path d="M21 1l5 5-5 5"/></svg>
-                  <div class="map-agent"><div class="text-sm font-semibold text-gray-900">Comentarios</div><div class="text-[11px] text-gray-500">Respuesta única</div></div>
+                  <div class="map-agent"><div class="text-sm font-semibold text-foreground">Comentarios</div><div class="text-[11px] text-muted-foreground">Respuesta única</div></div>
                 </div>
                 <div class="map-row">
-                  <div class="flex items-center gap-1.5 text-xs text-gray-600"><span class="w-6 h-6 rounded-md bg-yellow-50 flex items-center justify-center"><img src="/icons/mercadolibre.png" alt="" width="17" height="12" aria-hidden="true"></span>Preguntas</div>
+                  <div class="flex items-center gap-1.5 text-xs text-muted-foreground"><span class="w-6 h-6 rounded-md bg-yellow-50 flex items-center justify-center"><img src="/icons/mercadolibre.png" alt="" width="17" height="12" aria-hidden="true"></span>Preguntas</div>
                   <svg class="map-arrow" width="28" height="12" viewBox="0 0 28 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6h25"/><path d="M21 1l5 5-5 5"/></svg>
-                  <div class="map-agent"><div class="text-sm font-semibold text-gray-900">Mercado Libre</div><div class="text-[11px] text-gray-500">Respuesta única</div></div>
+                  <div class="map-agent"><div class="text-sm font-semibold text-foreground">Mercado Libre</div><div class="text-[11px] text-muted-foreground">Respuesta única</div></div>
                 </div>
               </div>
             </div>
@@ -343,26 +344,26 @@
         <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
           <div class="max-w-md lg:order-2">
             <span class="step-num">02</span>
-            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Aprende tu negocio y responde como vos</h3>
-            <p class="mt-3 text-gray-600 leading-relaxed">Le cargás tu catálogo, tus precios y tus preguntas frecuentes. Responde con tu tono, entiende notas de voz, agenda citas y le pasa el chat a tu equipo cuando hace falta.</p>
+            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-foreground">Aprende tu negocio y responde como vos</h3>
+            <p class="mt-3 text-muted-foreground leading-relaxed">Le cargás tu catálogo, tus precios y tus preguntas frecuentes. Responde con tu tono, entiende notas de voz, agenda citas y le pasa el chat a tu equipo cuando hace falta.</p>
           </div>
           <div class="lc-dark rounded-3xl p-5 md:p-8 lg:order-1">
             <div class="grid sm:grid-cols-2 gap-3">
               <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-2">Identidad</div>
-                <div class="text-sm text-gray-800">Nombre: <span class="font-medium">Sofi</span></div><div class="text-sm text-gray-800 mt-1">Tono: cercano, profesional, sin tecnicismos</div>
+                <div class="text-sm font-semibold text-foreground mb-2">Identidad</div>
+                <div class="text-sm text-foreground">Nombre: <span class="font-medium">Sofi</span></div><div class="text-sm text-foreground mt-1">Tono: cercano, profesional, sin tecnicismos</div>
               </div>
               <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-2">Instrucciones</div>
-                <p class="text-sm text-gray-600 leading-snug">Sos la asistente comercial de la empresa. Respondé consultas, pedí nombre y zona. Ofrecé agendar una visita. Nunca inventes precios…</p>
+                <div class="text-sm font-semibold text-foreground mb-2">Instrucciones</div>
+                <p class="text-sm text-muted-foreground leading-snug">Sos la asistente comercial de la empresa. Respondé consultas, pedí nombre y zona. Ofrecé agendar una visita. Nunca inventes precios…</p>
               </div>
               <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-2">Conocimiento</div>
-                <div class="space-y-1.5 text-sm text-gray-800"><div class="flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-green-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="#34A853"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v8.318h10.91V9.273zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></svg></span>Catálogo 2026 <span class="text-xs text-gray-400 ml-auto whitespace-nowrap">hace 5 min</span></div><div class="flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-gray-100 flex items-center justify-center text-[10px] font-bold text-gray-600">PDF</span>Preguntas frecuentes</div></div>
+                <div class="text-sm font-semibold text-foreground mb-2">Conocimiento</div>
+                <div class="space-y-1.5 text-sm text-foreground"><div class="flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-green-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="#34A853"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v8.318h10.91V9.273zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></svg></span>Catálogo 2026 <span class="text-xs text-gray-400 ml-auto whitespace-nowrap">hace 5 min</span></div><div class="flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-muted flex items-center justify-center text-[10px] font-bold text-muted-foreground">PDF</span>Preguntas frecuentes</div></div>
               </div>
               <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-2">Derivación a humano</div>
-                <div class="flex flex-wrap gap-1.5"><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">negociación</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">reclamo</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">pide hablar con alguien</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">financiación</span></div>
+                <div class="text-sm font-semibold text-foreground mb-2">Derivación a humano</div>
+                <div class="flex flex-wrap gap-1.5"><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-muted text-foreground">negociación</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-muted text-foreground">reclamo</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-muted text-foreground">pide hablar con alguien</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-muted text-foreground">financiación</span></div>
               </div>
             </div>
           </div>
@@ -372,29 +373,29 @@
         <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
           <div class="max-w-md">
             <span class="step-num">03</span>
-            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Etiqueta y ordena todo en un CRM</h3>
-            <p class="mt-3 text-gray-600 leading-relaxed">Cada conversación queda etiquetada según lo que pasó: interesado, pidió precio, compró. Todo queda en el CRM de MABAI, con pipeline y métricas, o lo exportás al tuyo.</p>
+            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-foreground">Etiqueta y ordena todo en un CRM</h3>
+            <p class="mt-3 text-muted-foreground leading-relaxed">Cada conversación queda etiquetada según lo que pasó: interesado, pidió precio, compró. Todo queda en el CRM de MABAI, con pipeline y métricas, o lo exportás al tuyo.</p>
           </div>
           <div class="lc-dark rounded-3xl p-5 md:p-8">
             <div class="grid sm:grid-cols-2 gap-3">
               <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20 sm:col-span-2">
                 <div class="flex items-center justify-between mb-3">
-                  <div class="text-sm font-semibold text-gray-900">Contactos</div>
-                  <span class="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-md border border-gray-200 text-gray-600"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Exportar CSV</span>
+                  <div class="text-sm font-semibold text-foreground">Contactos</div>
+                  <span class="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-md border border-line text-muted-foreground"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Exportar CSV</span>
                 </div>
                 <div class="space-y-2 text-sm">
-                  <div class="flex items-center justify-between gap-2"><span class="text-gray-800">Martín G.</span><span class="flex flex-wrap justify-end gap-1"><span class="tag bg-emerald-50 text-emerald-700">interesado</span><span class="tag bg-blue-50 text-blue-700">pidió precio</span></span></div>
-                  <div class="flex items-center justify-between gap-2"><span class="text-gray-800">Lucía P.</span><span class="flex flex-wrap justify-end gap-1"><span class="tag bg-violet-50 text-violet-700">compró</span></span></div>
-                  <div class="flex items-center justify-between gap-2"><span class="text-gray-800">Pedro R.</span><span class="flex flex-wrap justify-end gap-1"><span class="tag bg-blue-50 text-blue-700">pidió precio</span><span class="tag bg-gray-100 text-gray-700">no responde</span></span></div>
+                  <div class="flex items-center justify-between gap-2"><span class="text-foreground">Martín G.</span><span class="flex flex-wrap justify-end gap-1"><span class="tag bg-emerald-50 text-emerald-700">interesado</span><span class="tag bg-blue-50 text-blue-700">pidió precio</span></span></div>
+                  <div class="flex items-center justify-between gap-2"><span class="text-foreground">Lucía P.</span><span class="flex flex-wrap justify-end gap-1"><span class="tag bg-violet-50 text-violet-700">compró</span></span></div>
+                  <div class="flex items-center justify-between gap-2"><span class="text-foreground">Pedro R.</span><span class="flex flex-wrap justify-end gap-1"><span class="tag bg-blue-50 text-blue-700">pidió precio</span><span class="tag bg-muted text-foreground">no responde</span></span></div>
                 </div>
               </div>
               <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-2">Pipeline</div>
-                <div class="grid grid-cols-3 gap-1.5 text-center"><div class="bg-gray-50 rounded-md py-1.5"><div class="text-base font-semibold text-gray-900 tabular-nums">12</div><div class="text-[10px] text-gray-500">Nuevos</div></div><div class="bg-gray-50 rounded-md py-1.5"><div class="text-base font-semibold text-gray-900 tabular-nums">7</div><div class="text-[10px] text-gray-500">En curso</div></div><div class="bg-gray-50 rounded-md py-1.5"><div class="text-base font-semibold text-gray-900 tabular-nums">3</div><div class="text-[10px] text-gray-500">Ganados</div></div></div>
+                <div class="text-sm font-semibold text-foreground mb-2">Pipeline</div>
+                <div class="grid grid-cols-3 gap-1.5 text-center"><div class="bg-muted rounded-md py-1.5"><div class="text-base font-semibold text-foreground tabular-nums">12</div><div class="text-[10px] text-muted-foreground">Nuevos</div></div><div class="bg-muted rounded-md py-1.5"><div class="text-base font-semibold text-foreground tabular-nums">7</div><div class="text-[10px] text-muted-foreground">En curso</div></div><div class="bg-muted rounded-md py-1.5"><div class="text-base font-semibold text-foreground tabular-nums">3</div><div class="text-[10px] text-muted-foreground">Ganados</div></div></div>
               </div>
               <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-2">Esta semana</div>
-                <div class="grid grid-cols-3 gap-1.5 text-center"><div><div class="text-base font-semibold text-gray-900 tabular-nums">1.240</div><div class="text-[10px] text-gray-500">respuestas</div></div><div><div class="text-base font-semibold text-gray-900 tabular-nums">4 s</div><div class="text-[10px] text-gray-500">demora</div></div><div><div class="text-base font-semibold text-gray-900 tabular-nums">38</div><div class="text-[10px] text-gray-500">citas</div></div></div>
+                <div class="text-sm font-semibold text-foreground mb-2">Esta semana</div>
+                <div class="grid grid-cols-3 gap-1.5 text-center"><div><div class="text-base font-semibold text-foreground tabular-nums">1.240</div><div class="text-[10px] text-muted-foreground">respuestas</div></div><div><div class="text-base font-semibold text-foreground tabular-nums">4 s</div><div class="text-[10px] text-muted-foreground">demora</div></div><div><div class="text-base font-semibold text-foreground tabular-nums">38</div><div class="text-[10px] text-muted-foreground">citas</div></div></div>
               </div>
             </div>
           </div>
@@ -404,37 +405,37 @@
         <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
           <div class="max-w-md lg:order-2">
             <span class="step-num">04</span>
-            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Reactivá con campañas y seguimientos</h3>
-            <p class="mt-3 text-gray-600 leading-relaxed">Con las etiquetas elegís a quién escribirle y le mandás una campaña de WhatsApp. Antes de enviar ves el costo; después, quién la recibió y quién la leyó.</p>
-            <p class="mt-3 text-gray-600 leading-relaxed">Además, el agente les escribe solo a los que dejan de responder, lo que mejora mucho tu tasa de conversión.</p>
+            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-foreground">Reactivá con campañas y seguimientos</h3>
+            <p class="mt-3 text-muted-foreground leading-relaxed">Con las etiquetas elegís a quién escribirle y le mandás una campaña de WhatsApp. Antes de enviar ves el costo; después, quién la recibió y quién la leyó.</p>
+            <p class="mt-3 text-muted-foreground leading-relaxed">Además, el agente les escribe solo a los que dejan de responder, lo que mejora mucho tu tasa de conversión.</p>
           </div>
           <div class="lc-dark rounded-3xl p-5 md:p-8 lg:order-1 space-y-3">
             <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
               <div class="flex items-center justify-between">
-                <div class="text-sm font-semibold text-gray-900">Nueva campaña</div>
+                <div class="text-sm font-semibold text-foreground">Nueva campaña</div>
                 <span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">WhatsApp</span>
               </div>
-              <div class="mt-3 text-xs text-gray-500">Plantilla</div>
-              <div class="mt-1 flex items-center justify-between gap-2 text-sm text-gray-800"><span class="font-mono text-[13px] truncate">promo_fin_de_mes</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 shrink-0">Aprobada por Meta</span></div>
-              <div class="mt-3 text-xs text-gray-500">Destinatarios</div>
-              <div class="mt-1 flex flex-wrap gap-1.5"><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-700">pidió precio</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">interesado</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">sin respuesta · 7 días</span></div>
-              <div class="mt-4 pt-3 border-t border-gray-100 flex items-end justify-between gap-3">
-                <div><div class="text-lg font-semibold text-gray-900 tabular-nums">142</div><div class="text-[11px] text-gray-500">contactos · 3 con baja, excluidos</div></div>
-                <div class="text-right"><div class="text-lg font-semibold text-gray-900 tabular-nums">US$ 8,78</div><div class="text-[11px] text-gray-500">costo estimado</div></div>
+              <div class="mt-3 text-xs text-muted-foreground">Plantilla</div>
+              <div class="mt-1 flex items-center justify-between gap-2 text-sm text-foreground"><span class="font-mono text-[13px] truncate">promo_fin_de_mes</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 shrink-0">Aprobada por Meta</span></div>
+              <div class="mt-3 text-xs text-muted-foreground">Destinatarios</div>
+              <div class="mt-1 flex flex-wrap gap-1.5"><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-700">pidió precio</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">interesado</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-muted text-foreground">sin respuesta · 7 días</span></div>
+              <div class="mt-4 pt-3 border-t border-line flex items-end justify-between gap-3">
+                <div><div class="text-lg font-semibold text-foreground tabular-nums">142</div><div class="text-[11px] text-muted-foreground">contactos · 3 con baja, excluidos</div></div>
+                <div class="text-right"><div class="text-lg font-semibold text-foreground tabular-nums">US$ 8,78</div><div class="text-[11px] text-muted-foreground">costo estimado</div></div>
               </div>
             </div>
             <div class="space-y-3">
               <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-3">Envío</div>
-                <div class="space-y-2.5 text-sm text-gray-800">
-                  <div><div class="flex justify-between"><span>Enviados</span><span class="tabular-nums">142</span></div><div class="mt-1 h-1.5 rounded-full bg-gray-100"><div class="h-1.5 rounded-full bg-gray-400" style="width:100%"></div></div></div>
-                  <div><div class="flex justify-between"><span>Entregados</span><span class="tabular-nums">138</span></div><div class="mt-1 h-1.5 rounded-full bg-gray-100"><div class="h-1.5 rounded-full bg-emerald-400" style="width:97%"></div></div></div>
-                  <div><div class="flex justify-between"><span>Leídos</span><span class="tabular-nums">97</span></div><div class="mt-1 h-1.5 rounded-full bg-gray-100"><div class="h-1.5 rounded-full bg-sky-500" style="width:68%"></div></div></div>
+                <div class="text-sm font-semibold text-foreground mb-3">Envío</div>
+                <div class="space-y-2.5 text-sm text-foreground">
+                  <div><div class="flex justify-between"><span>Enviados</span><span class="tabular-nums">142</span></div><div class="mt-1 h-1.5 rounded-full bg-muted"><div class="h-1.5 rounded-full bg-gray-400" style="width:100%"></div></div></div>
+                  <div><div class="flex justify-between"><span>Entregados</span><span class="tabular-nums">138</span></div><div class="mt-1 h-1.5 rounded-full bg-muted"><div class="h-1.5 rounded-full bg-emerald-400" style="width:97%"></div></div></div>
+                  <div><div class="flex justify-between"><span>Leídos</span><span class="tabular-nums">97</span></div><div class="mt-1 h-1.5 rounded-full bg-muted"><div class="h-1.5 rounded-full bg-sky-500" style="width:68%"></div></div></div>
                 </div>
               </div>
               <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-3">Seguimientos</div>
-                <div class="space-y-2 text-sm text-gray-800">
+                <div class="text-sm font-semibold text-foreground mb-3">Seguimientos</div>
+                <div class="space-y-2 text-sm text-foreground">
                   <div class="flex items-center justify-between gap-2"><span>Sin respuesta · 24 h</span><span class="tag bg-emerald-50 text-emerald-700">activo</span></div>
                   <div class="flex items-center justify-between gap-2"><span>Sin respuesta · 72 h</span><span class="tag bg-emerald-50 text-emerald-700">activo</span></div>
                   <div class="flex items-center justify-between gap-2"><span>Recordatorio de cita</span><span class="tag bg-emerald-50 text-emerald-700">activo</span></div>
@@ -449,39 +450,39 @@
   </section>
 
   <!-- Preguntas frecuentes -->
-  <section id="preguntas" class="border-t border-gray-100">
+  <section id="preguntas" class="border-t border-line">
     <div class="max-w-5xl mx-auto px-6 py-20">
       <div class="max-w-2xl">
         <span class="eyebrow" aria-hidden="true"></span>
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Preguntas frecuentes</h2>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-foreground">Preguntas frecuentes</h2>
       </div>
 
       <div class="mt-10 grid md:grid-cols-3 gap-6">
         <div class="card rounded-xl p-6 bg-white">
-          <h3 class="font-semibold text-gray-900">¿Un agente de IA es lo mismo que un chatbot?</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">No. Un chatbot clásico responde con menús y opciones fijas. Un agente de IA entiende lo que la persona escribe con sus propias palabras, conoce tu negocio y responde con tu tono. Si querés, también agenda citas, etiqueta cada conversación o le pasa el chat a tu equipo.</p>
+          <h3 class="font-semibold text-foreground">¿Un agente de IA es lo mismo que un chatbot?</h3>
+          <p class="mt-2 text-sm text-muted-foreground leading-relaxed">No. Un chatbot clásico responde con menús y opciones fijas. Un agente de IA entiende lo que la persona escribe con sus propias palabras, conoce tu negocio y responde con tu tono. Si querés, también agenda citas, etiqueta cada conversación o le pasa el chat a tu equipo.</p>
         </div>
         <div class="card rounded-xl p-6 bg-white">
-          <h3 class="font-semibold text-gray-900">¿En qué canales funciona?</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">En WhatsApp, Instagram, Mercado Libre o el chat de tu web. Facebook y TikTok están en etapa beta. Funciona sobre las APIs oficiales de Meta y Mercado Libre. Podés empezar por un solo canal o sumar varios, cada uno con su agente.</p>
+          <h3 class="font-semibold text-foreground">¿En qué canales funciona?</h3>
+          <p class="mt-2 text-sm text-muted-foreground leading-relaxed">En WhatsApp, Instagram, Mercado Libre o el chat de tu web. Facebook y TikTok están en etapa beta. Funciona sobre las APIs oficiales de Meta y Mercado Libre. Podés empezar por un solo canal o sumar varios, cada uno con su agente.</p>
         </div>
         <div class="card rounded-xl p-6 bg-white">
-          <h3 class="font-semibold text-gray-900">¿Necesito saber programar?</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">No. Nosotros conectamos tus canales y entrenamos al agente: en menos de un día está respondiendo. Después, cuando quieras, lo ajustás desde el panel: le cargás tu catálogo, tus precios o tus preguntas frecuentes.</p>
+          <h3 class="font-semibold text-foreground">¿Necesito saber programar?</h3>
+          <p class="mt-2 text-sm text-muted-foreground leading-relaxed">No. Nosotros conectamos tus canales y entrenamos al agente: en menos de un día está respondiendo. Después, cuando quieras, lo ajustás desde el panel: le cargás tu catálogo, tus precios o tus preguntas frecuentes.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Contacto -->
-  <section id="contacto" class="border-t border-gray-100 bg-gray-50">
+  <section id="contacto" class="border-t border-line bg-muted">
     <div class="max-w-5xl mx-auto px-6 py-20">
       <div class="max-w-2xl">
         <span class="eyebrow" aria-hidden="true"></span>
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Hablemos</h2>
-        <p class="mt-3 text-lg text-gray-600">Agendá una llamada de 30 minutos y vemos juntos qué puede hacer un agente de IA por tu empresa.</p>
-        <p class="mt-4 text-gray-600 leading-relaxed">Sin costo y sin compromiso. Nos contás cómo atendés hoy a tus clientes y qué se te escapa. Te mostramos en vivo cómo respondería MABAI con tu catálogo y tu tono. Si tiene sentido, salís de la reunión con una propuesta concreta.</p>
-        <p class="mt-4 text-gray-600 leading-relaxed">Después, nosotros conectamos tus canales y entrenamos al agente: en menos de un día está respondiendo.</p>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-foreground">Hablemos</h2>
+        <p class="mt-3 text-lg text-muted-foreground">Agendá una llamada de 30 minutos y vemos juntos qué puede hacer un agente de IA por tu empresa.</p>
+        <p class="mt-4 text-muted-foreground leading-relaxed">Sin costo y sin compromiso. Nos contás cómo atendés hoy a tus clientes y qué se te escapa. Te mostramos en vivo cómo respondería MABAI con tu catálogo y tu tono. Si tiene sentido, salís de la reunión con una propuesta concreta.</p>
+        <p class="mt-4 text-muted-foreground leading-relaxed">Después, nosotros conectamos tus canales y entrenamos al agente: en menos de un día está respondiendo.</p>
       </div>
 
       <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
@@ -490,24 +491,24 @@
           Agendar llamada · 30 min
         </button>
       </div>
-      <p class="mt-4 text-xs text-gray-500">También podés reservar en <a href="https://cal.com/hola-mabai/llamada-inicial" target="_blank" rel="noopener" class="underline">cal.com/hola-mabai/llamada-inicial</a> o escribirnos a <a href="mailto:hola@mabai.com.ar" class="underline">hola@mabai.com.ar</a>.</p>
+      <p class="mt-4 text-xs text-muted-foreground">También podés reservar en <a href="https://cal.com/hola-mabai/llamada-inicial" target="_blank" rel="noopener" class="underline">cal.com/hola-mabai/llamada-inicial</a> o escribirnos a <a href="mailto:hola@mabai.com.ar" class="underline">hola@mabai.com.ar</a>.</p>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-gray-100 py-10 bg-white">
+  <footer class="border-t border-line py-10 bg-white">
     <div class="max-w-5xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-between gap-6 text-sm text-gray-500">
+      <div class="flex flex-col md:flex-row justify-between gap-6 text-sm text-muted-foreground">
         <div class="space-y-2">
           <img src="/mabai-logo.svg" alt="MABAI" class="h-5 w-auto">
           <p class="text-xs leading-relaxed max-w-sm"><span class="accent-ink font-medium">IA powered solutions.</span> Operado desde Buenos Aires, Argentina.</p>
-          <p class="text-xs">Contacto: <a href="mailto:hola@mabai.com.ar" class="underline hover:text-gray-700">hola@mabai.com.ar</a></p>
-          <p class="text-xs leading-relaxed max-w-md text-gray-500">MABAI es un servicio de Martinez Bosch Ignacio · CUIT 20-46501970-1 · Av. Pueyrredón 1993, Piso 4 Dpto A, CABA (1119) · <a href="tel:+5491144002351" class="hover:text-gray-700">+54 9 11 4400-2351</a></p>
+          <p class="text-xs">Contacto: <a href="mailto:hola@mabai.com.ar" class="underline hover:text-primary">hola@mabai.com.ar</a></p>
+          <p class="text-xs leading-relaxed max-w-md text-muted-foreground">MABAI es un servicio de Martinez Bosch Ignacio · CUIT 20-46501970-1 · Av. Pueyrredón 1993, Piso 4 Dpto A, CABA (1119) · <a href="tel:+5491144002351" class="hover:text-primary">+54 9 11 4400-2351</a></p>
         </div>
         <div class="flex flex-col gap-2 md:items-end">
           <div class="flex gap-5">
-            <a href="/privacy" class="nav-link hover:text-gray-900">Política de privacidad</a>
-            <a href="/terms" class="nav-link hover:text-gray-900">Términos</a>
+            <a href="/privacy" class="nav-link hover:text-primary">Política de privacidad</a>
+            <a href="/terms" class="nav-link hover:text-primary">Términos</a>
           </div>
           <span class="text-xs">© 2026 MABAI. Todos los derechos reservados.</span>
         </div>
@@ -568,7 +569,14 @@
           (cliente ? 'self-end bg-[#d9fdd3] text-gray-900 rounded-tr-sm' : 'self-start bg-white text-gray-900 rounded-tl-sm');
         el.innerHTML = '<span></span><span class="float-right ml-2 mt-1 text-[10px] text-gray-500 whitespace-nowrap">' +
           hora(i) + (cliente ? ' <span class="text-sky-500">✓✓</span>' : '') + '</span>';
-        el.firstChild.textContent = msg.texto;
+        var span = el.firstChild;
+        if (cliente || reduced) { span.textContent = msg.texto; return el; }
+        var words = msg.texto.split(' '), k = 0;
+        (function stream() {
+          span.textContent = words.slice(0, ++k).join(' ');
+          scrollDown();
+          if (k < words.length) setTimeout(stream, 45);
+        })();
         return el;
       }
       function typing() {
@@ -600,7 +608,7 @@
             if (i === 1) badgeTop.classList.remove('hidden-badge');
             var t = typing();
             body.appendChild(t); scrollDown();
-            wait(1100 + Math.min(msg.texto.length * 12, 900), function () {
+            wait(600 + Math.min(msg.texto.length * 4, 400), function () {
               t.remove();
               body.appendChild(bubble(msg, i)); scrollDown();
               status.textContent = 'en línea';
