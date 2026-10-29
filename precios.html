@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Precios de agentes de IA para WhatsApp, Instagram y tu web | MABAI</title>
+  <meta name="description" content="Planes desde US$ 49 por mes, según los clientes nuevos que te escriben. Prueba gratis de 14 días sin tarjeta." />
+  <meta property="og:title" content="Precios — MABAI" />
+  <meta property="og:description" content="Planes desde US$ 49 por mes, según los clientes nuevos que te escriben. Prueba gratis de 14 días sin tarjeta." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.mabai.com.ar/precios" />
+  <meta property="og:image" content="https://www.mabai.com.ar/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="MABAI: inteligencia artificial para impulsar tu negocio" />
+  <link rel="canonical" href="https://www.mabai.com.ar/precios" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+      --accent: #e8a33d;
+      --accent-soft: #fdf3e3;
+      --accent-ink: #b8731a;
+      --shadow-border: 0 0 0 1px rgba(0,0,0,.06), 0 1px 2px -1px rgba(0,0,0,.06), 0 2px 4px 0 rgba(0,0,0,.04);
+    }
+    .grid-pattern { background-image: radial-gradient(circle, rgba(232,163,61,.28) 1px, transparent 1px); background-size: 20px 20px; }
+    .card { box-shadow: var(--shadow-border); transition: box-shadow 150ms ease-out; }
+    @media (hover: hover) and (pointer: fine) { .card:hover { box-shadow: 0 0 0 1px rgba(232,163,61,.45), 0 1px 2px -1px rgba(0,0,0,.08), 0 4px 10px -2px rgba(232,163,61,.18); } }
+    .accent { color: var(--accent); }
+    .accent-ink { color: var(--accent-ink); }
+    .accent-bg { background: var(--accent-soft); }
+    .eyebrow { display: block; width: 40px; height: 3px; border-radius: 9999px; background: var(--accent); margin-bottom: 14px; }
+    .nav-link:hover, .nav-menu a:hover { color: var(--accent-ink); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent-ink); }
+    .btn-accent { background: var(--accent); color: #111827; }
+    .btn-accent:hover { background: #d9932f; }
+    footer a:hover { color: var(--accent-ink); }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    ::selection { background: var(--accent-soft); }
+    .btn { transition-property: transform, background-color, color; transition-duration: 150ms; transition-timing-function: ease-out; }
+    .btn:active { transform: scale(0.96); }
+    .nav-link { transition: color 150ms ease-out; }
+    .nav-menu { opacity: 0; transform: translateY(-4px) scale(0.97); transform-origin: top left; visibility: hidden;
+      transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out), visibility 0s linear 150ms; }
+    .nav-menu.open { opacity: 1; transform: none; visibility: visible; transition-delay: 0s, 0s, 0s; }
+    @media (max-width: 639px) {
+      .nav-menu { transform-origin: top center; }
+      .nav-menu.nav-menu-full { left: 1rem; right: 1rem; top: 100%; width: auto; padding-top: .25rem; }
+    }
+    @media (min-width: 640px) { .nav-menu.nav-menu-full { left: 0; } }
+    .nav-menu a { transition: background-color 100ms ease-out, color 100ms ease-out; }
+    .hero-in > * { opacity: 0; transform: translateY(12px); filter: blur(4px); animation: hero-in 500ms var(--ease-out) forwards; }
+    .hero-in > *:nth-child(2) { animation-delay: 90ms; }
+    .hero-in > *:nth-child(3) { animation-delay: 180ms; }
+    .hero-in > *:nth-child(4) { animation-delay: 270ms; }
+    @keyframes hero-in { to { opacity: 1; transform: none; filter: blur(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-in > * { transform: none; filter: none; animation: hero-fade 300ms ease forwards; }
+      @keyframes hero-fade { to { opacity: 1; } }
+      .btn:active, .nav-menu { transform: none; }
+    }
+    .serif-i { font-family: "Instrument Serif", Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+    .tag { display: inline-block; font-size: 11px; padding: .125rem .5rem; border-radius: 9999px; white-space: nowrap; }
+    .icon-box { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; border-radius: .75rem; background: var(--accent-soft); color: var(--accent-ink); }
+    /* Planes */
+    .plan-featured, .plan-featured:hover { box-shadow: 0 0 0 2px var(--accent), 0 8px 24px -8px rgba(232,163,61,.35); }
+    .feat li { position: relative; padding-left: 1.5rem; }
+    .feat li::before { content: ""; position: absolute; left: 0; top: .1em; width: 1rem; height: 1rem; background: var(--accent-ink);
+      -webkit-mask: var(--icon) center / contain no-repeat; mask: var(--icon) center / contain no-repeat;
+      --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E"); }
+    .feat li.soon { color: #6b7280; }
+    .feat li.soon::before { background: #9ca3af;
+      --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='8.5'/%3E%3Cpath d='M12 7.5V12l3 2'/%3E%3C/svg%3E"); }
+  </style>
+  <link rel="stylesheet" href="/tailwind.css" />
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+  <!-- Nav -->
+  <nav class="border-b border-gray-100 bg-white/80 backdrop-blur sticky top-0 z-10">
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <img src="/mabai-logo.svg" alt="MABAI" class="h-6 sm:h-7 w-auto">
+      </a>
+      <div class="flex items-center gap-2.5 sm:gap-5 text-[13px] sm:text-sm text-gray-600">
+        <div class="sm:relative" data-dropdown>
+          <button type="button" class="nav-link flex items-center gap-1 hover:text-gray-900" aria-haspopup="true" aria-expanded="false">
+            Soluciones
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="nav-menu nav-menu-full absolute top-full pt-3 w-56">
+            <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 py-2">
+              <a href="/" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Agentes de IA</a>
+              <a href="/soluciones-a-medida" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Soluciones a medida</a>
+              <a href="/partners" class="block sm:hidden px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Partners</a>
+              <a href="/precios" class="block sm:hidden px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Precios</a>
+            </div>
+          </div>
+        </div>
+        <div class="sm:relative" data-dropdown>
+          <button type="button" class="nav-link flex items-center gap-1 hover:text-gray-900" aria-haspopup="true" aria-expanded="false">
+            Rubros
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="nav-menu nav-menu-full absolute top-full pt-3 w-72">
+            <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 p-2">
+              <a href="/inmobiliarias" class="block rounded-lg px-3 py-2.5 hover:bg-gray-50">
+                <span class="block font-medium text-gray-900">Inmobiliarias</span>
+                <span class="block mt-0.5 text-xs leading-snug text-gray-500">Conectado a Tokko: ofrece tus propiedades con foto y ficha.</span>
+              </a>
+              <a href="/retail" class="block rounded-lg px-3 py-2.5 hover:bg-gray-50">
+                <span class="block font-medium text-gray-900">Retail</span>
+                <span class="block mt-0.5 text-xs leading-snug text-gray-500">Catálogo en el chat de tu web: recomienda, compara y lleva al carrito.</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="/partners" class="nav-link hover:text-gray-900 hidden sm:inline">Partners</a>
+        <a href="/precios" class="nav-link hover:text-gray-900 hidden sm:inline">Precios</a>
+        <a href="/#como-funciona" class="nav-link hover:text-gray-900 hidden md:inline">Cómo funciona</a>
+        <a href="#contacto" class="nav-link accent-ink font-medium">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Planes -->
+  <section class="grid-pattern">
+    <div class="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-24">
+      <div class="max-w-3xl hero-in">
+        <span class="inline-block text-xs font-medium accent-ink tracking-wider uppercase mb-4">Precios</span>
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">Pagás según los clientes<br class="hidden sm:block"> <span class="serif-i text-[1.15em] accent">nuevos que te escriben.</span></h1>
+        <p class="mt-6 text-lg text-gray-600 leading-relaxed">Prueba gratis: 14 días sin tarjeta, con hasta 100 conversaciones nuevas para probar.</p>
+      </div>
+
+      <h2 class="sr-only">Planes</h2>
+      <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 xl:-mx-10 items-start">
+        <!-- Inicial -->
+        <div class="card rounded-2xl p-6 lg:p-5 bg-white flex flex-col">
+          <h3 class="text-lg font-semibold text-gray-900">Inicial</h3>
+          <p class="mt-1 text-sm text-gray-600 leading-snug lg:min-h-[3.6rem]">Para negocios que empiezan a atender con IA.</p>
+          <div class="mt-4 flex items-baseline gap-1.5">
+            <span class="text-sm font-medium text-gray-500">US$</span>
+            <span class="text-4xl font-bold tracking-tight text-gray-900 tabular-nums">49</span>
+            <span class="text-sm text-gray-500">por mes</span>
+          </div>
+          <div class="mt-4 rounded-lg bg-gray-50 px-3 py-2.5 text-sm leading-snug">
+            <div class="text-gray-900"><span class="font-semibold tabular-nums">300</span> conversaciones nuevas incluidas</div>
+            <div class="mt-1 text-gray-600">Cada conversación extra: <span class="tabular-nums">US$ 0,15</span></div>
+          </div>
+          <button type="button" data-cal-namespace="llamada-inicial" data-cal-link="hola-mabai/llamada-inicial" data-cal-config='{"layout":"month_view","theme":"light"}' class="mt-5 inline-flex items-center justify-center text-sm font-medium px-5 py-2.5 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 btn btn-secondary">Agendar llamada</button>
+          <ul class="feat mt-6 space-y-2.5 text-sm text-gray-600 leading-snug">
+            <li>Agente de IA que responde las 24 horas</li>
+            <li>WhatsApp, Instagram DM y chat web</li>
+            <li>Entiende imágenes o audios que mandan los clientes</li>
+            <li>Verifica comprobantes de transferencia contra Mercado Pago</li>
+            <li>Catálogo de Tiendanube dentro del chat</li>
+            <li>CRM con pipeline, etiquetas y contactos</li>
+            <li>Si querés, deriva la conversación a tu equipo</li>
+            <li>Usuarios ilimitados</li>
+          </ul>
+        </div>
+
+        <!-- Crecimiento (destacado) -->
+        <div class="card plan-featured relative rounded-2xl p-6 lg:p-5 bg-white flex flex-col">
+          <span class="tag absolute -top-3 left-6 bg-gray-900 text-white font-medium">Para la mayoría de las tiendas</span>
+          <h3 class="text-lg font-semibold text-gray-900">Crecimiento</h3>
+          <p class="mt-1 text-sm text-gray-600 leading-snug lg:min-h-[3.6rem]">Para tiendas que venden todos los días por varios canales.</p>
+          <div class="mt-4 flex items-baseline gap-1.5">
+            <span class="text-sm font-medium text-gray-500">US$</span>
+            <span class="text-4xl font-bold tracking-tight text-gray-900 tabular-nums">179</span>
+            <span class="text-sm text-gray-500">por mes</span>
+          </div>
+          <div class="mt-4 rounded-lg accent-bg px-3 py-2.5 text-sm leading-snug">
+            <div class="text-gray-900"><span class="font-semibold tabular-nums">1.500</span> conversaciones nuevas incluidas</div>
+            <div class="mt-1 text-gray-600">Cada conversación extra: <span class="tabular-nums">US$ 0,13</span></div>
+          </div>
+          <button type="button" data-cal-namespace="llamada-inicial" data-cal-link="hola-mabai/llamada-inicial" data-cal-config='{"layout":"month_view","theme":"light"}' class="mt-5 inline-flex items-center justify-center text-sm font-medium px-5 py-2.5 rounded-lg btn btn-accent">Agendar llamada</button>
+          <p class="mt-6 text-sm font-medium text-gray-900">Todo lo de Inicial, más:</p>
+          <ul class="feat mt-3 space-y-2.5 text-sm text-gray-600 leading-snug">
+            <li>Facebook Messenger</li>
+            <li>Comentarios de Instagram que abren un DM</li>
+            <li>Preguntas de Mercado Libre</li>
+            <li>Campañas con seguimientos automáticos</li>
+            <li>Agenda de citas</li>
+            <li>Reparto de conversaciones entre vendedores</li>
+            <li>Estadísticas completas</li>
+            <li class="soon"><span class="font-medium">Próximamente:</span> recuperar carritos abandonados</li>
+            <li class="soon"><span class="font-medium">Próximamente:</span> postventa de Tiendanube</li>
+          </ul>
+        </div>
+
+        <!-- Pro -->
+        <div class="card rounded-2xl p-6 lg:p-5 bg-white flex flex-col">
+          <h3 class="text-lg font-semibold text-gray-900">Pro</h3>
+          <p class="mt-1 text-sm text-gray-600 leading-snug lg:min-h-[3.6rem]">Para equipos con mucho movimiento que quieren acompañamiento.</p>
+          <div class="mt-4 flex items-baseline gap-1.5">
+            <span class="text-sm font-medium text-gray-500">US$</span>
+            <span class="text-4xl font-bold tracking-tight text-gray-900 tabular-nums">329</span>
+            <span class="text-sm text-gray-500">por mes</span>
+          </div>
+          <div class="mt-4 rounded-lg bg-gray-50 px-3 py-2.5 text-sm leading-snug">
+            <div class="text-gray-900"><span class="font-semibold tabular-nums">3.000</span> conversaciones nuevas incluidas</div>
+            <div class="mt-1 text-gray-600">Cada conversación extra: <span class="tabular-nums">US$ 0,12</span></div>
+          </div>
+          <button type="button" data-cal-namespace="llamada-inicial" data-cal-link="hola-mabai/llamada-inicial" data-cal-config='{"layout":"month_view","theme":"light"}' class="mt-5 inline-flex items-center justify-center text-sm font-medium px-5 py-2.5 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 btn btn-secondary">Agendar llamada</button>
+          <p class="mt-6 text-sm font-medium text-gray-900">Todo lo de Crecimiento, más:</p>
+          <ul class="feat mt-3 space-y-2.5 text-sm text-gray-600 leading-snug">
+            <li>Configuración guiada con el equipo de MABAI</li>
+            <li>Flujos a medida simples, si tu proceso lo pide</li>
+            <li>Soporte prioritario por WhatsApp</li>
+            <li class="soon"><span class="font-medium">Próximamente:</span> TikTok, apenas esté habilitado</li>
+          </ul>
+        </div>
+
+        <!-- A medida -->
+        <div class="card rounded-2xl p-6 lg:p-5 bg-white flex flex-col">
+          <h3 class="text-lg font-semibold text-gray-900">A medida</h3>
+          <p class="mt-1 text-sm text-gray-600 leading-snug lg:min-h-[3.6rem]">Para operaciones grandes o procesos propios.</p>
+          <div class="mt-4 flex items-baseline">
+            <span class="text-4xl font-bold tracking-tight text-gray-900">A cotizar</span>
+          </div>
+          <div class="mt-4 rounded-lg bg-gray-50 px-3 py-2.5 text-sm leading-snug">
+            <div class="text-gray-900">Más de <span class="font-semibold tabular-nums">3.000</span> conversaciones nuevas</div>
+            <div class="mt-1 text-gray-600">Precio por conversación: según volumen</div>
+          </div>
+          <button type="button" data-cal-namespace="llamada-inicial" data-cal-link="hola-mabai/llamada-inicial" data-cal-config='{"layout":"month_view","theme":"light"}' class="mt-5 inline-flex items-center justify-center text-sm font-medium px-5 py-2.5 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 btn btn-secondary">Pedir cotización</button>
+          <p class="mt-6 text-sm font-medium text-gray-900">Todo lo de Pro, más:</p>
+          <ul class="feat mt-3 space-y-2.5 text-sm text-gray-600 leading-snug">
+            <li>Tarifa por conversación según volumen</li>
+            <li>Implementación a medida, cotizada aparte</li>
+            <li>Integraciones con tus propios sistemas, si las necesitás</li>
+            <li>Seguimiento directo con el equipo de MABAI</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Para todos los planes -->
+  <section class="border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-6 py-20">
+      <div class="max-w-2xl">
+        <span class="eyebrow" aria-hidden="true"></span>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Para todos los planes</h2>
+      </div>
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        <div class="card rounded-xl p-6 bg-white">
+          <span class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M5 6h14"/><path d="M5 18h8"/></svg></span>
+          <h3 class="mt-4 font-semibold text-gray-900">Tope opcional</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Si preferís no pagar excedente, la IA se frena al llegar al tope. Desde ahí, tu equipo atiende las conversaciones nuevas.</p>
+        </div>
+        <div class="card rounded-xl p-6 bg-white">
+          <span class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+          <h3 class="mt-4 font-semibold text-gray-900">Pago anual</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Pagando el año por adelantado, dos meses quedan gratis.</p>
+        </div>
+        <div class="card rounded-xl p-6 bg-white">
+          <span class="icon-box"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12v9H4v-9"/><path d="M2 7h20v5H2z"/><path d="M12 21V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></span>
+          <h3 class="mt-4 font-semibold text-gray-900">Prueba gratis</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">14 días sin tarjeta, con hasta 100 conversaciones nuevas para probar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qué es una conversación -->
+  <section id="conversacion" class="border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-6 py-20">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+        <div class="max-w-md">
+          <span class="eyebrow" aria-hidden="true"></span>
+          <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">¿Qué es una conversación?</h2>
+          <p class="mt-4 text-gray-600 leading-relaxed">Una conversación es un cliente nuevo que escribe por un canal. Si ese cliente vuelve a escribir la semana siguiente, no se cobra de nuevo. Si escribe por WhatsApp e Instagram, cuenta una vez por cada canal.</p>
+        </div>
+        <div class="card rounded-xl p-6 bg-white">
+          <span class="inline-block text-xs font-medium accent-ink tracking-wider uppercase">Ejemplo</span>
+          <p class="mt-2 text-gray-900 leading-relaxed">Una tienda en el plan Inicial recibe 450 clientes nuevos en el mes.</p>
+          <dl class="mt-4 text-sm border-t border-gray-100 divide-y divide-gray-100">
+            <div class="flex justify-between gap-4 py-2.5"><dt class="text-gray-600">Plan Inicial</dt><dd class="text-gray-900 tabular-nums">US$ 49</dd></div>
+            <div class="flex justify-between gap-4 py-2.5"><dt class="text-gray-600">150 × US$ 0,15</dt><dd class="text-gray-900 tabular-nums">US$ 22,50</dd></div>
+            <div class="flex justify-between gap-4 pt-2.5 font-semibold text-gray-900"><dt>Paga</dt><dd class="tabular-nums">US$ 71,50</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lo que se paga aparte -->
+  <section class="border-t border-gray-100">
+    <div class="max-w-5xl mx-auto px-6 py-20">
+      <div class="max-w-2xl">
+        <span class="eyebrow" aria-hidden="true"></span>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Lo que se paga aparte</h2>
+      </div>
+      <div class="mt-10 card rounded-xl p-6 bg-white flex flex-col sm:flex-row gap-4 sm:gap-6 max-w-3xl">
+        <div class="shrink-0 w-12 h-12 rounded-xl bg-[#e7f8ee] flex items-center justify-center"><img src="/icons/whatsapp.svg" alt="" width="26" height="26" aria-hidden="true"></div>
+        <div>
+          <h3 class="font-semibold text-gray-900">WhatsApp</h3>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">WhatsApp le cobra a cada negocio por su cuenta, sin pasar por MABAI. Cada número tiene 1.000 mensajes de servicio gratis por mes. Después, cada uno cuesta US$ 0,026 en Argentina. Las plantillas de marketing o de utilidad se cobran aparte.</p>
+          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Instagram, Facebook, Mercado Libre y el chat web no tienen ese costo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="border-t border-gray-100 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-6 py-20">
+      <div class="max-w-2xl">
+        <span class="eyebrow" aria-hidden="true"></span>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Hablemos</h2>
+        <p class="mt-3 text-lg text-gray-600">Agendá una llamada de 30 minutos y vemos juntos qué puede hacer un agente de IA por tu empresa.</p>
+      </div>
+      <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+        <button type="button" data-cal-namespace="llamada-inicial" data-cal-link="hola-mabai/llamada-inicial" data-cal-config='{"layout":"month_view","theme":"light"}' class="inline-flex items-center justify-center gap-2 text-sm font-medium px-5 py-3 rounded-lg btn btn-accent">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Agendar llamada · 30 min
+        </button>
+      </div>
+      <p class="mt-4 text-xs text-gray-500">También podés reservar en <a href="https://cal.com/hola-mabai/llamada-inicial" target="_blank" rel="noopener" class="underline">cal.com/hola-mabai/llamada-inicial</a> o escribirnos a <a href="mailto:hola@mabai.com.ar" class="underline">hola@mabai.com.ar</a>.</p>
+    </div>
+  </section>
+
+  <footer class="border-t border-gray-100 py-10 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between gap-6 text-sm text-gray-500">
+        <div class="space-y-2">
+          <img src="/mabai-logo.svg" alt="MABAI" class="h-5 w-auto">
+          <p class="text-xs leading-relaxed max-w-sm">IA powered solutions. Operado desde Buenos Aires, Argentina.</p>
+          <p class="text-xs">Contacto: <a href="mailto:hola@mabai.com.ar" class="underline hover:text-gray-700">hola@mabai.com.ar</a></p>
+          <p class="text-xs leading-relaxed max-w-md text-gray-500">MABAI es un servicio de Martinez Bosch Ignacio · CUIT 20-46501970-1 · Av. Pueyrredón 1993, Piso 4 Dpto A, CABA (1119) · <a href="tel:+5491144002351" class="hover:text-gray-700">+54 9 11 4400-2351</a></p>
+        </div>
+        <div class="flex flex-col gap-2 md:items-end">
+          <div class="flex gap-5">
+            <a href="/privacy" class="nav-link hover:text-gray-900">Política de privacidad</a>
+            <a href="/terms" class="nav-link hover:text-gray-900">Términos</a>
+          </div>
+          <span class="text-xs">© 2026 MABAI. Todos los derechos reservados.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      var wraps = [].slice.call(document.querySelectorAll('[data-dropdown]'));
+      var hover = window.matchMedia('(hover: hover)').matches;
+      function closeAll() { wraps.forEach(function (w) { w._set(false); }); }
+      wraps.forEach(function (wrap) {
+        var btn = wrap.querySelector('button'), menu = wrap.querySelector('.nav-menu');
+        wrap._set = function (open) { menu.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); };
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var open = !menu.classList.contains('open');
+          closeAll(); wrap._set(open);
+        });
+        if (hover) {
+          wrap.addEventListener('mouseenter', function () { wrap._set(true); });
+          wrap.addEventListener('mouseleave', function () { wrap._set(false); });
+        }
+      });
+      document.addEventListener('click', closeAll);
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
+    })();
+  </script>
+  <script type="text/javascript">
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "llamada-inicial", { origin: "https://app.cal.com" });
+    Cal.ns["llamada-inicial"]("ui", { theme: "light", styles: { branding: { brandColor: "#111827" } }, hideEventTypeDetails: false, layout: "month_view" });
+  </script>
+  <script src="/logo-anim.js"></script>
+  <script src="https://api.mabai.app/web/widget.js?key=mw_5Y9a4CVi5P1Xjs1pehjsJXY0hxyEp2Gj" async></script>
+</body>
+</html>
