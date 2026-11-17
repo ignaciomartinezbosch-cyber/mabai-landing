@@ -23,7 +23,7 @@
 
   <main class="max-w-3xl mx-auto px-6 py-16">
     <h1 class="text-3xl font-bold tracking-tight text-gray-900">Política de privacidad</h1>
-    <p class="text-sm text-gray-500 mt-2">Última actualización: 3 de noviembre de 2026</p>
+    <p class="text-sm text-gray-500 mt-2">Última actualización: 16 de noviembre de 2026</p>
 
     <div class="mt-8 space-y-8 text-gray-700 leading-relaxed">
 
@@ -95,13 +95,13 @@
         <h3 class="mt-5 text-lg font-semibold text-gray-900">Uso de datos de Google (Google Calendar y Google Sheets)</h3>
         <p class="mt-2">Cuando un cliente conecta su cuenta de Google desde el panel de MABAI, solicitamos únicamente los permisos necesarios para las funciones que el cliente activa:</p>
         <ul class="list-disc pl-6 mt-2 space-y-1">
-          <li><strong>Google Calendar</strong> (permiso <code>calendar.events</code>): leer, crear y actualizar eventos en el calendario del cliente para agendar, confirmar y cancelar las citas que coordina el agente de IA.</li>
+          <li><strong>Google Calendar</strong> (permiso <code>calendar.events</code>): leer, crear y actualizar eventos en el calendario del cliente. Sirve para agendar, confirmar o cancelar las citas que coordina el agente de IA, para no ofrecer un horario ya ocupado y para mostrarle al usuario sus eventos en el calendario de MABAI.</li>
           <li><strong>Google Sheets</strong> (permiso <code>spreadsheets.readonly</code>): leer las planillas que el cliente indique expresamente, para que el agente las use como fuente de información (por ejemplo, listados de productos o propiedades) o para importar a su CRM los contactos de una planilla de leads.</li>
           <li><strong>Dirección de email</strong> de la cuenta conectada, para identificar la cuenta vinculada en el panel.</li>
         </ul>
         <p class="mt-3">Los tokens de acceso se almacenan de forma segura y se usan exclusivamente para brindar estas funciones al cliente que los otorgó. No usamos datos obtenidos de Google con fines publicitarios, no los vendemos ni los cedemos a terceros, salvo a los proveedores de infraestructura indicados en esta sección y en la medida necesaria para prestar el servicio. El personal de MABAI no accede a estos datos, salvo para soporte solicitado por el cliente, por motivos de seguridad o cuando la ley lo exija.</p>
         <p class="mt-3">El uso y la transferencia a cualquier otra aplicación de la información recibida de las APIs de Google por parte de MABAI se ajustan a la <a class="underline" href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Política de Datos de Usuario de los Servicios API de Google</a>, incluidos los requisitos de Uso Limitado.</p>
-        <p class="mt-3"><strong>Datos de Google e inteligencia artificial.</strong> El contenido de las planillas que el cliente conecta, junto con los datos derivados de ellas, se usa solo para prestarle el servicio a ese cliente: como información del negocio para que su agente de IA responda, o para cargar en su CRM los contactos de las planillas de leads que indique. Los datos de Google Calendar no se envían a modelos de IA: MABAI solo crea, actualiza o borra en el calendario los eventos de las citas que agenda.</p>
+        <p class="mt-3"><strong>Datos de Google e inteligencia artificial.</strong> El contenido de las planillas que el cliente conecta, junto con los datos derivados de ellas, se usa solo para prestarle el servicio a ese cliente: como información del negocio para que su agente de IA responda, o para cargar en su CRM los contactos de las planillas de leads que indique. De Google Calendar, MABAI lee los eventos del usuario que conecta su calendario. Al agente de IA solo le pasa el inicio y fin de los eventos marcados como ocupados, nunca el título, la descripción ni los invitados, para que no ofrezca un turno ocupado. El título de cada evento, con su horario, se ve en el calendario de MABAI solo para ese usuario. Nada de esto se guarda ni se usa para entrenar modelos.</p>
         <p class="mt-3">Para que el agente responda, esa información se procesa mediante las APIs de Anthropic (Claude) y OpenAI. Según sus condiciones comerciales, ninguno de los dos usa los datos recibidos por API para entrenar sus modelos.</p>
         <p class="mt-3">Ni MABAI ni sus proveedores de IA usan datos de usuarios de Google, en bruto, agregados, anonimizados o derivados, para crear, entrenar o mejorar modelos de inteligencia artificial o aprendizaje automático generalizados.</p>
         <p class="mt-3 italic text-gray-600" lang="en">The use of raw or derived user data received from Google Workspace APIs will adhere to the Google User Data Policy, including the Limited Use requirements. Neither MABAI nor its AI providers use Google user data, whether raw, aggregated, anonymized or derived, to create, train or improve generalized AI or machine learning models.</p>
