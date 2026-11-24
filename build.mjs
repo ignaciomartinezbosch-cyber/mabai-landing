@@ -18,3 +18,13 @@ for (const f of readdirSync('public').filter(f => f.endsWith('.html'))) {
   writeFileSync(`public/${f}`, html.replace(/href="\/tailwind\.css"/g, `href="/tailwind.css?v=${v}"`));
 }
 console.log(`public/tailwind.css?v=${v}`);
+
+// Lo mismo para los estilos y el JS compartidos de assets/.
+for (const a of ['assets/mabai.css', 'assets/mabai.js']) {
+  const h = createHash('sha256').update(readFileSync(`public/${a}`)).digest('hex').slice(0, 10);
+  for (const f of readdirSync('public').filter(f => f.endsWith('.html'))) {
+    const html = readFileSync(`public/${f}`, 'utf8');
+    writeFileSync(`public/${f}`, html.replaceAll(`"/${a}"`, `"/${a}?v=${h}"`));
+  }
+  console.log(`public/${a}?v=${h}`);
+}

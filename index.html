@@ -1,634 +1,390 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agentes de IA para WhatsApp, Instagram y tu web | MABAI</title>
-  <meta name="description" content="Más que un chatbot: agentes de IA que atienden tu WhatsApp, Instagram o tu web, responden como vos y ordenan cada consulta en un CRM." />
-  <meta property="og:title" content="MABAI — Inteligencia artificial para impulsar tu negocio" />
-  <meta property="og:description" content="Agentes de IA en todos tus canales, campañas de WhatsApp y un CRM para tu equipo." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.mabai.com.ar/" />
-  <meta property="og:image" content="https://www.mabai.com.ar/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="MABAI: inteligencia artificial para impulsar tu negocio" />
-  <link rel="canonical" href="https://www.mabai.com.ar/" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "MABAI",
-    "url": "https://www.mabai.com.ar/",
-    "logo": "https://www.mabai.com.ar/apple-touch-icon.png",
-    "email": "hola@mabai.com.ar"
-  }
-  </script>
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
-    .grid-pattern {
-      background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
-      background-size: 20px 20px;
-    }
-    html { scroll-behavior: smooth; }
-
-    /* ---- Polish (better-ui / design-eng) ---- */
-    :root {
-      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-      --accent: #e8a33d;
-      --accent-soft: #fdf3e3;
-      --accent-ink: #b8731a;
-      --shadow-border: 0 0 0 1px rgba(0,0,0,.06), 0 1px 2px -1px rgba(0,0,0,.06), 0 2px 4px 0 rgba(0,0,0,.04);
-      --shadow-border-hover: 0 0 0 1px rgba(0,0,0,.08), 0 1px 2px -1px rgba(0,0,0,.08), 0 2px 4px 0 rgba(0,0,0,.06);
-    }
-    /* Tarjetas: sombra para profundidad, sin borde */
-    .card { box-shadow: var(--shadow-border); transition: box-shadow 150ms ease-out; }
-    @media (hover: hover) and (pointer: fine) { .card:hover { box-shadow: 0 0 0 1px rgba(232,163,61,.45), 0 1px 2px -1px rgba(0,0,0,.08), 0 4px 10px -2px rgba(232,163,61,.18); } }
-    .accent { color: var(--accent); }
-    .eyebrow { display: block; width: 40px; height: 3px; border-radius: 9999px; background: var(--accent); margin-bottom: 14px; }
-    .nav-link:hover, .nav-menu a:hover { color: var(--accent-ink); }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent-ink); }
-    .btn-accent { background: var(--accent); color: #111827; }
-    .btn-accent:hover { background: #d9932f; }
-    .grid-pattern { background-image: radial-gradient(circle, rgba(232,163,61,.28) 1px, transparent 1px); }
-    footer a:hover { color: var(--accent-ink); }
-    .accent-ink { color: var(--accent-ink); }
-    .accent-bg { background: var(--accent-soft); }
-    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    ::selection { background: var(--accent-soft); }
-    /* Botones: feedback al presionar */
-    .btn { transition-property: transform, background-color, color; transition-duration: 150ms; transition-timing-function: ease-out; }
-    .btn:active { transform: scale(0.96); }
-    /* Links de nav */
-    .nav-link { transition: color 150ms ease-out; }
-    /* Desplegable: entra desde el trigger, interrumpible */
-    .nav-menu { opacity: 0; transform: translateY(-4px) scale(0.97); transform-origin: top left; visibility: hidden;
-      transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out), visibility 0s linear 150ms; }
-    .nav-menu.open { opacity: 1; transform: none; visibility: visible; transition-delay: 0s, 0s, 0s; }
-    @media (max-width: 639px) {
-      .nav-menu { transform-origin: top center; }
-      .nav-menu.nav-menu-full { left: 1rem; right: 1rem; top: 100%; width: auto; padding-top: .25rem; }
-    }
-    @media (min-width: 640px) { .nav-menu.nav-menu-full { left: 0; } }
-    .nav-menu a { transition: background-color 100ms ease-out, color 100ms ease-out; }
-    /* Hero: entrada escalonada (una sola vez, al cargar) */
-    .hero-in > * { opacity: 0; transform: translateY(12px); filter: blur(4px); animation: hero-in 500ms var(--ease-out) forwards; }
-    .hero-in > *:nth-child(1) { animation-delay: 0ms; }
-    .hero-in > *:nth-child(2) { animation-delay: 90ms; }
-    .hero-in > *:nth-child(3) { animation-delay: 180ms; }
-    .hero-in > *:nth-child(4) { animation-delay: 270ms; }
-    .hero-in > *:nth-child(5) { animation-delay: 360ms; }
-    @keyframes hero-in { to { opacity: 1; transform: none; filter: blur(0); } }
-    .hero-visual { opacity: 0; transform: translateY(12px) scale(0.98); animation: hero-in 600ms var(--ease-out) 250ms forwards; }
-    @media (prefers-reduced-motion: reduce) {
-      .hero-in > *, .hero-visual { transform: none; filter: none; animation: hero-fade 300ms ease forwards; }
-      @keyframes hero-fade { to { opacity: 1; } }
-      .btn:active { transform: none; }
-      .nav-menu { transform: none; }
-    }
-    .serif-i { font-family: "Instrument Serif", Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
-
-
-    /* ---- Paneles oscuros de muestra ---- */
-    .lc-dark {
-      background-color: #111827;
-      background-image: radial-gradient(circle, rgba(232,163,61,.18) 1px, transparent 1px);
-      background-size: 18px 18px;
-    }
-    /* ---- Cómo funciona (bloques) ---- */
-    .step-num { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 9999px; background: var(--accent-soft); color: var(--accent-ink); font-size: .875rem; font-weight: 500; font-variant-numeric: tabular-nums; }
-    .map-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: .75rem; }
-    .map-arrow { color: var(--accent); }
-    .map-agent { background: #f9fafb; border-radius: .5rem; padding: .5rem .75rem; box-shadow: inset 0 0 0 1px rgba(0,0,0,.05); }
-    .tag { display: inline-block; font-size: 11px; padding: .125rem .5rem; border-radius: 9999px; white-space: nowrap; }
-
-    /* ---- Barra de logos (se desliza sola, se frena con el mouse) ---- */
-    .logos { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent); }
-    .logos-track { display: flex; width: max-content; animation: logos 40s linear infinite; }
-    .logos:hover .logos-track { animation-play-state: paused; }
-    .logos-set { display: flex; align-items: center; gap: 3.5rem; padding-right: 3.5rem; }
-    .logo-item { display: flex; align-items: center; gap: .5rem; white-space: nowrap; color: #6b7280; font-size: 15px; font-weight: 600; filter: grayscale(1); opacity: .6; transition: filter 200ms ease-out, opacity 200ms ease-out; }
-    .logo-beta { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; padding: 1px 6px; border-radius: 9999px; box-shadow: inset 0 0 0 1px currentColor; }
-    @media (hover: hover) and (pointer: fine) { .logo-item:hover { filter: none; opacity: 1; } }
-    @keyframes logos { to { transform: translateX(-50%); } }
-    @media (prefers-reduced-motion: reduce) {
-      .logos { -webkit-mask-image: none; mask-image: none; }
-      .logos-track { animation: none; width: auto; justify-content: center; }
-      .logos-set { flex-wrap: wrap; justify-content: center; row-gap: 1rem; padding-right: 0; }
-      .logos-set[aria-hidden] { display: none; }
-    }
-
-    /* ---- Chat animado del hero ---- */
-    .chat-body {
-      background-color: #efeae2;
-      background-image: radial-gradient(circle, rgba(0,0,0,.035) 1px, transparent 1px);
-      background-size: 14px 14px;
-      scroll-behavior: smooth;
-    }
-    .bubble { animation: bubble-in .28s cubic-bezier(.2,.8,.2,1) both; }
-    @keyframes bubble-in {
-      from { opacity: 0; transform: translateY(10px) scale(.97); }
-      to   { opacity: 1; transform: none; }
-    }
-    .typing span {
-      width: 6px; height: 6px; border-radius: 9999px; background: #9ca3af; display: inline-block;
-      animation: typing 1.2s infinite ease-in-out;
-    }
-    .typing span:nth-child(2) { animation-delay: .15s; }
-    .typing span:nth-child(3) { animation-delay: .3s; }
-    @keyframes typing {
-      0%, 60%, 100% { transform: translateY(0); opacity: .5; }
-      30% { transform: translateY(-4px); opacity: 1; }
-    }
-    .badge { transition: opacity .35s ease, transform .35s ease; }
-    .badge.hidden-badge { opacity: 0; transform: translateY(6px); pointer-events: none; }
-    .pulse-dot { animation: pulse-dot 1.6s infinite; }
-    @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
-    @media (prefers-reduced-motion: reduce) {
-      .bubble, .typing span, .pulse-dot { animation: none; }
-      .badge { transition: none; }
-    }
-  </style>
-  <link rel="stylesheet" href="/tailwind.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentes de IA para WhatsApp, Instagram y tu web | MABAI</title>
+<meta name="description" content="Más que un chatbot: agentes de IA que atienden tu WhatsApp, Instagram o tu web, responden como vos y ordenan cada consulta en un CRM." />
+<meta property="og:title" content="MABAI — Inteligencia artificial para impulsar tu negocio" />
+<meta property="og:description" content="Agentes de IA en todos tus canales, campañas de WhatsApp y un CRM para tu equipo." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.mabai.com.ar/" />
+<meta property="og:image" content="https://www.mabai.com.ar/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="MABAI: inteligencia artificial para impulsar tu negocio" />
+<link rel="canonical" href="https://www.mabai.com.ar/" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "MABAI",
+  "url": "https://www.mabai.com.ar/",
+  "logo": "https://www.mabai.com.ar/apple-touch-icon.png",
+  "email": "hola@mabai.com.ar"
+}
+</script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/mabai.css">
 </head>
-<body class="bg-white text-gray-900 antialiased">
+<body>
 
-  <!-- Nav -->
-  <nav class="border-b border-gray-100 bg-white/80 backdrop-blur sticky top-0 z-10">
-    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2">
-        <img src="/mabai-logo.svg" alt="MABAI" class="h-6 sm:h-7 w-auto">
-      </a>
-      <div class="flex items-center gap-2.5 sm:gap-5 text-[13px] sm:text-sm text-gray-600">
-        <div class="sm:relative" data-dropdown>
-          <button type="button" class="nav-link flex items-center gap-1 hover:text-gray-900" aria-haspopup="true" aria-expanded="false">
-            Soluciones
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="nav-menu nav-menu-full absolute top-full pt-3 w-56">
-            <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 py-2">
-              <a href="/" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Agentes de IA</a>
-              <a href="/soluciones-a-medida" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Soluciones a medida</a>
-              <a href="/partners" class="block sm:hidden px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Partners</a>
-              <a href="/precios" class="block sm:hidden px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Precios</a>
-            </div>
-          </div>
-        </div>
-        <div class="sm:relative" data-dropdown>
-          <button type="button" class="nav-link flex items-center gap-1 hover:text-gray-900" aria-haspopup="true" aria-expanded="false">
-            Rubros
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="nav-menu nav-menu-full absolute top-full pt-3 w-72">
-            <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 p-2">
-              <a href="/inmobiliarias" class="block rounded-lg px-3 py-2.5 hover:bg-gray-50">
-                <span class="block font-medium text-gray-900">Inmobiliarias</span>
-                <span class="block mt-0.5 text-xs leading-snug text-gray-500">Conectado a Tokko: ofrece tus propiedades con foto y ficha.</span>
-              </a>
-              <a href="/retail" class="block rounded-lg px-3 py-2.5 hover:bg-gray-50">
-                <span class="block font-medium text-gray-900">Retail</span>
-                <span class="block mt-0.5 text-xs leading-snug text-gray-500">Catálogo en el chat de tu web: recomienda, compara y lleva al carrito.</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <a href="/partners" class="nav-link hover:text-gray-900 hidden sm:inline">Partners</a>
-        <a href="/precios" class="nav-link hover:text-gray-900 hidden sm:inline">Precios</a>
-        <a href="#como-funciona" class="nav-link hover:text-gray-900 hidden md:inline">Cómo funciona</a>
-        <a href="#contacto" class="nav-link accent-ink font-medium">Contacto</a>
+<!-- íconos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gstroke" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffa45c"/><stop offset=".52" stop-color="#f59cb2"/><stop offset="1" stop-color="#e39df4"/></linearGradient>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></symbol>
+    <symbol id="i-tn" viewBox="0 0 37.48 27"><path d="M24.0068 0H23.9915C23.9915 0 23.983 0 23.9779 0C20.4547 0.00509626 17.098 1.38958 14.5923 3.82559C13.3097 3.28199 11.9287 3 10.5017 3C4.71065 3 0 7.71065 0 13.5C0 19.2894 4.71065 24 10.5 24C11.9049 24 13.2945 23.7129 14.5804 23.1727C17.013 25.5391 20.3307 27 23.9847 27C31.4287 27 37.4847 20.9439 37.4847 13.5C37.4847 6.05606 31.4405 0.0118913 24.0068 0ZM23.9847 24C18.1954 24 13.4847 19.2894 13.4847 13.5H10.4847C10.4847 16.1484 11.2542 18.6183 12.5759 20.7044C11.9032 20.8981 11.205 21 10.5 21C6.36523 21 3 17.6348 3 13.5C3 9.36523 6.36523 6 10.5 6C12.1376 6 13.6937 6.51812 14.9983 7.4983C16.906 8.93035 18 11.1183 18 13.5H21C21 10.359 19.6393 7.45923 17.2491 5.4581C19.1263 3.88335 21.5062 3.0017 23.9915 3C29.7775 3.0034 34.483 7.71234 34.483 13.5C34.483 19.2877 29.7724 24 23.983 24H23.9847Z"/></symbol>
+    <symbol id="i-tt" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol>
+    <symbol id="i-gcal" viewBox="0 0 24 24"><path d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zm-7.207 6.25v-.065c.272-.144.5-.349.687-.617s.279-.595.279-.982c0-.379-.099-.72-.3-1.025a2.05 2.05 0 0 0-.832-.714 2.703 2.703 0 0 0-1.197-.257c-.6 0-1.094.156-1.481.467-.386.311-.65.671-.793 1.078l1.085.452c.086-.249.224-.461.413-.633.189-.172.445-.257.767-.257.33 0 .602.088.816.264a.86.86 0 0 1 .322.703c0 .33-.12.589-.36.778-.24.19-.535.284-.886.284h-.567v1.085h.633c.407 0 .748.109 1.02.327.272.218.407.499.407.843 0 .336-.129.614-.387.832s-.565.327-.924.327c-.351 0-.651-.103-.897-.311-.248-.208-.422-.502-.521-.881l-1.096.452c.178.616.505 1.082.977 1.401.472.319.984.478 1.538.477a2.84 2.84 0 0 0 1.293-.291c.382-.193.684-.458.902-.794.218-.336.327-.72.327-1.149 0-.429-.115-.797-.344-1.105a2.067 2.067 0 0 0-.881-.689zm2.093-1.931l.602.913L15 10.045v5.744h1.187V8.446h-.827l-2.158 1.557zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zm-3.289 23.5l4.684-4.684h-4.684V23.5zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z"/></symbol>
+    <symbol id="i-gsh" viewBox="0 0 24 24"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></symbol>
+    <symbol id="i-an" viewBox="0 0 24 24"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></symbol>
+    <symbol id="i-web" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.8 3 2.8 16 0 19M12 2.5c-2.8 3-2.8 16 0 19"/></g></symbol>
+    <symbol id="i-msg" viewBox="0 0 24 24"><path d="M12 1.5C6.2 1.5 1.75 5.8 1.75 11.3c0 2.9 1.2 5.4 3.2 7.1v3.6l3.3-1.8c1.2.3 2.4.5 3.75.5 5.8 0 10.25-4.3 10.25-9.8S17.8 1.5 12 1.5Zm1.1 13.1-2.6-2.8-5 2.8 5.5-5.9 2.7 2.8 4.9-2.8-5.5 5.9Z"/></symbol>
+  </defs>
+</svg>
+
+<!-- Nav -->
+<header class="nav">
+  <div class="nav-pill">
+    <a href="/" class="nav-logo" aria-label="MABAI, inicio"><img src="/assets/mabai-logo-white.svg" alt="MABAI"></a>
+    <nav class="nav-links" aria-label="Principal">
+      <div class="dd" data-dd>
+        <button type="button" aria-haspopup="true" aria-expanded="false">Soluciones <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dd-menu"><div class="dd-box">
+          <a href="/">Agentes de IA</a>
+          <a href="/soluciones-a-medida">Soluciones a medida</a>
+        </div></div>
+      </div>
+      <div class="dd" data-dd>
+        <button type="button" aria-haspopup="true" aria-expanded="false">Rubros <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dd-menu dd-wide"><div class="dd-box">
+          <a href="/inmobiliarias"><b>Inmobiliarias</b><small>Conectado a Tokko: ofrece tus propiedades con foto y ficha.</small></a>
+          <a href="/retail"><b>Retail</b><small>Catálogo en el chat de tu web: recomienda, compara y lleva al carrito.</small></a>
+        </div></div>
+      </div>
+      <a href="/partners">Partners</a>
+      <a href="/precios">Precios</a>
+      <a href="/#como-funciona">Cómo funciona</a>
+    </nav>
+    <div class="nav-right">
+      <a href="#contacto" class="btn btn-light btn-sm">Contacto</a>
+      <button class="nav-burger" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-sheet">
+    <p>Soluciones</p>
+    <a href="/">Agentes de IA</a>
+    <a href="/soluciones-a-medida">Soluciones a medida</a>
+    <p>Rubros</p>
+    <a href="/inmobiliarias">Inmobiliarias</a>
+    <a href="/retail">Retail</a>
+    <p>MABAI</p>
+    <a href="/partners">Partners</a>
+    <a href="/precios">Precios</a>
+    <a href="/#como-funciona">Cómo funciona</a>
+  </div>
+</header>
+
+<main>
+<!-- Hero -->
+<section class="hero">
+  <div class="dots hero-dots"></div>
+  <div class="dots hero-dots b"></div>
+  <div class="glow l drift" style="width:560px;height:560px;right:-160px;top:-140px;opacity:.38"></div>
+  <div class="glow o drift slow" style="width:520px;height:520px;right:14%;bottom:-300px;opacity:.32"></div>
+  <div class="glow p" style="width:340px;height:340px;left:-140px;top:30%;opacity:.12"></div>
+
+  <div class="wrap hero-grid">
+    <div class="hero-in">
+      <h1>Inteligencia artificial<br>para <span class="grad-text">impulsar<br>tu negocio.</span></h1>
+      <p class="lead">Agentes de IA que atienden tu WhatsApp, Instagram o tu web, campañas que reactivan a tus clientes y un CRM donde tu equipo ve todo.</p>
+      <p class="small">Funciona sobre las APIs oficiales de Meta y Mercado Libre, más un widget para tu sitio. Se conecta a tu calendario, tu catálogo y tu pipeline. Pensado para equipos comerciales de cualquier rubro.</p>
+      <div class="ctas">
+        <a href="#contacto" class="btn btn-grad magnetic">Solicitar demo</a>
+        <a href="#como-funciona" class="btn btn-ghost">Ver cómo funciona</a>
       </div>
     </div>
-  </nav>
 
-  <!-- Hero -->
-  <section class="grid-pattern overflow-hidden">
-    <div class="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
-      <div class="grid lg:grid-cols-[1.2fr_1fr] gap-14 lg:gap-8 items-center">
+    <div class="hero-visual" aria-hidden="true">
+      <div class="chip chip-top hide" id="chip-top"><span class="live"></span>Respondiendo en tiempo real</div>
 
-        <!-- Texto -->
-        <div class="max-w-xl hero-in">
-          <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">
-            Inteligencia artificial<br>
-            para <span class="serif-i text-[1.15em] accent">impulsar</span><br>
-            tu negocio.
-          </h1>
-          <p class="mt-6 text-lg text-gray-600 leading-relaxed">
-            Agentes de IA que atienden tu WhatsApp, Instagram o tu web, campañas que reactivan a tus clientes y un CRM donde tu equipo ve todo.
-          </p>
-          <p class="mt-4 text-sm text-gray-500 leading-relaxed">
-            Funciona sobre las APIs oficiales de Meta y Mercado Libre, más un widget para tu sitio. Se conecta a tu calendario, tu catálogo y tu pipeline. Pensado para equipos comerciales de cualquier rubro.
-          </p>
-          <div class="mt-8 flex flex-col sm:flex-row gap-3">
-            <a href="#contacto" class="inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-[#b8731a] btn">
-              Solicitar demo
-            </a>
-            <a href="#como-funciona" class="inline-flex items-center justify-center text-sm font-medium px-5 py-3 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 btn btn-secondary">
-              Ver cómo funciona
-            </a>
-          </div>
+      <div class="laptop">
+      <div class="lp-screen"><span class="lp-cam"></span>
+      <div class="panel">
+        <aside class="pn-side"><img src="/assets/isotipo-white.svg" alt=""><i></i><i></i><i></i><i></i></aside>
+        <div class="pn-main">
+          <div class="pn-top"><b>Bandeja</b><span class="pn-live"><i></i>Agente IA activo</span></div>
+          <div class="pn-tabs"><span class="on">Todas</span><span>Mis conv.</span><span>Atención</span></div>
+          <div class="pn-row on"><span class="av o">SR</span><div><b>Sofía R. <svg style="color:#25D366" fill="currentColor"><use href="#i-wa"/></svg></b><p>Hola! Vi el anuncio, ¿tienen stock?</p></div><time>10:42</time></div>
+          <div class="pn-row"><span class="av l">MG</span><div><b>Martín G. <svg style="color:#E4405F" fill="currentColor"><use href="#i-ig"/></svg></b><p>Perfecto, lo reservo para el sábado</p></div><time>10:38</time></div>
+          <div class="pn-row"><span class="av p">LP</span><div><b>Lucía P. <svg style="color:#2b7de9"><use href="#i-web"/></svg></b><p>¿Hacen envíos a Córdoba?</p></div><time>10:31</time></div>
+          <div class="pn-row"><span class="av o">JC</span><div><b>Juan C. <svg style="color:#0866FF" fill="currentColor"><use href="#i-msg"/></svg></b><p>Listo, ya transferí. ¡Gracias!</p></div><time>10:20</time></div>
+          <div class="pn-row"><span class="av l">CA</span><div><b>Carla A. <svg style="color:#111" fill="currentColor"><use href="#i-tt"/></svg></b><p>¿Lo tienen en negro?</p></div><time>10:05</time></div>
         </div>
-
-        <!-- Chat animado -->
-        <div class="hero-visual relative mx-auto w-full max-w-sm lg:max-w-[380px]">
-          <div class="absolute -inset-10 bg-gradient-to-br from-[#e8a33d]/25 via-transparent to-gray-200/60 rounded-full blur-3xl -z-10"></div>
-
-          <div id="badge-top" class="badge hidden-badge absolute -top-4 -right-3 sm:-right-8 z-10 bg-white shadow-lg shadow-gray-200/70 rounded-full pl-3 pr-4 py-2 text-sm text-gray-800 flex items-center gap-2 border border-gray-100">
-            <span class="pulse-dot w-2 h-2 rounded-full bg-emerald-500"></span>
-            Respondiendo en tiempo real
-          </div>
-
-          <div class="rounded-3xl bg-white shadow-2xl shadow-gray-300/60 border border-gray-200 overflow-hidden">
-            <div class="bg-[#075e54] text-white px-4 py-3 flex items-center gap-3">
-              <div class="w-9 h-9 rounded-full bg-white flex items-center justify-center overflow-hidden">
-                <img src="/mabai-isotipo.svg" alt="" class="w-7 h-7">
-              </div>
-              <div class="leading-tight">
-                <div id="chat-nombre" class="font-semibold text-sm">MABAI</div>
-                <div id="chat-status" class="text-xs text-emerald-100/90">en línea</div>
-              </div>
-            </div>
-            <div id="chat-body" class="chat-body h-[400px] overflow-y-hidden px-3 py-4 flex flex-col gap-2"></div>
-          </div>
-
-          <div id="badge-bottom" class="badge hidden-badge absolute -bottom-5 -left-3 sm:-left-8 z-10 bg-white shadow-lg shadow-gray-200/70 rounded-full pl-3 pr-4 py-2 text-sm text-gray-800 flex items-center gap-2 border border-gray-100">
-            <span class="accent font-semibold">✓</span>
-            <span id="chat-resultado">Lead calificado</span>
-          </div>
+        <div class="pn-conv">
+          <div class="who"><span class="av o" style="width:28px;height:28px;font-size:10px">SR</span>Sofía R.</div>
+          <div class="bub c">Hola! Vi el anuncio, ¿tienen stock?</div>
+          <div class="bub a">¡Hola Sofía! Sí, ¿qué talle buscás?</div>
         </div>
-
       </div>
+      </div>
+      <div class="lp-base"></div>
+      </div>
+
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-head"><span class="ph-av"><img src="/assets/isotipo-white.svg" alt=""></span><div><b>MABAI</b><small id="ph-status">Agente IA · en línea</small></div></div>
+        <div class="phone-body" id="chat"></div>
+      </div>
+
+      <div class="chip chip-bottom hide" id="chip-bottom"><span class="ok">✓</span>Lead calificado</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Se conecta con -->
-  <section id="integraciones" aria-label="Se conecta con" class="border-t border-gray-100">
-    <div class="max-w-5xl mx-auto px-6 py-10">
-      <p class="text-center text-xs font-medium tracking-wider uppercase accent-ink">Se conecta con</p>
-      <div class="logos mt-6">
-        <div class="logos-track">
-          <ul class="logos-set">
-            <li class="logo-item"><svg viewBox="0 0 24 24" width="22" height="22" fill="#25D366" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>WhatsApp</span></li>
-            <li class="logo-item"><svg viewBox="0 0 24 24" width="22" height="22" fill="#E4405F" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg><span>Instagram</span></li>
-            <li class="logo-item"><svg viewBox="0 0 24 24" width="22" height="22" fill="#0866FF" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg><span>Facebook</span><span class="logo-beta">beta</span></li>
-            <li class="logo-item"><img src="/icons/mercadolibre.png" alt="" width="26" height="19" aria-hidden="true"><span>Mercado Libre</span></li>
-            <li class="logo-item"><svg viewBox="0 0 37.48 27" width="28" height="20" fill="#0050C3" aria-hidden="true"><path d="M24.0068 0H23.9915C23.9915 0 23.983 0 23.9779 0C20.4547 0.00509626 17.098 1.38958 14.5923 3.82559C13.3097 3.28199 11.9287 3 10.5017 3C4.71065 3 0 7.71065 0 13.5C0 19.2894 4.71065 24 10.5 24C11.9049 24 13.2945 23.7129 14.5804 23.1727C17.013 25.5391 20.3307 27 23.9847 27C31.4287 27 37.4847 20.9439 37.4847 13.5C37.4847 6.05606 31.4405 0.0118913 24.0068 0ZM23.9847 24C18.1954 24 13.4847 19.2894 13.4847 13.5H10.4847C10.4847 16.1484 11.2542 18.6183 12.5759 20.7044C11.9032 20.8981 11.205 21 10.5 21C6.36523 21 3 17.6348 3 13.5C3 9.36523 6.36523 6 10.5 6C12.1376 6 13.6937 6.51812 14.9983 7.4983C16.906 8.93035 18 11.1183 18 13.5H21C21 10.359 19.6393 7.45923 17.2491 5.4581C19.1263 3.88335 21.5062 3.0017 23.9915 3C29.7775 3.0034 34.483 7.71234 34.483 13.5C34.483 19.2877 29.7724 24 23.983 24H23.9847Z"/></svg><span>Tiendanube</span></li>
-            <li class="logo-item"><svg viewBox="0 0 24 24" width="20" height="20" fill="#000000" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg><span>TikTok</span><span class="logo-beta">beta</span></li>
-            <li class="logo-item"><svg viewBox="0 0 24 24" width="22" height="22" fill="#4285F4" aria-hidden="true"><path d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zm-7.207 6.25v-.065c.272-.144.5-.349.687-.617s.279-.595.279-.982c0-.379-.099-.72-.3-1.025a2.05 2.05 0 0 0-.832-.714 2.703 2.703 0 0 0-1.197-.257c-.6 0-1.094.156-1.481.467-.386.311-.65.671-.793 1.078l1.085.452c.086-.249.224-.461.413-.633.189-.172.445-.257.767-.257.33 0 .602.088.816.264a.86.86 0 0 1 .322.703c0 .33-.12.589-.36.778-.24.19-.535.284-.886.284h-.567v1.085h.633c.407 0 .748.109 1.02.327.272.218.407.499.407.843 0 .336-.129.614-.387.832s-.565.327-.924.327c-.351 0-.651-.103-.897-.311-.248-.208-.422-.502-.521-.881l-1.096.452c.178.616.505 1.082.977 1.401.472.319.984.478 1.538.477a2.84 2.84 0 0 0 1.293-.291c.382-.193.684-.458.902-.794.218-.336.327-.72.327-1.149 0-.429-.115-.797-.344-1.105a2.067 2.067 0 0 0-.881-.689zm2.093-1.931l.602.913L15 10.045v5.744h1.187V8.446h-.827l-2.158 1.557zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zm-3.289 23.5l4.684-4.684h-4.684V23.5zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z"/></svg><span>Google Calendar</span></li>
-            <li class="logo-item"><svg viewBox="0 0 24 24" width="22" height="22" fill="#34A853" aria-hidden="true"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></svg><span>Google Sheets</span></li>
-            <li class="logo-item"><svg viewBox="0 0 24 24" width="22" height="22" fill="#D97757" aria-hidden="true"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg><span>Anthropic</span></li>
-          </ul>
-          <ul class="logos-set" aria-hidden="true">
-            <li class="logo-item"><svg viewBox="0 0 24 24" width="22" height="22" fill="#25D366" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span>WhatsApp</span></li>
-            <li class="logo-item"><svg viewBox="0 0 24 24" width="22" height="22" fill="#E4405F" aria-hidden="true"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg><span>Instagram</span></li>
-            <li class="logo-item"><svg viewBox="0 0 24 24" width="22" height="22" fill="#0866FF" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg><span>Facebook</span><span class="logo-beta">beta</span></li>
-            <li class="logo-item"><img src="/icons/mercadolibre.png" alt="" width="26" height="19" aria-hidden="true"><span>Mercado Libre</span></li>
-            <li class="logo-item"><svg viewBox="0 0 37.48 27" width="28" height="20" fill="#0050C3" aria-hidden="true"><path d="M24.0068 0H23.9915C23.9915 0 23.983 0 23.9779 0C20.4547 0.00509626 17.098 1.38958 14.5923 3.82559C13.3097 3.28199 11.9287 3 10.5017 3C4.71065 3 0 7.71065 0 13.5C0 19.2894 4.71065 24 10.5 24C11.9049 24 13.2945 23.7129 14.5804 23.1727C17.013 25.5391 20.3307 27 23.9847 27C31.4287 27 37.4847 20.9439 37.4847 13.5C37.4847 6.05606 31.4405 0.0118913 24.0068 0ZM23.9847 24C18.1954 24 13.4847 19.2894 13.4847 13.5H10.4847C10.4847 16.1484 11.2542 18.6183 12.5759 20.7044C11.9032 20.8981 11.205 21 10.5 21C6.36523 21 3 17.6348 3 13.5C3 9.36523 6.36523 6 10.5 6C12.1376 6 13.6937 6.51812 14.9983 7.4983C16.906 8.93035 18 11.1183 18 13.5H21C21 10.359 19.6393 7.45923 17.2491 5.4581C19.1263 3.88335 21.5062 3.0017 23.9915 3C29.7775 3.0034 34.483 7.71234 34.483 13.5C34.483 19.2877 29.7724 24 23.983 24H23.9847Z"/></svg><span>Tiendanube</span></li>
-            <li class="logo-item"><svg viewBox="0 0 24 24" width="20" height="20" fill="#000000" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg><span>TikTok</span><span class="logo-beta">beta</span></li>
-            <li class="logo-item"><svg viewBox="0 0 24 24" width="22" height="22" fill="#4285F4" aria-hidden="true"><path d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zm-7.207 6.25v-.065c.272-.144.5-.349.687-.617s.279-.595.279-.982c0-.379-.099-.72-.3-1.025a2.05 2.05 0 0 0-.832-.714 2.703 2.703 0 0 0-1.197-.257c-.6 0-1.094.156-1.481.467-.386.311-.65.671-.793 1.078l1.085.452c.086-.249.224-.461.413-.633.189-.172.445-.257.767-.257.33 0 .602.088.816.264a.86.86 0 0 1 .322.703c0 .33-.12.589-.36.778-.24.19-.535.284-.886.284h-.567v1.085h.633c.407 0 .748.109 1.02.327.272.218.407.499.407.843 0 .336-.129.614-.387.832s-.565.327-.924.327c-.351 0-.651-.103-.897-.311-.248-.208-.422-.502-.521-.881l-1.096.452c.178.616.505 1.082.977 1.401.472.319.984.478 1.538.477a2.84 2.84 0 0 0 1.293-.291c.382-.193.684-.458.902-.794.218-.336.327-.72.327-1.149 0-.429-.115-.797-.344-1.105a2.067 2.067 0 0 0-.881-.689zm2.093-1.931l.602.913L15 10.045v5.744h1.187V8.446h-.827l-2.158 1.557zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zm-3.289 23.5l4.684-4.684h-4.684V23.5zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z"/></svg><span>Google Calendar</span></li>
-            <li class="logo-item"><svg viewBox="0 0 24 24" width="22" height="22" fill="#34A853" aria-hidden="true"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></svg><span>Google Sheets</span></li>
-            <li class="logo-item"><svg viewBox="0 0 24 24" width="22" height="22" fill="#D97757" aria-hidden="true"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg><span>Anthropic</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Tech Provider de Meta -->
-      <div id="tech-provider" class="card accent-bg rounded-2xl mt-10 px-6 py-8 sm:px-10 text-center max-w-3xl mx-auto">
-        <svg class="mx-auto accent-ink" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
-        <h2 class="mt-4 text-2xl md:text-3xl font-bold tracking-tight text-gray-900 text-balance">Somos <span class="serif-i text-[1.15em] accent-ink">proveedor de tecnología de Meta</span> para WhatsApp</h2>
-      </div>
+<!-- Se conecta con + Meta -->
+<section id="integraciones" class="connect" aria-label="Se conecta con">
+  <div class="wrap">
+    <p class="label" data-reveal>Se conecta con</p>
+  </div>
+  <div class="marquee" data-reveal>
+    <div class="mq-track">
+      <ul class="mq-set" id="mq-set">
+        <li><svg><use href="#i-wa"/></svg>WhatsApp</li>
+        <li><svg><use href="#i-ig"/></svg>Instagram</li>
+        <li><svg><use href="#i-fb"/></svg>Facebook <span class="beta">beta</span></li>
+        <li><img src="/assets/mercadolibre.png" alt="">Mercado Libre</li>
+        <li><svg viewBox="0 0 37.48 27" style="width:28px"><use href="#i-tn"/></svg>Tiendanube</li>
+        <li><svg><use href="#i-tt"/></svg>TikTok <span class="beta">beta</span></li>
+        <li><svg><use href="#i-gcal"/></svg>Google Calendar</li>
+        <li><svg><use href="#i-gsh"/></svg>Google Sheets</li>
+      </ul>
     </div>
-  </section>
+  </div>
 
-  <!-- Cómo funciona -->
-  <section id="como-funciona" class="border-t border-gray-100">
-    <div class="max-w-5xl mx-auto px-6 py-20">
-      <div class="max-w-2xl">
-        <span class="eyebrow" aria-hidden="true"></span>
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Cómo funciona</h2>
-        <p class="mt-3 text-gray-600">De la primera consulta a la venta, todo pasa por un mismo lugar.</p>
+  <div class="wrap">
+    <div class="meta-card" id="tech-provider" data-reveal>
+      <div class="dots"></div>
+      <div class="meta-lockup"><span class="meta-logo"><img src="/assets/meta-lockup-negative-white.svg" alt="Meta"></span><span class="meta-tp">Tech Provider</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Frase que se enciende -->
+<section class="statement" aria-label="Cómo funciona">
+  <div class="wrap">
+    <span class="eyebrow">Cómo funciona</span>
+    <p id="frase" data-words>De la primera consulta a la venta, <span data-grad>todo pasa por un mismo lugar.</span></p>
+  </div>
+</section>
+
+<!-- Cómo funciona -->
+<section id="como-funciona" class="how" data-pin>
+  <div class="how-pin" id="how-pin">
+    <div class="how-bg">
+      <div class="glow o" style="width:620px;height:620px;left:-180px;top:10%"></div>
+      <div class="glow p" style="width:560px;height:560px;left:38%;top:30%;opacity:.45"></div>
+      <div class="glow l" style="width:620px;height:620px;right:-200px;top:-10%"></div>
+      <div class="dots"></div>
+    </div>
+
+    <div class="wrap how-head">
+      <div>
+        <span class="eyebrow">Cómo funciona</span>
+        <h2>Cuatro pasos</h2>
       </div>
+      <div class="counter"><b id="cnt">01</b> / 04</div>
+    </div>
+    <div class="wrap"><div class="progress"><i id="bar"></i></div></div>
 
-      <div class="mt-14 space-y-16 md:space-y-24">
-
-        <!-- 01 · Agentes -->
-        <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
-          <div class="max-w-md">
-            <span class="step-num">01</span>
-            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Creás tus agentes</h3>
-            <p class="mt-3 text-gray-600 leading-relaxed">Armás uno o varios agentes para atender conversaciones, comentarios o preguntas. Cada uno trabaja en el canal que le asignes: WhatsApp, Instagram, Facebook, Mercado Libre, TikTok o tu web.</p>
+    <div class="how-track" id="track">
+      <!-- 01 -->
+      <article class="step">
+        <div class="step-in">
+          <div>
+            <div class="num grad-text">01</div>
+            <h3>Creás tus agentes</h3>
+            <p>Armás uno o varios agentes para atender conversaciones, comentarios o preguntas. Cada uno trabaja en el canal que le asignes: WhatsApp, Instagram, Facebook, Mercado Libre, TikTok o tu web.</p>
           </div>
-          <div class="lc-dark rounded-3xl p-5 md:p-8">
-            <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-              <div class="flex items-center justify-between text-[11px] font-medium uppercase tracking-wider text-gray-400"><span>Canales</span><span>Agente</span></div>
-              <div class="mt-3 space-y-3">
-                <div class="map-row">
-                  <div class="flex flex-wrap gap-1"><span class="w-6 h-6 rounded-md bg-emerald-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span><span class="w-6 h-6 rounded-md bg-pink-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E4405F" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#E4405F" stroke="none"/></svg></span><span class="w-6 h-6 rounded-md bg-blue-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="#0866FF"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></span><span class="w-6 h-6 rounded-md bg-gray-100 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#111827" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span></div>
-                  <svg class="map-arrow" width="28" height="12" viewBox="0 0 28 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6h25"/><path d="M21 1l5 5-5 5"/></svg>
-                  <div class="map-agent"><div class="text-sm font-semibold text-gray-900">Ventas</div><div class="text-[11px] text-gray-500">Conversacional</div></div>
-                </div>
-                <div class="map-row">
-                  <div class="flex items-center gap-1.5 text-xs text-gray-600"><span class="w-6 h-6 rounded-md bg-pink-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#E4405F" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#E4405F" stroke="none"/></svg></span>Comentarios</div>
-                  <svg class="map-arrow" width="28" height="12" viewBox="0 0 28 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6h25"/><path d="M21 1l5 5-5 5"/></svg>
-                  <div class="map-agent"><div class="text-sm font-semibold text-gray-900">Comentarios</div><div class="text-[11px] text-gray-500">Respuesta única</div></div>
-                </div>
-                <div class="map-row">
-                  <div class="flex items-center gap-1.5 text-xs text-gray-600"><span class="w-6 h-6 rounded-md bg-yellow-50 flex items-center justify-center"><img src="/icons/mercadolibre.png" alt="" width="17" height="12" aria-hidden="true"></span>Preguntas</div>
-                  <svg class="map-arrow" width="28" height="12" viewBox="0 0 28 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6h25"/><path d="M21 1l5 5-5 5"/></svg>
-                  <div class="map-agent"><div class="text-sm font-semibold text-gray-900">Mercado Libre</div><div class="text-[11px] text-gray-500">Respuesta única</div></div>
-                </div>
+          <div class="vis">
+            <div class="card">
+              <h4><span class="k">Canales</span><span class="k">Agente</span></h4>
+              <div class="maprow">
+                <div class="ch"><span><svg style="color:#25D366" fill="currentColor"><use href="#i-wa"/></svg></span><span><svg style="color:#E4405F" fill="currentColor"><use href="#i-ig"/></svg></span><span><svg style="color:#0866FF" fill="currentColor"><use href="#i-fb"/></svg></span><span><svg style="color:#2b7de9"><use href="#i-web"/></svg></span></div>
+                <svg class="arrow" viewBox="0 0 30 12" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h27M23 1l5 5-5 5"/></svg>
+                <div class="agent"><b>Ventas</b><small>Conversacional</small></div>
+              </div>
+              <div class="maprow">
+                <div class="ch"><span><svg style="color:#E4405F" fill="currentColor"><use href="#i-ig"/></svg></span>Comentarios</div>
+                <svg class="arrow" viewBox="0 0 30 12" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h27M23 1l5 5-5 5"/></svg>
+                <div class="agent"><b>Comentarios</b><small>Respuesta única</small></div>
+              </div>
+              <div class="maprow">
+                <div class="ch"><span><img src="/assets/mercadolibre.png" alt="" style="width:16px"></span>Preguntas</div>
+                <svg class="arrow" viewBox="0 0 30 12" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6h27M23 1l5 5-5 5"/></svg>
+                <div class="agent"><b>Mercado Libre</b><small>Respuesta única</small></div>
               </div>
             </div>
           </div>
         </div>
+      </article>
 
-        <!-- 02 · Conocimiento y tono -->
-        <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
-          <div class="max-w-md lg:order-2">
-            <span class="step-num">02</span>
-            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Aprende tu negocio y responde como vos</h3>
-            <p class="mt-3 text-gray-600 leading-relaxed">Le cargás tu catálogo, tus precios y tus preguntas frecuentes. Responde con tu tono, entiende notas de voz, agenda citas y le pasa el chat a tu equipo cuando hace falta.</p>
+      <!-- 02 -->
+      <article class="step">
+        <div class="step-in">
+          <div>
+            <div class="num grad-text">02</div>
+            <h3>Aprende tu negocio y responde como vos</h3>
+            <p>Le cargás tu catálogo, tus precios y tus preguntas frecuentes. Responde con tu tono, entiende notas de voz, agenda citas y le pasa el chat a tu equipo cuando hace falta.</p>
           </div>
-          <div class="lc-dark rounded-3xl p-5 md:p-8 lg:order-1">
-            <div class="grid sm:grid-cols-2 gap-3">
-              <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-2">Identidad</div>
-                <div class="text-sm text-gray-800">Nombre: <span class="font-medium">Sofi</span></div><div class="text-sm text-gray-800 mt-1">Tono: cercano, profesional, sin tecnicismos</div>
+          <div class="vis">
+            <div class="cards2">
+              <div class="card"><h4>Identidad</h4><div class="t">Nombre: <b>Sofi</b></div><div class="t" style="margin-top:4px">Tono: cercano, profesional, sin tecnicismos</div></div>
+              <div class="card"><h4>Instrucciones</h4><div class="t">Sos la asistente comercial de la empresa. Respondé consultas, pedí nombre y zona. Ofrecé agendar una visita. Nunca inventes precios…</div></div>
+              <div class="card"><h4>Conocimiento</h4><div class="crow"><span>Catálogo 2026</span><span class="tag g">hace 5 min</span></div><div class="crow"><span>Preguntas frecuentes</span><span class="tag g">PDF</span></div></div>
+              <div class="card"><h4>Derivación a humano</h4><div style="display:flex;flex-wrap:wrap;gap:6px"><span class="tag o">negociación</span><span class="tag p">reclamo</span><span class="tag l">pide hablar con alguien</span><span class="tag g">financiación</span></div></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 03 -->
+      <article class="step">
+        <div class="step-in">
+          <div>
+            <div class="num grad-text">03</div>
+            <h3>Etiqueta y ordena todo en un CRM</h3>
+            <p>Cada conversación queda etiquetada según lo que pasó: interesado, pidió precio, compró. Todo queda en el CRM de MABAI, con pipeline y métricas, o lo exportás al tuyo.</p>
+          </div>
+          <div class="vis">
+            <div class="card">
+              <h4>Contactos <span class="tag g">Exportar CSV</span></h4>
+              <div class="crow"><span>Martín G.</span><span><span class="tag o">interesado</span> <span class="tag p">pidió precio</span></span></div>
+              <div class="crow"><span>Lucía P.</span><span class="tag l">compró</span></div>
+              <div class="crow"><span>Pedro R.</span><span><span class="tag p">pidió precio</span> <span class="tag g">no responde</span></span></div>
+            </div>
+            <div class="cards2" style="margin-top:12px">
+              <div class="card"><h4>Pipeline</h4><div class="stats3"><div><b>12</b><small>Nuevos</small></div><div><b>7</b><small>En curso</small></div><div><b>3</b><small>Ganados</small></div></div></div>
+              <div class="card"><h4>Esta semana</h4><div class="stats3"><div><b>1.240</b><small>respuestas</small></div><div><b>4 s</b><small>demora</small></div><div><b>38</b><small>citas</small></div></div></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 04 -->
+      <article class="step">
+        <div class="step-in">
+          <div>
+            <div class="num grad-text">04</div>
+            <h3>Reactivá con campañas y seguimientos</h3>
+            <p>Con las etiquetas elegís a quién escribirle y le mandás una campaña de WhatsApp. Antes de enviar ves el costo; después, quién la recibió y quién la leyó.</p>
+            <p>Además, el agente les escribe solo a los que dejan de responder, lo que mejora mucho tu tasa de conversión.</p>
+          </div>
+          <div class="vis">
+            <div class="card">
+              <h4>Nueva campaña <span class="tag o">WhatsApp</span></h4>
+              <div class="k">Plantilla</div>
+              <div class="crow"><span style="font-family:ui-monospace,monospace;font-size:13px">promo_fin_de_mes</span><span class="tag l">Aprobada por Meta</span></div>
+              <div class="k" style="margin-top:8px">Destinatarios</div>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px"><span class="tag p">pidió precio</span><span class="tag o">interesado</span><span class="tag g">sin respuesta · 7 días</span></div>
+              <div class="crow" style="margin-top:12px;padding-top:12px;border-top:1px solid #f2eef1;align-items:flex-end"><span><b style="font-size:20px">142</b><br><small style="color:#8b8589">contactos · 3 con baja, excluidos</small></span><span style="text-align:right"><b style="font-size:20px">US$ 8,78</b><br><small style="color:#8b8589">costo estimado</small></span></div>
+            </div>
+            <div class="cards2" style="margin-top:12px">
+              <div class="card"><h4>Envío</h4>
+                <div class="brow"><span>Enviados</span><b>142</b></div><div class="bar"><i style="width:100%"></i></div>
+                <div class="brow"><span>Entregados</span><b>138</b></div><div class="bar"><i style="width:97%"></i></div>
+                <div class="brow"><span>Leídos</span><b>97</b></div><div class="bar"><i style="width:68%"></i></div>
               </div>
-              <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-2">Instrucciones</div>
-                <p class="text-sm text-gray-600 leading-snug">Sos la asistente comercial de la empresa. Respondé consultas, pedí nombre y zona. Ofrecé agendar una visita. Nunca inventes precios…</p>
-              </div>
-              <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-2">Conocimiento</div>
-                <div class="space-y-1.5 text-sm text-gray-800"><div class="flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-green-50 flex items-center justify-center"><svg viewBox="0 0 24 24" width="14" height="14" fill="#34A853"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v8.318h10.91V9.273zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></svg></span>Catálogo 2026 <span class="text-xs text-gray-400 ml-auto whitespace-nowrap">hace 5 min</span></div><div class="flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-gray-100 flex items-center justify-center text-[10px] font-bold text-gray-600">PDF</span>Preguntas frecuentes</div></div>
-              </div>
-              <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-2">Derivación a humano</div>
-                <div class="flex flex-wrap gap-1.5"><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">negociación</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">reclamo</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">pide hablar con alguien</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">financiación</span></div>
+              <div class="card"><h4>Seguimientos</h4>
+                <div class="crow"><span>Sin respuesta · 24 h</span><span class="tag o">activo</span></div>
+                <div class="crow"><span>Sin respuesta · 72 h</span><span class="tag o">activo</span></div>
+                <div class="crow"><span>Recordatorio de cita</span><span class="tag o">activo</span></div>
               </div>
             </div>
           </div>
         </div>
+      </article>
+    </div>
+  </div>
+</section>
 
-        <!-- 03 · Etiquetas y CRM -->
-        <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
-          <div class="max-w-md">
-            <span class="step-num">03</span>
-            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Etiqueta y ordena todo en un CRM</h3>
-            <p class="mt-3 text-gray-600 leading-relaxed">Cada conversación queda etiquetada según lo que pasó: interesado, pidió precio, compró. Todo queda en el CRM de MABAI, con pipeline y métricas, o lo exportás al tuyo.</p>
-          </div>
-          <div class="lc-dark rounded-3xl p-5 md:p-8">
-            <div class="grid sm:grid-cols-2 gap-3">
-              <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20 sm:col-span-2">
-                <div class="flex items-center justify-between mb-3">
-                  <div class="text-sm font-semibold text-gray-900">Contactos</div>
-                  <span class="inline-flex items-center gap-1 text-[11px] px-2 py-0.5 rounded-md border border-gray-200 text-gray-600"><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Exportar CSV</span>
-                </div>
-                <div class="space-y-2 text-sm">
-                  <div class="flex items-center justify-between gap-2"><span class="text-gray-800">Martín G.</span><span class="flex flex-wrap justify-end gap-1"><span class="tag bg-emerald-50 text-emerald-700">interesado</span><span class="tag bg-blue-50 text-blue-700">pidió precio</span></span></div>
-                  <div class="flex items-center justify-between gap-2"><span class="text-gray-800">Lucía P.</span><span class="flex flex-wrap justify-end gap-1"><span class="tag bg-violet-50 text-violet-700">compró</span></span></div>
-                  <div class="flex items-center justify-between gap-2"><span class="text-gray-800">Pedro R.</span><span class="flex flex-wrap justify-end gap-1"><span class="tag bg-blue-50 text-blue-700">pidió precio</span><span class="tag bg-gray-100 text-gray-700">no responde</span></span></div>
-                </div>
-              </div>
-              <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-2">Pipeline</div>
-                <div class="grid grid-cols-3 gap-1.5 text-center"><div class="bg-gray-50 rounded-md py-1.5"><div class="text-base font-semibold text-gray-900 tabular-nums">12</div><div class="text-[10px] text-gray-500">Nuevos</div></div><div class="bg-gray-50 rounded-md py-1.5"><div class="text-base font-semibold text-gray-900 tabular-nums">7</div><div class="text-[10px] text-gray-500">En curso</div></div><div class="bg-gray-50 rounded-md py-1.5"><div class="text-base font-semibold text-gray-900 tabular-nums">3</div><div class="text-[10px] text-gray-500">Ganados</div></div></div>
-              </div>
-              <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-2">Esta semana</div>
-                <div class="grid grid-cols-3 gap-1.5 text-center"><div><div class="text-base font-semibold text-gray-900 tabular-nums">1.240</div><div class="text-[10px] text-gray-500">respuestas</div></div><div><div class="text-base font-semibold text-gray-900 tabular-nums">4 s</div><div class="text-[10px] text-gray-500">demora</div></div><div><div class="text-base font-semibold text-gray-900 tabular-nums">38</div><div class="text-[10px] text-gray-500">citas</div></div></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 04 · Campañas y seguimientos -->
-        <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
-          <div class="max-w-md lg:order-2">
-            <span class="step-num">04</span>
-            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Reactivá con campañas y seguimientos</h3>
-            <p class="mt-3 text-gray-600 leading-relaxed">Con las etiquetas elegís a quién escribirle y le mandás una campaña de WhatsApp. Antes de enviar ves el costo; después, quién la recibió y quién la leyó.</p>
-            <p class="mt-3 text-gray-600 leading-relaxed">Además, el agente les escribe solo a los que dejan de responder, lo que mejora mucho tu tasa de conversión.</p>
-          </div>
-          <div class="lc-dark rounded-3xl p-5 md:p-8 lg:order-1 space-y-3">
-            <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-              <div class="flex items-center justify-between">
-                <div class="text-sm font-semibold text-gray-900">Nueva campaña</div>
-                <span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">WhatsApp</span>
-              </div>
-              <div class="mt-3 text-xs text-gray-500">Plantilla</div>
-              <div class="mt-1 flex items-center justify-between gap-2 text-sm text-gray-800"><span class="font-mono text-[13px] truncate">promo_fin_de_mes</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 shrink-0">Aprobada por Meta</span></div>
-              <div class="mt-3 text-xs text-gray-500">Destinatarios</div>
-              <div class="mt-1 flex flex-wrap gap-1.5"><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-700">pidió precio</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">interesado</span><span class="inline-block text-[11px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">sin respuesta · 7 días</span></div>
-              <div class="mt-4 pt-3 border-t border-gray-100 flex items-end justify-between gap-3">
-                <div><div class="text-lg font-semibold text-gray-900 tabular-nums">142</div><div class="text-[11px] text-gray-500">contactos · 3 con baja, excluidos</div></div>
-                <div class="text-right"><div class="text-lg font-semibold text-gray-900 tabular-nums">US$ 8,78</div><div class="text-[11px] text-gray-500">costo estimado</div></div>
-              </div>
-            </div>
-            <div class="space-y-3">
-              <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-3">Envío</div>
-                <div class="space-y-2.5 text-sm text-gray-800">
-                  <div><div class="flex justify-between"><span>Enviados</span><span class="tabular-nums">142</span></div><div class="mt-1 h-1.5 rounded-full bg-gray-100"><div class="h-1.5 rounded-full bg-gray-400" style="width:100%"></div></div></div>
-                  <div><div class="flex justify-between"><span>Entregados</span><span class="tabular-nums">138</span></div><div class="mt-1 h-1.5 rounded-full bg-gray-100"><div class="h-1.5 rounded-full bg-emerald-400" style="width:97%"></div></div></div>
-                  <div><div class="flex justify-between"><span>Leídos</span><span class="tabular-nums">97</span></div><div class="mt-1 h-1.5 rounded-full bg-gray-100"><div class="h-1.5 rounded-full bg-sky-500" style="width:68%"></div></div></div>
-                </div>
-              </div>
-              <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20">
-                <div class="text-sm font-semibold text-gray-900 mb-3">Seguimientos</div>
-                <div class="space-y-2 text-sm text-gray-800">
-                  <div class="flex items-center justify-between gap-2"><span>Sin respuesta · 24 h</span><span class="tag bg-emerald-50 text-emerald-700">activo</span></div>
-                  <div class="flex items-center justify-between gap-2"><span>Sin respuesta · 72 h</span><span class="tag bg-emerald-50 text-emerald-700">activo</span></div>
-                  <div class="flex items-center justify-between gap-2"><span>Recordatorio de cita</span><span class="tag bg-emerald-50 text-emerald-700">activo</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
+<!-- Preguntas frecuentes -->
+<section id="preguntas" class="section faq">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Preguntas frecuentes</span>
+    <h2 data-reveal>Lo que más nos preguntan</h2>
+    <div class="faq-grid">
+      <div class="faq-card" data-reveal>
+        <h3>¿Un agente de IA es lo mismo que un chatbot?</h3>
+        <p>No. Un chatbot clásico responde con menús y opciones fijas. Un agente de IA entiende lo que la persona escribe con sus propias palabras, conoce tu negocio y responde con tu tono. Si querés, también agenda citas, etiqueta cada conversación o le pasa el chat a tu equipo.</p>
+      </div>
+      <div class="faq-card" data-reveal>
+        <h3>¿En qué canales funciona?</h3>
+        <p>En WhatsApp, Instagram, Mercado Libre o el chat de tu web. Facebook y TikTok están en etapa beta. Funciona sobre las APIs oficiales de Meta y Mercado Libre. Podés empezar por un solo canal o sumar varios, cada uno con su agente.</p>
+      </div>
+      <div class="faq-card" data-reveal>
+        <h3>¿Necesito saber programar?</h3>
+        <p>No. Nosotros conectamos tus canales y entrenamos al agente: en menos de un día está respondiendo. Después, cuando quieras, lo ajustás desde el panel: le cargás tu catálogo, tus precios o tus preguntas frecuentes.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Preguntas frecuentes -->
-  <section id="preguntas" class="border-t border-gray-100">
-    <div class="max-w-5xl mx-auto px-6 py-20">
-      <div class="max-w-2xl">
-        <span class="eyebrow" aria-hidden="true"></span>
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Preguntas frecuentes</h2>
-      </div>
-
-      <div class="mt-10 grid md:grid-cols-3 gap-6">
-        <div class="card rounded-xl p-6 bg-white">
-          <h3 class="font-semibold text-gray-900">¿Un agente de IA es lo mismo que un chatbot?</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">No. Un chatbot clásico responde con menús y opciones fijas. Un agente de IA entiende lo que la persona escribe con sus propias palabras, conoce tu negocio y responde con tu tono. Si querés, también agenda citas, etiqueta cada conversación o le pasa el chat a tu equipo.</p>
-        </div>
-        <div class="card rounded-xl p-6 bg-white">
-          <h3 class="font-semibold text-gray-900">¿En qué canales funciona?</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">En WhatsApp, Instagram, Mercado Libre o el chat de tu web. Facebook y TikTok están en etapa beta. Funciona sobre las APIs oficiales de Meta y Mercado Libre. Podés empezar por un solo canal o sumar varios, cada uno con su agente.</p>
-        </div>
-        <div class="card rounded-xl p-6 bg-white">
-          <h3 class="font-semibold text-gray-900">¿Necesito saber programar?</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">No. Nosotros conectamos tus canales y entrenamos al agente: en menos de un día está respondiendo. Después, cuando quieras, lo ajustás desde el panel: le cargás tu catálogo, tus precios o tus preguntas frecuentes.</p>
-        </div>
+<!-- Contacto -->
+<section id="contacto" class="contact">
+  <div class="wrap">
+    <div class="contact-card" data-reveal>
+      <div class="bloom"></div>
+      <div class="dots"></div>
+      <div class="contact-in">
+        <span class="eyebrow">Contacto</span>
+        <h2>Hablemos</h2>
+        <p class="lead">Agendá una llamada de 30 minutos y vemos juntos qué puede hacer un agente de IA por tu empresa.</p>
+        <p class="t">Sin costo y sin compromiso. Nos contás cómo atendés hoy a tus clientes y qué se te escapa. Te mostramos en vivo cómo respondería MABAI con tu catálogo y tu tono. Si tiene sentido, salís de la reunión con una propuesta concreta.</p>
+        <p class="t">Después, nosotros conectamos tus canales y entrenamos al agente: en menos de un día está respondiendo.</p>
+        <div class="ctas"><a class="btn btn-dark magnetic" href="https://cal.com/hola-mabai/llamada-inicial" target="_blank" rel="noopener" data-cal-namespace="llamada-inicial" data-cal-link="hola-mabai/llamada-inicial" data-cal-config='{"layout":"month_view","theme":"light"}'>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Agendar llamada · 30 min</a></div>
+        <small>También podés escribirnos a <a href="mailto:hola@mabai.com.ar">hola@mabai.com.ar</a>.</small>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+</main>
 
-  <!-- Contacto -->
-  <section id="contacto" class="border-t border-gray-100 bg-gray-50">
-    <div class="max-w-5xl mx-auto px-6 py-20">
-      <div class="max-w-2xl">
-        <span class="eyebrow" aria-hidden="true"></span>
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Hablemos</h2>
-        <p class="mt-3 text-lg text-gray-600">Agendá una llamada de 30 minutos y vemos juntos qué puede hacer un agente de IA por tu empresa.</p>
-        <p class="mt-4 text-gray-600 leading-relaxed">Sin costo y sin compromiso. Nos contás cómo atendés hoy a tus clientes y qué se te escapa. Te mostramos en vivo cómo respondería MABAI con tu catálogo y tu tono. Si tiene sentido, salís de la reunión con una propuesta concreta.</p>
-        <p class="mt-4 text-gray-600 leading-relaxed">Después, nosotros conectamos tus canales y entrenamos al agente: en menos de un día está respondiendo.</p>
-      </div>
-
-      <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
-        <button type="button" data-cal-namespace="llamada-inicial" data-cal-link="hola-mabai/llamada-inicial" data-cal-config='{"layout":"month_view","theme":"light"}' class="inline-flex items-center justify-center gap-2 text-sm font-medium px-5 py-3 rounded-lg btn btn-accent">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Agendar llamada · 30 min
-        </button>
-      </div>
-      <p class="mt-4 text-xs text-gray-500">También podés reservar en <a href="https://cal.com/hola-mabai/llamada-inicial" target="_blank" rel="noopener" class="underline">cal.com/hola-mabai/llamada-inicial</a> o escribirnos a <a href="mailto:hola@mabai.com.ar" class="underline">hola@mabai.com.ar</a>.</p>
+<footer>
+  <div class="wrap foot">
+    <div>
+      <img src="/assets/mabai-logo-white.svg" alt="MABAI">
+      <p><span class="brand">IA powered solutions.</span> Operado desde Buenos Aires, Argentina.</p>
+      <p>Contacto: <a href="mailto:hola@mabai.com.ar" style="text-decoration:underline">hola@mabai.com.ar</a></p>
+      <p>MABAI es proveedor de tecnología de Meta para WhatsApp.</p>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="border-t border-gray-100 py-10 bg-white">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-between gap-6 text-sm text-gray-500">
-        <div class="space-y-2">
-          <img src="/mabai-logo.svg" alt="MABAI" class="h-5 w-auto">
-          <p class="text-xs leading-relaxed max-w-sm"><span class="accent-ink font-medium">IA powered solutions.</span> Operado desde Buenos Aires, Argentina.</p>
-          <p class="text-xs">Contacto: <a href="mailto:hola@mabai.com.ar" class="underline hover:text-gray-700">hola@mabai.com.ar</a></p>
-          <p class="text-xs leading-relaxed max-w-md text-gray-500">MABAI es proveedor de tecnología de Meta para WhatsApp.</p>
-        </div>
-        <div class="flex flex-col gap-2 md:items-end">
-          <div class="flex gap-5">
-            <a href="/privacy" class="nav-link hover:text-gray-900">Política de privacidad</a>
-            <a href="/terms" class="nav-link hover:text-gray-900">Términos</a>
-          </div>
-          <span class="text-xs">© 2026 MABAI. Todos los derechos reservados.</span>
-        </div>
+    <div class="foot-r">
+      <div class="foot-links">
+        <a href="/privacy">Política de privacidad</a>
+        <a href="/terms">Términos</a>
+        <a class="ig" href="https://www.instagram.com/mabai.ai/" target="_blank" rel="noopener" aria-label="Instagram de MABAI"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ig"/></svg></a>
       </div>
+      <span>© 2026 MABAI. Todos los derechos reservados.</span>
     </div>
-  </footer>
+  </div>
+</footer>
 
-
-  <script>
-    (function () {
-      var wraps = [].slice.call(document.querySelectorAll('[data-dropdown]'));
-      var hover = window.matchMedia('(hover: hover)').matches;
-      function closeAll() { wraps.forEach(function (w) { w._set(false); }); }
-      wraps.forEach(function (wrap) {
-        var btn = wrap.querySelector('button'), menu = wrap.querySelector('.nav-menu');
-        wrap._set = function (open) { menu.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); };
-        btn.addEventListener('click', function (e) {
-          e.stopPropagation();
-          var open = !menu.classList.contains('open');
-          closeAll(); wrap._set(open);
-        });
-        if (hover) {
-          wrap.addEventListener('mouseenter', function () { wrap._set(true); });
-          wrap.addEventListener('mouseleave', function () { wrap._set(false); });
-        }
-      });
-      document.addEventListener('click', closeAll);
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
-    })();
-  </script>
-  <script src="/guiones.js"></script>
-  <script>
-    (function () {
-      var G = window.MABAI_GUIONES || {};
-      var path = location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
-      var q = new URLSearchParams(location.search).get('rubro');
-      var guion = G[q] || G[path] || G.general;
-      if (!guion) return;
-
-      var body = document.getElementById('chat-body');
-      var status = document.getElementById('chat-status');
-      var badgeTop = document.getElementById('badge-top');
-      var badgeBottom = document.getElementById('badge-bottom');
-      document.getElementById('chat-nombre').textContent = guion.nombre || 'MABAI';
-      document.getElementById('chat-resultado').textContent = guion.resultado || 'Lead calificado';
-
-      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var timer;
-
-      function hora(i) {
-        var m = 32 + i;
-        return '14:' + (m < 10 ? '0' + m : m);
-      }
-      function bubble(msg, i) {
-        var cliente = msg.de === 'cliente';
-        var el = document.createElement('div');
-        el.className = 'bubble max-w-[85%] rounded-xl px-3 py-2 text-[13.5px] leading-snug shadow-sm ' +
-          (cliente ? 'self-end bg-[#d9fdd3] text-gray-900 rounded-tr-sm' : 'self-start bg-white text-gray-900 rounded-tl-sm');
-        el.innerHTML = '<span></span><span class="float-right ml-2 mt-1 text-[10px] text-gray-500 whitespace-nowrap">' +
-          hora(i) + (cliente ? ' <span class="text-sky-500">✓✓</span>' : '') + '</span>';
-        el.firstChild.textContent = msg.texto;
-        return el;
-      }
-      function typing() {
-        var el = document.createElement('div');
-        el.className = 'bubble typing self-start bg-white rounded-xl rounded-tl-sm px-3 py-2.5 flex gap-1 items-center shadow-sm';
-        el.innerHTML = '<span></span><span></span><span></span>';
-        return el;
-      }
-      function scrollDown() { body.scrollTop = body.scrollHeight; }
-      function wait(ms, fn) { timer = setTimeout(fn, reduced ? 0 : ms); }
-
-      function run() {
-        body.innerHTML = '';
-        status.textContent = 'en línea';
-        badgeTop.classList.add('hidden-badge');
-        badgeBottom.classList.add('hidden-badge');
-        var msgs = guion.mensajes || [];
-        var i = 0;
-
-        function next() {
-          if (i >= msgs.length) {
-            badgeBottom.classList.remove('hidden-badge');
-            status.textContent = 'en línea';
-            return wait(5000, run);
-          }
-          var msg = msgs[i];
-          if (msg.de === 'bot') {
-            status.textContent = 'escribiendo…';
-            if (i === 1) badgeTop.classList.remove('hidden-badge');
-            var t = typing();
-            body.appendChild(t); scrollDown();
-            wait(1100 + Math.min(msg.texto.length * 12, 900), function () {
-              t.remove();
-              body.appendChild(bubble(msg, i)); scrollDown();
-              status.textContent = 'en línea';
-              i++; wait(1300, next);
-            });
-          } else {
-            body.appendChild(bubble(msg, i)); scrollDown();
-            i++; wait(900, next);
-          }
-        }
-        wait(700, next);
-      }
-      run();
-    })();
-  </script>
-  <script type="text/javascript">
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="/assets/mabai.js"></script>
+<script type="text/javascript">
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", "llamada-inicial", { origin: "https://app.cal.com" });
     Cal.ns["llamada-inicial"]("ui", { theme: "light", styles: { branding: { brandColor: "#111827" } }, hideEventTypeDetails: false, layout: "month_view" });
   </script>
-  <script src="/logo-anim.js"></script>
-  <script src="https://api.mabai.app/web/widget.js?key=mw_5Y9a4CVi5P1Xjs1pehjsJXY0hxyEp2Gj" async></script>
+<script src="https://api.mabai.app/web/widget.js?key=mw_5Y9a4CVi5P1Xjs1pehjsJXY0hxyEp2Gj" async></script>
 </body>
 </html>
