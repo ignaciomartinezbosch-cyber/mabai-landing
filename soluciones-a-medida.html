@@ -1,292 +1,293 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Soluciones a medida — MABAI</title>
-  <meta name="description" content="Desarrollo de software a medida para impulsar negocios. Construimos un sistema para que gestiones tu empresa de forma más organizada, eficiente y automatizada." />
-  <meta property="og:title" content="Soluciones a medida — MABAI" />
-  <meta property="og:description" content="Desarrollo de software a medida para impulsar negocios. Construimos un sistema para que gestiones tu empresa de forma más organizada, eficiente y automatizada." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.mabai.com.ar/soluciones-a-medida" />
-  <meta property="og:image" content="https://www.mabai.com.ar/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="MABAI: inteligencia artificial para impulsar tu negocio" />
-  <link rel="canonical" href="https://www.mabai.com.ar/soluciones-a-medida" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
-    .grid-pattern {
-      background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px);
-      background-size: 20px 20px;
-    }
-    html { scroll-behavior: smooth; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soluciones a medida — MABAI</title>
+<meta name="description" content="Desarrollo de software a medida para impulsar negocios. Construimos un sistema para que gestiones tu empresa de forma más organizada, eficiente y automatizada." />
+<meta property="og:title" content="Soluciones a medida — MABAI" />
+<meta property="og:description" content="Desarrollo de software a medida para impulsar negocios. Construimos un sistema para que gestiones tu empresa de forma más organizada, eficiente y automatizada." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.mabai.com.ar/soluciones-a-medida" />
+<meta property="og:image" content="https://www.mabai.com.ar/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="MABAI: inteligencia artificial para impulsar tu negocio" />
+<link rel="canonical" href="https://www.mabai.com.ar/soluciones-a-medida" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/mabai.css">
+<style>
+  /* ---------- Soluciones a medida: estilos propios de esta página ---------- */
+  .sm-hero h1{font-size:clamp(40px,4.9vw,68px)}
+  .sm-visual{position:relative;opacity:0;animation:heroin 1s var(--ease) .35s forwards}
+  .sys{padding:16px}
+  .sys-app{display:grid;grid-template-columns:168px minmax(0,1fr);border-radius:18px;overflow:hidden;background:#fff;color:var(--ink-dark);box-shadow:0 30px 70px -34px rgba(0,0,0,.85)}
+  .sys-side{background:#141113;padding:18px 10px;display:flex;flex-direction:column;gap:2px}
+  .sys-side img{width:26px;margin:0 0 18px 10px}
+  .sys-side span{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;font-size:13px;font-weight:500;color:rgba(255,255,255,.58)}
+  .sys-side span.on{background:rgba(255,255,255,.09);color:#fff}
+  .sys-side svg{flex:none;width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .sys-side span.on svg{stroke:url(#gstroke)}
+  .sys-main{padding:18px;background:#fbfafb;display:grid;gap:12px;align-content:start;min-width:0}
+  .sys-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .sys-top b{font-size:18px;letter-spacing:-.02em}
+  .sys-top .ch{gap:6px}
+  .sys-top .ch span{width:26px;height:26px}
+  .kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .kpi{background:#fff;border:1px solid rgba(20,17,19,.06);border-radius:12px;padding:12px 12px 8px;min-width:0}
+  .kpi small{display:block;font-size:11.5px;font-weight:600;color:#6b656a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .kpi svg{display:block;width:100%;height:38px;margin-top:6px;overflow:visible}
+  .kpi .ln{fill:none;stroke:url(#gstroke);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+  .kpi .ar{fill:url(#sm-fill);stroke:none}
+  .sys-chart{background:#fff;border:1px solid rgba(20,17,19,.06);border-radius:12px;padding:16px 14px 12px;height:150px;display:flex;align-items:flex-end;gap:7px;
+    background-image:linear-gradient(#f2eef1 1px,transparent 1px);background-size:100% 34px;background-position:0 16px}
+  .sys-chart i{flex:1;border-radius:6px 6px 3px 3px;background:var(--grad);background-size:1200% 100%;background-position:calc(var(--i) * 100% / 11) 0;transform-origin:bottom;animation:grow .9s var(--ease) both;animation-delay:calc(.6s + var(--i) * 45ms)}
+  @keyframes grow{from{transform:scaleY(.08)}to{transform:none}}
+  .sm-chip{left:-22px;bottom:-20px}
+  @media (max-width:1020px){.sm-visual{max-width:600px;width:100%}.sm-chip{left:14px}}
+  @media (max-width:560px){
+    .sys{padding:10px}
+    .sys-app{grid-template-columns:48px minmax(0,1fr)}
+    .sys-side{padding:14px 6px;align-items:center}
+    .sys-side img{width:22px;margin:0 0 14px}
+    .sys-side span{padding:9px;font-size:0;gap:0}
+    .sys-main{padding:12px;gap:10px}
+    .kpis{gap:8px}
+    .kpi{padding:10px 10px 6px}
+    .kpi small{font-size:10.5px}
+    .sys-chart{height:120px;gap:5px}
+    .sm-chip{font-size:12.5px;bottom:-22px}
+  }
 
-    /* ---- Polish (better-ui / design-eng) ---- */
-    :root {
-      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-      --accent: #e8a33d;
-      --accent-soft: #fdf3e3;
-      --accent-ink: #b8731a;
-      --shadow-border: 0 0 0 1px rgba(0,0,0,.06), 0 1px 2px -1px rgba(0,0,0,.06), 0 2px 4px 0 rgba(0,0,0,.04);
-      --shadow-border-hover: 0 0 0 1px rgba(0,0,0,.08), 0 1px 2px -1px rgba(0,0,0,.08), 0 2px 4px 0 rgba(0,0,0,.06);
-    }
-    /* Tarjetas: sombra para profundidad, sin borde */
-    .card { box-shadow: var(--shadow-border); transition: box-shadow 150ms ease-out; }
-    @media (hover: hover) and (pointer: fine) { .card:hover { box-shadow: 0 0 0 1px rgba(232,163,61,.45), 0 1px 2px -1px rgba(0,0,0,.08), 0 4px 10px -2px rgba(232,163,61,.18); } }
-    .accent { color: var(--accent); }
-    .eyebrow { display: block; width: 40px; height: 3px; border-radius: 9999px; background: var(--accent); margin-bottom: 14px; }
-    .nav-link:hover, .nav-menu a:hover { color: var(--accent-ink); }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent-ink); }
-    .btn-accent { background: var(--accent); color: #111827; }
-    .btn-accent:hover { background: #d9932f; }
-    .grid-pattern { background-image: radial-gradient(circle, rgba(232,163,61,.28) 1px, transparent 1px); }
-    footer a:hover { color: var(--accent-ink); }
-    .accent-ink { color: var(--accent-ink); }
-    .accent-bg { background: var(--accent-soft); }
-    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    ::selection { background: var(--accent-soft); }
-    /* Botones: feedback al presionar */
-    .btn { transition-property: transform, background-color, color; transition-duration: 150ms; transition-timing-function: ease-out; }
-    .btn:active { transform: scale(0.96); }
-    /* Links de nav */
-    .nav-link { transition: color 150ms ease-out; }
-    /* Desplegable: entra desde el trigger, interrumpible */
-    .nav-menu { opacity: 0; transform: translateY(-4px) scale(0.97); transform-origin: top left; visibility: hidden;
-      transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out), visibility 0s linear 150ms; }
-    .nav-menu.open { opacity: 1; transform: none; visibility: visible; transition-delay: 0s, 0s, 0s; }
-    @media (max-width: 639px) {
-      .nav-menu { transform-origin: top center; }
-      .nav-menu.nav-menu-full { left: 1rem; right: 1rem; top: 100%; width: auto; padding-top: .25rem; }
-    }
-    @media (min-width: 640px) { .nav-menu.nav-menu-full { left: 0; } }
-    .nav-menu a { transition: background-color 100ms ease-out, color 100ms ease-out; }
-    /* Hero: entrada escalonada (una sola vez, al cargar) */
-    .hero-in > * { opacity: 0; transform: translateY(12px); filter: blur(4px); animation: hero-in 500ms var(--ease-out) forwards; }
-    .hero-in > *:nth-child(1) { animation-delay: 0ms; }
-    .hero-in > *:nth-child(2) { animation-delay: 90ms; }
-    .hero-in > *:nth-child(3) { animation-delay: 180ms; }
-    .hero-in > *:nth-child(4) { animation-delay: 270ms; }
-    .hero-in > *:nth-child(5) { animation-delay: 360ms; }
-    @keyframes hero-in { to { opacity: 1; transform: none; filter: blur(0); } }
-    .hero-visual { opacity: 0; transform: translateY(12px) scale(0.98); animation: hero-in 600ms var(--ease-out) 250ms forwards; }
-    @media (prefers-reduced-motion: reduce) {
-      .hero-in > *, .hero-visual { transform: none; filter: none; animation: hero-fade 300ms ease forwards; }
-      @keyframes hero-fade { to { opacity: 1; } }
-      .btn:active { transform: none; }
-      .nav-menu { transform: none; }
-    }
-    .serif-i { font-family: "Instrument Serif", Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+  /* módulos (sección clara) */
+  .sm-mods{margin-top:52px}
+  .sm-note{display:flex;gap:18px;align-items:center;margin-top:16px;padding:22px 26px;border-radius:22px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 20px 60px -30px rgba(120,50,80,.3)}
+  .sm-note .ico{margin:0;flex:none}
+  .sm-note p{font-size:15.5px;line-height:1.6;color:var(--muted-dark);max-width:760px}
+  @media (max-width:560px){.sm-note{flex-direction:column;align-items:flex-start;padding:22px}}
+  .sec-light + .contact{padding-top:110px}
 
-    /* ---- Chat animado del hero ---- */
-    .chat-body {
-      background-color: #efeae2;
-      background-image: radial-gradient(circle, rgba(0,0,0,.035) 1px, transparent 1px);
-      background-size: 14px 14px;
-      scroll-behavior: smooth;
-    }
-    .bubble { animation: bubble-in .28s cubic-bezier(.2,.8,.2,1) both; }
-    @keyframes bubble-in {
-      from { opacity: 0; transform: translateY(10px) scale(.97); }
-      to   { opacity: 1; transform: none; }
-    }
-    .typing span {
-      width: 6px; height: 6px; border-radius: 9999px; background: #9ca3af; display: inline-block;
-      animation: typing 1.2s infinite ease-in-out;
-    }
-    .typing span:nth-child(2) { animation-delay: .15s; }
-    .typing span:nth-child(3) { animation-delay: .3s; }
-    @keyframes typing {
-      0%, 60%, 100% { transform: translateY(0); opacity: .5; }
-      30% { transform: translateY(-4px); opacity: 1; }
-    }
-    .badge { transition: opacity .35s ease, transform .35s ease; }
-    .badge.hidden-badge { opacity: 0; transform: translateY(6px); pointer-events: none; }
-    .pulse-dot { animation: pulse-dot 1.6s infinite; }
-    @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
-    @media (prefers-reduced-motion: reduce) {
-      .bubble, .typing span, .pulse-dot { animation: none; }
-      .badge { transition: none; }
-    }
-  </style>
-  <link rel="stylesheet" href="/tailwind.css" />
+  @media (prefers-reduced-motion:reduce){.sm-visual{opacity:1;animation:none}.sys-chart i{animation:none}}
+</style>
 </head>
-<body class="bg-white text-gray-900 antialiased">
+<body>
+<!-- íconos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gstroke" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffa45c"/><stop offset=".52" stop-color="#f59cb2"/><stop offset="1" stop-color="#e39df4"/></linearGradient>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></symbol>
+    <symbol id="i-tn" viewBox="0 0 37.48 27"><path d="M24.0068 0H23.9915C23.9915 0 23.983 0 23.9779 0C20.4547 0.00509626 17.098 1.38958 14.5923 3.82559C13.3097 3.28199 11.9287 3 10.5017 3C4.71065 3 0 7.71065 0 13.5C0 19.2894 4.71065 24 10.5 24C11.9049 24 13.2945 23.7129 14.5804 23.1727C17.013 25.5391 20.3307 27 23.9847 27C31.4287 27 37.4847 20.9439 37.4847 13.5C37.4847 6.05606 31.4405 0.0118913 24.0068 0ZM23.9847 24C18.1954 24 13.4847 19.2894 13.4847 13.5H10.4847C10.4847 16.1484 11.2542 18.6183 12.5759 20.7044C11.9032 20.8981 11.205 21 10.5 21C6.36523 21 3 17.6348 3 13.5C3 9.36523 6.36523 6 10.5 6C12.1376 6 13.6937 6.51812 14.9983 7.4983C16.906 8.93035 18 11.1183 18 13.5H21C21 10.359 19.6393 7.45923 17.2491 5.4581C19.1263 3.88335 21.5062 3.0017 23.9915 3C29.7775 3.0034 34.483 7.71234 34.483 13.5C34.483 19.2877 29.7724 24 23.983 24H23.9847Z"/></symbol>
+    <symbol id="i-tt" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol>
+    <symbol id="i-gcal" viewBox="0 0 24 24"><path d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zm-7.207 6.25v-.065c.272-.144.5-.349.687-.617s.279-.595.279-.982c0-.379-.099-.72-.3-1.025a2.05 2.05 0 0 0-.832-.714 2.703 2.703 0 0 0-1.197-.257c-.6 0-1.094.156-1.481.467-.386.311-.65.671-.793 1.078l1.085.452c.086-.249.224-.461.413-.633.189-.172.445-.257.767-.257.33 0 .602.088.816.264a.86.86 0 0 1 .322.703c0 .33-.12.589-.36.778-.24.19-.535.284-.886.284h-.567v1.085h.633c.407 0 .748.109 1.02.327.272.218.407.499.407.843 0 .336-.129.614-.387.832s-.565.327-.924.327c-.351 0-.651-.103-.897-.311-.248-.208-.422-.502-.521-.881l-1.096.452c.178.616.505 1.082.977 1.401.472.319.984.478 1.538.477a2.84 2.84 0 0 0 1.293-.291c.382-.193.684-.458.902-.794.218-.336.327-.72.327-1.149 0-.429-.115-.797-.344-1.105a2.067 2.067 0 0 0-.881-.689zm2.093-1.931l.602.913L15 10.045v5.744h1.187V8.446h-.827l-2.158 1.557zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zm-3.289 23.5l4.684-4.684h-4.684V23.5zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z"/></symbol>
+    <symbol id="i-gsh" viewBox="0 0 24 24"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></symbol>
+    <symbol id="i-an" viewBox="0 0 24 24"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></symbol>
+    <symbol id="i-web" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.8 3 2.8 16 0 19M12 2.5c-2.8 3-2.8 16 0 19"/></g></symbol>
+    <symbol id="i-msg" viewBox="0 0 24 24"><path d="M12 1.5C6.2 1.5 1.75 5.8 1.75 11.3c0 2.9 1.2 5.4 3.2 7.1v3.6l3.3-1.8c1.2.3 2.4.5 3.75.5 5.8 0 10.25-4.3 10.25-9.8S17.8 1.5 12 1.5Zm1.1 13.1-2.6-2.8-5 2.8 5.5-5.9 2.7 2.8 4.9-2.8-5.5 5.9Z"/></symbol>
+  </defs>
+</svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="sm-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f59cb2" stop-opacity=".32"/><stop offset="1" stop-color="#f59cb2" stop-opacity="0"/></linearGradient>
+</defs></svg>
 
-  <!-- Nav -->
-  <nav class="border-b border-gray-100 bg-white/80 backdrop-blur sticky top-0 z-10">
-    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2">
-        <img src="/mabai-logo.svg" alt="MABAI" class="h-6 sm:h-7 w-auto">
-      </a>
-      <div class="flex items-center gap-2.5 sm:gap-5 text-[13px] sm:text-sm text-gray-600">
-        <div class="sm:relative" data-dropdown>
-          <button type="button" class="nav-link flex items-center gap-1 hover:text-gray-900" aria-haspopup="true" aria-expanded="false">
-            Soluciones
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="nav-menu nav-menu-full absolute top-full pt-3 w-56">
-            <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 py-2">
-              <a href="/" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Agentes de IA</a>
-              <a href="/soluciones-a-medida" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Soluciones a medida</a>
-              <a href="/partners" class="block sm:hidden px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Partners</a>
-              <a href="/precios" class="block sm:hidden px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Precios</a>
+<!-- Nav -->
+<header class="nav">
+  <div class="nav-pill">
+    <a href="/" class="nav-logo" aria-label="MABAI, inicio"><img src="/assets/mabai-logo-white.svg" alt="MABAI"></a>
+    <nav class="nav-links" aria-label="Principal">
+      <div class="dd" data-dd>
+        <button type="button" aria-haspopup="true" aria-expanded="false">Soluciones <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dd-menu"><div class="dd-box">
+          <a href="/">Agentes de IA</a>
+          <a href="/soluciones-a-medida" aria-current="page">Soluciones a medida</a>
+        </div></div>
+      </div>
+      <div class="dd" data-dd>
+        <button type="button" aria-haspopup="true" aria-expanded="false">Rubros <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dd-menu dd-wide"><div class="dd-box">
+          <a href="/inmobiliarias"><b>Inmobiliarias</b><small>Conectado a Tokko: ofrece tus propiedades con foto y ficha.</small></a>
+          <a href="/retail"><b>Retail</b><small>Catálogo en el chat de tu web: recomienda, compara y lleva al carrito.</small></a>
+        </div></div>
+      </div>
+      <a href="/partners">Partners</a>
+      <a href="/precios">Precios</a>
+      <a href="/#como-funciona">Cómo funciona</a>
+    </nav>
+    <div class="nav-right">
+      <a href="#agenda" class="btn btn-light btn-sm">Contacto</a>
+      <button class="nav-burger" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-sheet">
+    <p>Soluciones</p>
+    <a href="/">Agentes de IA</a>
+    <a href="/soluciones-a-medida" aria-current="page">Soluciones a medida</a>
+    <p>Rubros</p>
+    <a href="/inmobiliarias">Inmobiliarias</a>
+    <a href="/retail">Retail</a>
+    <p>MABAI</p>
+    <a href="/partners">Partners</a>
+    <a href="/precios">Precios</a>
+    <a href="/#como-funciona">Cómo funciona</a>
+  </div>
+</header>
+
+<main>
+<!-- Hero -->
+<section class="page-hero sm-hero">
+  <div class="dots"></div>
+  <div class="glow l drift" style="width:560px;height:560px;right:-180px;top:-160px;opacity:.36"></div>
+  <div class="glow o drift slow" style="width:520px;height:520px;right:16%;bottom:-320px;opacity:.3"></div>
+  <div class="glow p" style="width:340px;height:340px;left:-150px;top:34%;opacity:.12"></div>
+
+  <div class="wrap page-hero-grid">
+    <div class="hero-in">
+      <span class="eyebrow">Soluciones a medida</span>
+      <h1>Desarrollo de software a medida<br><span class="grad-text">para impulsar negocios.</span></h1>
+      <p class="lead">Construimos un sistema para que gestiones tu empresa de forma más organizada, eficiente y automatizada. Nos conectamos a las herramientas que ya usás y gestionamos todas las áreas de tu negocio.</p>
+      <div class="ctas">
+        <a href="#agenda" class="btn btn-grad magnetic">Agendá tu llamada</a>
+        <a href="#modulos" class="btn btn-ghost">Ver lo que construimos</a>
+      </div>
+    </div>
+
+    <!-- panel: sistema armado con los módulos de la página -->
+    <div class="sm-visual" aria-hidden="true">
+      <div class="vis dark sys">
+        <div class="sys-app">
+          <aside class="sys-side">
+            <img src="/assets/isotipo-white.svg" alt="">
+            <span class="on"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M8 16v-3M12.5 16V9M17 16V6"/></svg>Analytics</span>
+            <span><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.1-4.6A8 8 0 1 1 21 12Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg>Chatbot</span>
+            <span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="4.5" height="16" rx="1.5"/><rect x="9.75" y="4" width="4.5" height="11" rx="1.5"/><rect x="16.5" y="4" width="4.5" height="7" rx="1.5"/></svg>Pipeline</span>
+            <span><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Clientes</span>
+            <span><svg viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg>Stock</span>
+            <span><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg>Finanzas</span>
+          </aside>
+          <div class="sys-main">
+            <div class="sys-top"><b>Analytics</b><div class="ch"><span><svg style="color:#25D366" fill="currentColor"><use href="#i-wa"/></svg></span><span><svg style="color:#E4405F" fill="currentColor"><use href="#i-ig"/></svg></span></div></div>
+            <div class="kpis">
+              <div class="kpi"><small>Ingresos del mes</small><svg viewBox="0 0 100 38" preserveAspectRatio="none"><path class="ar" d="M0 30 L14 26 L28 28 L42 20 L56 22 L70 13 L84 15 L100 6 V38 H0 Z"/><path class="ln" d="M0 30 L14 26 L28 28 L42 20 L56 22 L70 13 L84 15 L100 6"/></svg></div>
+              <div class="kpi"><small>Clientes nuevos</small><svg viewBox="0 0 100 38" preserveAspectRatio="none"><path class="ar" d="M0 26 L14 28 L28 22 L42 24 L56 16 L70 18 L84 10 L100 12 V38 H0 Z"/><path class="ln" d="M0 26 L14 28 L28 22 L42 24 L56 16 L70 18 L84 10 L100 12"/></svg></div>
+              <div class="kpi"><small>Pedidos activos</small><svg viewBox="0 0 100 38" preserveAspectRatio="none"><path class="ar" d="M0 22 L14 18 L28 24 L42 16 L56 20 L70 14 L84 18 L100 10 V38 H0 Z"/><path class="ln" d="M0 22 L14 18 L28 24 L42 16 L56 20 L70 14 L84 18 L100 10"/></svg></div>
+              <div class="kpi"><small>Conversión</small><svg viewBox="0 0 100 38" preserveAspectRatio="none"><path class="ar" d="M0 32 L14 29 L28 30 L42 24 L56 25 L70 19 L84 16 L100 8 V38 H0 Z"/><path class="ln" d="M0 32 L14 29 L28 30 L42 24 L56 25 L70 19 L84 16 L100 8"/></svg></div>
+            </div>
+            <div class="sys-chart">
+              <i style="--i:0;height:34%"></i><i style="--i:1;height:46%"></i><i style="--i:2;height:40%"></i><i style="--i:3;height:58%"></i><i style="--i:4;height:52%"></i><i style="--i:5;height:66%"></i><i style="--i:6;height:60%"></i><i style="--i:7;height:74%"></i><i style="--i:8;height:70%"></i><i style="--i:9;height:84%"></i><i style="--i:10;height:78%"></i><i style="--i:11;height:96%"></i>
             </div>
           </div>
         </div>
-        <div class="sm:relative" data-dropdown>
-          <button type="button" class="nav-link flex items-center gap-1 hover:text-gray-900" aria-haspopup="true" aria-expanded="false">
-            Rubros
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="nav-menu nav-menu-full absolute top-full pt-3 w-72">
-            <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 p-2">
-              <a href="/inmobiliarias" class="block rounded-lg px-3 py-2.5 hover:bg-gray-50">
-                <span class="block font-medium text-gray-900">Inmobiliarias</span>
-                <span class="block mt-0.5 text-xs leading-snug text-gray-500">Conectado a Tokko: ofrece tus propiedades con foto y ficha.</span>
-              </a>
-              <a href="/retail" class="block rounded-lg px-3 py-2.5 hover:bg-gray-50">
-                <span class="block font-medium text-gray-900">Retail</span>
-                <span class="block mt-0.5 text-xs leading-snug text-gray-500">Catálogo en el chat de tu web: recomienda, compara y lleva al carrito.</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <a href="/partners" class="nav-link hover:text-gray-900 hidden sm:inline">Partners</a>
-        <a href="/precios" class="nav-link hover:text-gray-900 hidden sm:inline">Precios</a>
-        <a href="/#como-funciona" class="nav-link hover:text-gray-900 hidden md:inline">Cómo funciona</a>
-        <a href="/#contacto" class="nav-link accent-ink font-medium">Contacto</a>
+      </div>
+      <div class="chip sm-chip"><span class="live"></span>Se actualiza con cada venta</div>
+    </div>
+  </div>
+</section>
+
+<!-- Lo que construimos -->
+<section id="modulos" class="sec-light">
+  <div class="glow o" style="width:560px;height:560px;left:-200px;top:8%"></div>
+  <div class="glow p" style="width:520px;height:520px;left:40%;top:36%;opacity:.42"></div>
+  <div class="glow l" style="width:580px;height:580px;right:-220px;top:-14%"></div>
+  <div class="dots"></div>
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">Módulos</span>
+      <h2 class="h2">Lo que construimos</h2>
+      <p>Módulos que se combinan según tu operación.</p>
+    </div>
+    <div class="grid-3 sm-mods">
+      <article class="fcard" data-reveal>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M8 16v-3M12.5 16V9M17 16V6"/></svg></div>
+        <h3>Analytics</h3>
+        <p>Ingresos del mes, clientes nuevos, pedidos activos, conversión. Los números de tu negocio en un tablero que se actualiza solo.</p>
+      </article>
+      <article class="fcard" data-reveal>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.1-4.6A8 8 0 1 1 21 12Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></div>
+        <h3>Chatbot</h3>
+        <p>Un agente de IA que atiende consultas por WhatsApp e Instagram y carga los datos directo en el sistema. Es el mismo agente de MABAI.</p>
+      </article>
+      <article class="fcard" data-reveal>
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="4.5" height="16" rx="1.5"/><rect x="9.75" y="4" width="4.5" height="11" rx="1.5"/><rect x="16.5" y="4" width="4.5" height="7" rx="1.5"/></svg></div>
+        <h3>Pipeline</h3>
+        <p>Cada oportunidad en su etapa, con responsable y próximo paso. Configurado para cómo vende tu equipo, no al revés.</p>
+      </article>
+      <article class="fcard" data-reveal>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Clientes</h3>
+        <p>Historial completo de cada cliente: qué compró, qué debe, qué preguntó. Una ficha, sin duplicados.</p>
+      </article>
+      <article class="fcard" data-reveal>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></div>
+        <h3>Stock</h3>
+        <p>Se actualiza con cada venta y avisa antes de que falte. Productos, variantes y proveedores en un solo lugar.</p>
+      </article>
+      <article class="fcard" data-reveal>
+        <div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/><path d="M6 12h.01M18 12h.01"/></svg></div>
+        <h3>Finanzas</h3>
+        <p>Cobranzas, cuotas, vencimientos y cierre del día armado solo. Con alertas cuando algo se atrasa.</p>
+      </article>
+    </div>
+    <div class="sm-note" data-reveal>
+      <div class="ico"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+      <p>Cada sistema se arma con los módulos que tu negocio necesita — ni uno más. Si ya tenés planillas o un sistema viejo, migramos los datos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Agendá tu llamada -->
+<section id="agenda" class="contact">
+  <div class="wrap">
+    <div class="contact-card" data-reveal>
+      <div class="bloom"></div>
+      <div class="dots"></div>
+      <div class="contact-in">
+        <span class="eyebrow">Contacto</span>
+        <h2>Agendá tu llamada</h2>
+        <p class="lead">Programá tu reunión y te hacemos un presupuesto inicial sin costo.</p>
+        <p class="t">Sabemos que muchas empresas necesitan entender el alcance y el costo de un proyecto antes de comprometerse a desarrollarlo.</p>
+        <p class="t">Por eso ofrecemos una instancia inicial de análisis y presupuesto sin costo. No es una llamada comercial vacía: es una primera etapa de trabajo orientada a entender tu operación, ordenar prioridades y ofrecer una primera demostración concreta del proyecto.</p>
+        <p class="t">El objetivo es que cada empresa pueda tomar decisiones con información clara, incluso si luego decide no avanzar con el proyecto. Esa claridad inicial reduce incertidumbre, evita decisiones apresuradas y permite validar el proyecto antes de invertir.</p>
+        <div class="ctas"><a class="btn btn-dark magnetic" href="https://cal.com/hola-mabai/llamada-inicial" target="_blank" rel="noopener" data-cal-namespace="llamada-inicial" data-cal-link="hola-mabai/llamada-inicial" data-cal-config='{"layout":"month_view","theme":"light"}'>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Agendar llamada · 30 min</a></div>
+        <small>También podés reservar en <a href="https://cal.com/hola-mabai/llamada-inicial" target="_blank" rel="noopener">cal.com/hola-mabai/llamada-inicial</a> o escribirnos a <a href="mailto:hola@mabai.com.ar">hola@mabai.com.ar</a>.</small>
       </div>
     </div>
-  </nav>
+  </div>
+</section>
+</main>
 
-  <!-- Hero -->
-  <section class="grid-pattern">
-    <div class="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
-      <div class="max-w-3xl">
-        <span class="inline-block text-xs font-medium accent-ink tracking-wider uppercase mb-4">Soluciones a medida</span>
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">Desarrollo de software a medida<br><span class="serif-i text-[1.15em] accent">para impulsar negocios.</span></h1>
-        <p class="mt-6 text-lg text-gray-600 leading-relaxed">Construimos un sistema para que gestiones tu empresa de forma más organizada, eficiente y automatizada. Nos conectamos a las herramientas que ya usás y gestionamos todas las áreas de tu negocio.</p>
-        <div class="mt-8 flex flex-col sm:flex-row gap-3">
-          <a href="#agenda" class="inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-[#b8731a] btn">Agendá tu llamada</a>
-          <a href="#modulos" class="inline-flex items-center justify-center text-sm font-medium px-5 py-3 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 btn btn-secondary">Ver lo que construimos</a>
-        </div>
-      </div>
+<footer>
+  <div class="wrap foot">
+    <div>
+      <img src="/assets/mabai-logo-white.svg" alt="MABAI">
+      <p><span class="brand">IA powered solutions.</span> Operado desde Buenos Aires, Argentina.</p>
+      <p>Contacto: <a href="mailto:hola@mabai.com.ar" style="text-decoration:underline">hola@mabai.com.ar</a></p>
+      <p>MABAI es proveedor de tecnología de Meta para WhatsApp.</p>
     </div>
-  </section>
-
-  <section id="modulos" class="border-t border-gray-100 bg-gray-50">
-    <div class="max-w-5xl mx-auto px-6 py-20">
-      <div class="max-w-2xl mb-12">
-        <span class="eyebrow" aria-hidden="true"></span>
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Lo que construimos</h2>
-        <p class="mt-3 text-gray-600">Módulos que se combinan según tu operación.</p>
+    <div class="foot-r">
+      <div class="foot-links">
+        <a href="/privacy">Política de privacidad</a>
+        <a href="/terms">Términos</a>
+        <a class="ig" href="https://www.instagram.com/mabai.ai/" target="_blank" rel="noopener" aria-label="Instagram de MABAI"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ig"/></svg></a>
       </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="card rounded-xl p-6 bg-white">
-          <h3 class="font-semibold text-gray-900">Analytics</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Ingresos del mes, clientes nuevos, pedidos activos, conversión. Los números de tu negocio en un tablero que se actualiza solo.</p>
-        </div>
-        <div class="card rounded-xl p-6 bg-white">
-          <h3 class="font-semibold text-gray-900">Chatbot</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Un agente de IA que atiende consultas por WhatsApp e Instagram y carga los datos directo en el sistema. Es el mismo agente de MABAI.</p>
-        </div>
-        <div class="card rounded-xl p-6 bg-white">
-          <h3 class="font-semibold text-gray-900">Pipeline</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Cada oportunidad en su etapa, con responsable y próximo paso. Configurado para cómo vende tu equipo, no al revés.</p>
-        </div>
-        <div class="card rounded-xl p-6 bg-white">
-          <h3 class="font-semibold text-gray-900">Clientes</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Historial completo de cada cliente: qué compró, qué debe, qué preguntó. Una ficha, sin duplicados.</p>
-        </div>
-        <div class="card rounded-xl p-6 bg-white">
-          <h3 class="font-semibold text-gray-900">Stock</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Se actualiza con cada venta y avisa antes de que falte. Productos, variantes y proveedores en un solo lugar.</p>
-        </div>
-        <div class="card rounded-xl p-6 bg-white">
-          <h3 class="font-semibold text-gray-900">Finanzas</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Cobranzas, cuotas, vencimientos y cierre del día armado solo. Con alertas cuando algo se atrasa.</p>
-        </div>
-      </div>
-      <p class="mt-8 text-sm text-gray-500 max-w-2xl">Cada sistema se arma con los módulos que tu negocio necesita — ni uno más. Si ya tenés planillas o un sistema viejo, migramos los datos.</p>
+      <span>© 2026 MABAI. Todos los derechos reservados.</span>
     </div>
-  </section>
+  </div>
+</footer>
 
-  <section id="agenda" class="border-t border-gray-100">
-    <div class="max-w-5xl mx-auto px-6 py-20">
-      <div class="max-w-2xl">
-        <span class="eyebrow" aria-hidden="true"></span>
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Agendá tu llamada</h2>
-        <p class="mt-3 text-lg text-gray-600">Programá tu reunión y te hacemos un presupuesto inicial sin costo.</p>
-        <div class="mt-8 space-y-4 text-gray-600 leading-relaxed">
-          <p>Sabemos que muchas empresas necesitan entender el alcance y el costo de un proyecto antes de comprometerse a desarrollarlo.</p>
-          <p>Por eso ofrecemos una instancia inicial de análisis y presupuesto sin costo. No es una llamada comercial vacía: es una primera etapa de trabajo orientada a entender tu operación, ordenar prioridades y ofrecer una primera demostración concreta del proyecto.</p>
-          <p>El objetivo es que cada empresa pueda tomar decisiones con información clara, incluso si luego decide no avanzar con el proyecto. Esa claridad inicial reduce incertidumbre, evita decisiones apresuradas y permite validar el proyecto antes de invertir.</p>
-        </div>
-      </div>
-
-      <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
-        <button type="button" data-cal-namespace="llamada-inicial" data-cal-link="hola-mabai/llamada-inicial" data-cal-config='{"layout":"month_view","theme":"light"}' class="inline-flex items-center justify-center gap-2 text-sm font-medium px-5 py-3 rounded-lg btn btn-accent">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Agendar llamada · 30 min
-        </button>
-      </div>
-      <p class="mt-4 text-xs text-gray-500">También podés reservar en <a href="https://cal.com/hola-mabai/llamada-inicial" target="_blank" rel="noopener" class="underline">cal.com/hola-mabai/llamada-inicial</a> o escribirnos a <a href="mailto:hola@mabai.com.ar" class="underline">hola@mabai.com.ar</a>.</p>
-    </div>
-  </section>
-
-  <footer class="border-t border-gray-100 py-10 bg-white">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-between gap-6 text-sm text-gray-500">
-        <div class="space-y-2">
-          <img src="/mabai-logo.svg" alt="MABAI" class="h-5 w-auto">
-          <p class="text-xs leading-relaxed max-w-sm">IA powered solutions. Operado desde Buenos Aires, Argentina.</p>
-          <p class="text-xs">Contacto: <a href="mailto:hola@mabai.com.ar" class="underline hover:text-gray-700">hola@mabai.com.ar</a></p>
-          <p class="text-xs leading-relaxed max-w-md text-gray-500">MABAI es proveedor de tecnología de Meta para WhatsApp.</p>
-        </div>
-        <div class="flex flex-col gap-2 md:items-end">
-          <div class="flex gap-5">
-            <a href="/privacy" class="nav-link hover:text-gray-900">Política de privacidad</a>
-            <a href="/terms" class="nav-link hover:text-gray-900">Términos</a>
-          </div>
-          <span class="text-xs">© 2026 MABAI. Todos los derechos reservados.</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <script>
-    (function () {
-      var wraps = [].slice.call(document.querySelectorAll('[data-dropdown]'));
-      var hover = window.matchMedia('(hover: hover)').matches;
-      function closeAll() { wraps.forEach(function (w) { w._set(false); }); }
-      wraps.forEach(function (wrap) {
-        var btn = wrap.querySelector('button'), menu = wrap.querySelector('.nav-menu');
-        wrap._set = function (open) { menu.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); };
-        btn.addEventListener('click', function (e) {
-          e.stopPropagation();
-          var open = !menu.classList.contains('open');
-          closeAll(); wrap._set(open);
-        });
-        if (hover) {
-          wrap.addEventListener('mouseenter', function () { wrap._set(true); });
-          wrap.addEventListener('mouseleave', function () { wrap._set(false); });
-        }
-      });
-      document.addEventListener('click', closeAll);
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
-    })();
-  </script>
-  <script type="text/javascript">
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="/assets/mabai.js"></script>
+<script type="text/javascript">
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", "llamada-inicial", { origin: "https://app.cal.com" });
     Cal.ns["llamada-inicial"]("ui", { theme: "light", styles: { branding: { brandColor: "#111827" } }, hideEventTypeDetails: false, layout: "month_view" });
   </script>
-  <script src="/logo-anim.js"></script>
-  <script src="https://api.mabai.app/web/widget.js?key=mw_5Y9a4CVi5P1Xjs1pehjsJXY0hxyEp2Gj" async></script>
+<script src="https://api.mabai.app/web/widget.js?key=mw_5Y9a4CVi5P1Xjs1pehjsJXY0hxyEp2Gj" async></script>
 </body>
 </html>

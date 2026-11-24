@@ -1,380 +1,424 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agente de IA para tu tienda online y Tiendanube | MABAI</title>
-  <meta name="description" content="Un agente de IA en el chat de tu web que recomienda, compara y lleva al carrito. Siempre con precios reales de tu catálogo." />
-  <meta property="og:title" content="Retail — MABAI" />
-  <meta property="og:description" content="Un agente de IA en el chat de tu web que recomienda, compara y lleva al carrito. Siempre con precios reales de tu catálogo." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.mabai.com.ar/retail" />
-  <meta property="og:image" content="https://www.mabai.com.ar/og-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="MABAI: inteligencia artificial para impulsar tu negocio" />
-  <link rel="canonical" href="https://www.mabai.com.ar/retail" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
-    html { scroll-behavior: smooth; }
-    :root {
-      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-      --accent: #e8a33d;
-      --accent-soft: #fdf3e3;
-      --accent-ink: #b8731a;
-      --shadow-border: 0 0 0 1px rgba(0,0,0,.06), 0 1px 2px -1px rgba(0,0,0,.06), 0 2px 4px 0 rgba(0,0,0,.04);
-    }
-    .grid-pattern { background-image: radial-gradient(circle, rgba(232,163,61,.28) 1px, transparent 1px); background-size: 20px 20px; }
-    .card { box-shadow: var(--shadow-border); transition: box-shadow 150ms ease-out; }
-    @media (hover: hover) and (pointer: fine) { .card:hover { box-shadow: 0 0 0 1px rgba(232,163,61,.45), 0 1px 2px -1px rgba(0,0,0,.08), 0 4px 10px -2px rgba(232,163,61,.18); } }
-    .accent { color: var(--accent); }
-    .accent-ink { color: var(--accent-ink); }
-    .accent-bg { background: var(--accent-soft); }
-    .eyebrow { display: block; width: 40px; height: 3px; border-radius: 9999px; background: var(--accent); margin-bottom: 14px; }
-    .nav-link:hover, .nav-menu a:hover { color: var(--accent-ink); }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent-ink); }
-    .btn-accent { background: var(--accent); color: #111827; }
-    .btn-accent:hover { background: #d9932f; }
-    footer a:hover { color: var(--accent-ink); }
-    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    ::selection { background: var(--accent-soft); }
-    .btn { transition-property: transform, background-color, color; transition-duration: 150ms; transition-timing-function: ease-out; }
-    .btn:active { transform: scale(0.96); }
-    .nav-link { transition: color 150ms ease-out; }
-    .nav-menu { opacity: 0; transform: translateY(-4px) scale(0.97); transform-origin: top left; visibility: hidden;
-      transition: opacity 150ms var(--ease-out), transform 150ms var(--ease-out), visibility 0s linear 150ms; }
-    .nav-menu.open { opacity: 1; transform: none; visibility: visible; transition-delay: 0s, 0s, 0s; }
-    @media (max-width: 639px) {
-      .nav-menu { transform-origin: top center; }
-      .nav-menu.nav-menu-full { left: 1rem; right: 1rem; top: 100%; width: auto; padding-top: .25rem; }
-    }
-    @media (min-width: 640px) { .nav-menu.nav-menu-full { left: 0; } }
-    .nav-menu a { transition: background-color 100ms ease-out, color 100ms ease-out; }
-    .hero-in > * { opacity: 0; transform: translateY(12px); filter: blur(4px); animation: hero-in 500ms var(--ease-out) forwards; }
-    .hero-in > *:nth-child(2) { animation-delay: 90ms; }
-    .hero-in > *:nth-child(3) { animation-delay: 180ms; }
-    .hero-in > *:nth-child(4) { animation-delay: 270ms; }
-    @keyframes hero-in { to { opacity: 1; transform: none; filter: blur(0); } }
-    @media (prefers-reduced-motion: reduce) {
-      .hero-in > * { transform: none; filter: none; animation: hero-fade 300ms ease forwards; }
-      @keyframes hero-fade { to { opacity: 1; } }
-      .btn:active, .nav-menu { transform: none; }
-    }
-    .serif-i { font-family: "Instrument Serif", Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
-    /* Paneles oscuros de muestra */
-    .lc-dark { background-color: #111827; background-image: radial-gradient(circle, rgba(232,163,61,.18) 1px, transparent 1px); background-size: 18px 18px; }
-    .step-num { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 9999px; background: var(--accent-soft); color: var(--accent-ink); font-size: .875rem; font-weight: 500; font-variant-numeric: tabular-nums; }
-    .tag { display: inline-block; font-size: 11px; padding: .125rem .5rem; border-radius: 9999px; white-space: nowrap; }
-    /* Chats de muestra */
-    .wa-body { background-color: #efeae2; background-image: radial-gradient(circle, rgba(0,0,0,.035) 1px, transparent 1px); background-size: 14px 14px; }
-    .msg { max-width: 85%; border-radius: .75rem; padding: .5rem .75rem; font-size: 13px; line-height: 1.35; box-shadow: 0 1px 1px rgba(0,0,0,.06); }
-    .msg-in { align-self: flex-start; background: #fff; color: #111827; border-top-left-radius: .25rem; }
-    .msg-out { align-self: flex-end; background: #d9fdd3; color: #111827; border-top-right-radius: .25rem; }
-    .msg-web { align-self: flex-end; background: var(--accent); color: #111827; border-top-right-radius: .25rem; }
-    /* Tarjetas de producto del widget */
-    .pcards { display: flex; gap: .5rem; overflow: hidden; }
-    .pcard { flex: 0 0 8.25rem; background: #fff; border-radius: .75rem; padding: .5rem; box-shadow: inset 0 0 0 1px rgba(0,0,0,.08); }
-    .pimg { aspect-ratio: 1; border-radius: .5rem; background: #f3f4f6; display: flex; align-items: center; justify-content: center; color: #9ca3af; }
-    .cmp { width: 100%; border-collapse: collapse; font-size: 12px; }
-    .cmp th, .cmp td { padding: .45rem .4rem; border-top: 1px solid #f3f4f6; vertical-align: top; }
-    .cmp th { text-align: left; font-weight: 600; color: #374151; width: 34%; }
-    .cmp td { text-align: center; color: #111827; }
-  </style>
-  <link rel="stylesheet" href="/tailwind.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agente de IA para tu tienda online y Tiendanube | MABAI</title>
+<meta name="description" content="Un agente de IA en el chat de tu web que recomienda, compara y lleva al carrito. Siempre con precios reales de tu catálogo." />
+<meta property="og:title" content="Retail — MABAI" />
+<meta property="og:description" content="Un agente de IA en el chat de tu web que recomienda, compara y lleva al carrito. Siempre con precios reales de tu catálogo." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.mabai.com.ar/retail" />
+<meta property="og:image" content="https://www.mabai.com.ar/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="MABAI: inteligencia artificial para impulsar tu negocio" />
+<link rel="canonical" href="https://www.mabai.com.ar/retail" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/mabai.css">
+<style>
+  /* ---------- Retail: estilos propios de esta página ---------- */
+  .rb-hero{padding-bottom:120px}
+  .rb-hero .dots{-webkit-mask-image:radial-gradient(ellipse 60% 70% at 26% 100%,#000,transparent 72%);mask-image:radial-gradient(ellipse 60% 70% at 26% 100%,#000,transparent 72%)}
+  .rb-hero .dots.b{-webkit-mask-image:radial-gradient(ellipse 32% 50% at 96% 6%,rgba(0,0,0,.7),transparent 70%);mask-image:radial-gradient(ellipse 32% 50% at 96% 6%,rgba(0,0,0,.7),transparent 70%)}
+  .rb-hero h1{font-size:clamp(42px,6vw,84px);line-height:.98}
+  .rb-hero .page-hero-grid.solo{max-width:1000px}
+
+  /* cómo funciona: encabezado con bajada */
+  .how-head p{margin-top:14px;font-size:16.5px;line-height:1.55;color:var(--muted-dark);max-width:520px}
+  .how-head{padding-top:104px}
+
+  /* paneles: chat del widget */
+  .step-in>*{min-width:0}
+  .vis.fit{width:100%;max-width:480px;justify-self:center}
+  .card.chat{padding:0;overflow:hidden}
+  .chat-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 16px;background:#141113;color:#fff}
+  .chat-head .who{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600}
+  .chat-head .x{color:rgba(255,255,255,.55);font-size:17px;line-height:1}
+  .store{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(#141113,#141113) padding-box,var(--grad) border-box;border:1.5px solid transparent}
+  .store svg{width:14px;height:14px;fill:none;stroke:url(#rb-ico);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .chat-body{display:flex;flex-direction:column;gap:8px;padding:16px 12px 18px;background-color:#faf8f9;background-image:radial-gradient(circle,rgba(20,17,19,.05) 1px,transparent 1.6px);background-size:12px 12px}
+  .chat-body .bub{animation:none;max-width:86%}
+  .chat-body .bub.c{background:#fff;box-shadow:0 1px 2px rgba(20,17,19,.05),inset 0 0 0 1px rgba(20,17,19,.05)}
+
+  /* tarjetas de producto */
+  .pimg{aspect-ratio:1;border-radius:10px;display:grid;place-items:center;background:linear-gradient(140deg,#fff1e6,#fde6ee 55%,#f4e6fc)}
+  .pimg svg{width:34px;height:34px;fill:none;stroke:url(#rb-ico);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+  .pcards{align-self:stretch;display:grid;grid-template-columns:repeat(3,minmax(112px,1fr));gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px;margin:0 -2px}
+  .pcards::-webkit-scrollbar{display:none}
+  .pcard{display:flex;flex-direction:column;background:#fff;border-radius:14px;padding:7px;box-shadow:0 1px 2px rgba(20,17,19,.05),inset 0 0 0 1px rgba(20,17,19,.07)}
+  .pcard b{margin-top:8px;font-size:11.5px;line-height:1.3;font-weight:600;min-height:30px}
+  .pcard .pr{margin-top:3px;font-size:13.5px;font-weight:700;font-variant-numeric:tabular-nums}
+  .pcard s{min-height:15px;font-size:10.5px;color:#aaa4a8;font-variant-numeric:tabular-nums}
+  .pcard .add{margin-top:7px;padding:5px 4px;border-radius:999px;background:#141113;color:#fff;text-align:center;font-size:10.5px;font-weight:600;white-space:nowrap}
+
+  /* comparador */
+  .cmp-card{align-self:stretch;background:#fff;border-radius:14px;padding:6px 8px;box-shadow:0 1px 2px rgba(20,17,19,.05),inset 0 0 0 1px rgba(20,17,19,.07)}
+  .cmp{width:100%;border-collapse:collapse;font-size:12px}
+  .cmp th,.cmp td{padding:7px 6px;border-top:1px solid #f2eef1;vertical-align:top}
+  .cmp thead th,.cmp thead td{border-top:0}
+  .cmp tbody th{width:30%;text-align:left;font-weight:600;color:#5c565a}
+  .cmp td{text-align:center;color:#141113}
+  .cmp .pimg{width:46px;margin:0 auto}
+  .cmp .pimg svg{width:26px;height:26px}
+  .cmp .nm{margin-top:6px;font-weight:600}
+  .cmp .pr{font-weight:700;font-variant-numeric:tabular-nums}
+  .cmp .na{color:#aaa4a8}
+
+  /* carrito */
+  .dom{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:999px;background:#f6f3f5;font-size:11px;font-weight:500;color:#8b8589}
+  .dom svg{width:10px;height:10px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}
+  .item{display:grid;grid-template-columns:48px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px;border-radius:14px;background:#fbf8fa}
+  .item .pimg{width:48px}
+  .item .pimg svg{width:24px;height:24px}
+  .item b{display:block;font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .item small{font-size:11px;color:#8b8589}
+  .item .pr{font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
+  .checkout{margin-top:14px;padding:11px;border-radius:12px;background:#141113;color:#fff;text-align:center;font-size:13.5px;font-weight:600}
+  .card .note{margin-top:9px;text-align:center;font-size:11px;color:#8b8589}
+
+  /* garantías + Tiendanube (fondo oscuro) */
+  .feats{overflow:hidden}
+  .feats .wrap{position:relative}
+  .feats .grid-3{margin-top:0}
+  .tn-card{position:relative;overflow:hidden;margin-top:16px;border-radius:28px;padding:40px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;
+    background:linear-gradient(var(--bg2),var(--bg2)) padding-box,linear-gradient(120deg,rgba(255,164,92,.7),rgba(245,156,178,.5),rgba(227,157,244,.7)) border-box;border:1px solid transparent}
+  .tn-card .dots{-webkit-mask-image:radial-gradient(ellipse 45% 90% at 100% 0%,#000,transparent 70%);mask-image:radial-gradient(ellipse 45% 90% at 100% 0%,#000,transparent 70%)}
+  .tn-logo{position:relative;width:64px;height:64px;border-radius:18px;background:#eef4fd;display:grid;place-items:center}
+  .tn-txt{position:relative}
+  .tn-txt h3{font-size:clamp(22px,2.2vw,28px);line-height:1.15;letter-spacing:-.03em;font-weight:700}
+  .tn-cols{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px 36px}
+  .tn-cols p{font-size:15px;line-height:1.65;color:var(--muted)}
+  @media (max-width:760px){.tn-card{grid-template-columns:1fr;gap:20px;padding:28px 24px}.tn-cols{grid-template-columns:1fr}}
+
+  /* agenda: título más largo que en la home */
+  .contact h2{font-size:clamp(40px,5.6vw,80px);text-wrap:balance}
+</style>
 </head>
-<body class="bg-white text-gray-900 antialiased">
+<body>
 
-  <!-- Nav -->
-  <nav class="border-b border-gray-100 bg-white/80 backdrop-blur sticky top-0 z-10">
-    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2">
-        <img src="/mabai-logo.svg" alt="MABAI" class="h-6 sm:h-7 w-auto">
-      </a>
-      <div class="flex items-center gap-2.5 sm:gap-5 text-[13px] sm:text-sm text-gray-600">
-        <div class="sm:relative" data-dropdown>
-          <button type="button" class="nav-link flex items-center gap-1 hover:text-gray-900" aria-haspopup="true" aria-expanded="false">
-            Soluciones
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="nav-menu nav-menu-full absolute top-full pt-3 w-56">
-            <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 py-2">
-              <a href="/" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Agentes de IA</a>
-              <a href="/soluciones-a-medida" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Soluciones a medida</a>
-              <a href="/partners" class="block sm:hidden px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Partners</a>
-              <a href="/precios" class="block sm:hidden px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-gray-900">Precios</a>
-            </div>
-          </div>
-        </div>
-        <div class="sm:relative" data-dropdown>
-          <button type="button" class="nav-link flex items-center gap-1 hover:text-gray-900" aria-haspopup="true" aria-expanded="false">
-            Rubros
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="nav-menu nav-menu-full absolute top-full pt-3 w-72">
-            <div class="bg-white border border-gray-100 rounded-xl shadow-lg shadow-gray-200/60 p-2">
-              <a href="/inmobiliarias" class="block rounded-lg px-3 py-2.5 hover:bg-gray-50">
-                <span class="block font-medium text-gray-900">Inmobiliarias</span>
-                <span class="block mt-0.5 text-xs leading-snug text-gray-500">Conectado a Tokko: ofrece tus propiedades con foto y ficha.</span>
-              </a>
-              <a href="/retail" class="block rounded-lg px-3 py-2.5 hover:bg-gray-50">
-                <span class="block font-medium text-gray-900">Retail</span>
-                <span class="block mt-0.5 text-xs leading-snug text-gray-500">Catálogo en el chat de tu web: recomienda, compara y lleva al carrito.</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <a href="/partners" class="nav-link hover:text-gray-900 hidden sm:inline">Partners</a>
-        <a href="/precios" class="nav-link hover:text-gray-900 hidden sm:inline">Precios</a>
-        <a href="/#como-funciona" class="nav-link hover:text-gray-900 hidden md:inline">Cómo funciona</a>
-        <a href="/#contacto" class="nav-link accent-ink font-medium">Contacto</a>
+<!-- íconos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gstroke" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffa45c"/><stop offset=".52" stop-color="#f59cb2"/><stop offset="1" stop-color="#e39df4"/></linearGradient>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></symbol>
+    <symbol id="i-tn" viewBox="0 0 37.48 27"><path d="M24.0068 0H23.9915C23.9915 0 23.983 0 23.9779 0C20.4547 0.00509626 17.098 1.38958 14.5923 3.82559C13.3097 3.28199 11.9287 3 10.5017 3C4.71065 3 0 7.71065 0 13.5C0 19.2894 4.71065 24 10.5 24C11.9049 24 13.2945 23.7129 14.5804 23.1727C17.013 25.5391 20.3307 27 23.9847 27C31.4287 27 37.4847 20.9439 37.4847 13.5C37.4847 6.05606 31.4405 0.0118913 24.0068 0ZM23.9847 24C18.1954 24 13.4847 19.2894 13.4847 13.5H10.4847C10.4847 16.1484 11.2542 18.6183 12.5759 20.7044C11.9032 20.8981 11.205 21 10.5 21C6.36523 21 3 17.6348 3 13.5C3 9.36523 6.36523 6 10.5 6C12.1376 6 13.6937 6.51812 14.9983 7.4983C16.906 8.93035 18 11.1183 18 13.5H21C21 10.359 19.6393 7.45923 17.2491 5.4581C19.1263 3.88335 21.5062 3.0017 23.9915 3C29.7775 3.0034 34.483 7.71234 34.483 13.5C34.483 19.2877 29.7724 24 23.983 24H23.9847Z"/></symbol>
+    <symbol id="i-tt" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol>
+    <symbol id="i-gcal" viewBox="0 0 24 24"><path d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zm-7.207 6.25v-.065c.272-.144.5-.349.687-.617s.279-.595.279-.982c0-.379-.099-.72-.3-1.025a2.05 2.05 0 0 0-.832-.714 2.703 2.703 0 0 0-1.197-.257c-.6 0-1.094.156-1.481.467-.386.311-.65.671-.793 1.078l1.085.452c.086-.249.224-.461.413-.633.189-.172.445-.257.767-.257.33 0 .602.088.816.264a.86.86 0 0 1 .322.703c0 .33-.12.589-.36.778-.24.19-.535.284-.886.284h-.567v1.085h.633c.407 0 .748.109 1.02.327.272.218.407.499.407.843 0 .336-.129.614-.387.832s-.565.327-.924.327c-.351 0-.651-.103-.897-.311-.248-.208-.422-.502-.521-.881l-1.096.452c.178.616.505 1.082.977 1.401.472.319.984.478 1.538.477a2.84 2.84 0 0 0 1.293-.291c.382-.193.684-.458.902-.794.218-.336.327-.72.327-1.149 0-.429-.115-.797-.344-1.105a2.067 2.067 0 0 0-.881-.689zm2.093-1.931l.602.913L15 10.045v5.744h1.187V8.446h-.827l-2.158 1.557zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zm-3.289 23.5l4.684-4.684h-4.684V23.5zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z"/></symbol>
+    <symbol id="i-gsh" viewBox="0 0 24 24"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></symbol>
+    <symbol id="i-an" viewBox="0 0 24 24"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></symbol>
+    <symbol id="i-web" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.8 3 2.8 16 0 19M12 2.5c-2.8 3-2.8 16 0 19"/></g></symbol>
+    <symbol id="i-msg" viewBox="0 0 24 24"><path d="M12 1.5C6.2 1.5 1.75 5.8 1.75 11.3c0 2.9 1.2 5.4 3.2 7.1v3.6l3.3-1.8c1.2.3 2.4.5 3.75.5 5.8 0 10.25-4.3 10.25-9.8S17.8 1.5 12 1.5Zm1.1 13.1-2.6-2.8-5 2.8 5.5-5.9 2.7 2.8 4.9-2.8-5.5 5.9Z"/></symbol>
+  </defs>
+</svg>
+<!-- degradé para íconos de esta página -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="rb-ico" gradientUnits="userSpaceOnUse" x1="2" y1="4" x2="22" y2="20"><stop offset="0" stop-color="#ff9a4d"/><stop offset=".52" stop-color="#ec7fa6"/><stop offset="1" stop-color="#c47ee8"/></linearGradient>
+    <linearGradient id="rb-ico-l" gradientUnits="userSpaceOnUse" x1="2" y1="4" x2="22" y2="20"><stop offset="0" stop-color="#ffa45c"/><stop offset=".52" stop-color="#f59cb2"/><stop offset="1" stop-color="#e39df4"/></linearGradient>
+  </defs>
+</svg>
+
+<!-- Nav -->
+<header class="nav">
+  <div class="nav-pill">
+    <a href="/" class="nav-logo" aria-label="MABAI, inicio"><img src="/assets/mabai-logo-white.svg" alt="MABAI"></a>
+    <nav class="nav-links" aria-label="Principal">
+      <div class="dd" data-dd>
+        <button type="button" aria-haspopup="true" aria-expanded="false">Soluciones <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dd-menu"><div class="dd-box">
+          <a href="/">Agentes de IA</a>
+          <a href="/soluciones-a-medida">Soluciones a medida</a>
+        </div></div>
       </div>
+      <div class="dd" data-dd>
+        <button type="button" aria-haspopup="true" aria-expanded="false">Rubros <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dd-menu dd-wide"><div class="dd-box">
+          <a href="/inmobiliarias"><b>Inmobiliarias</b><small>Conectado a Tokko: ofrece tus propiedades con foto y ficha.</small></a>
+          <a href="/retail" aria-current="page"><b>Retail</b><small>Catálogo en el chat de tu web: recomienda, compara y lleva al carrito.</small></a>
+        </div></div>
+      </div>
+      <a href="/partners">Partners</a>
+      <a href="/precios">Precios</a>
+      <a href="/#como-funciona">Cómo funciona</a>
+    </nav>
+    <div class="nav-right">
+      <a href="#agenda" class="btn btn-light btn-sm">Contacto</a>
+      <button class="nav-burger" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
     </div>
-  </nav>
+  </div>
+  <div class="nav-sheet">
+    <p>Soluciones</p>
+    <a href="/">Agentes de IA</a>
+    <a href="/soluciones-a-medida">Soluciones a medida</a>
+    <p>Rubros</p>
+    <a href="/inmobiliarias">Inmobiliarias</a>
+    <a href="/retail" aria-current="page">Retail</a>
+    <p>MABAI</p>
+    <a href="/partners">Partners</a>
+    <a href="/precios">Precios</a>
+    <a href="/#como-funciona">Cómo funciona</a>
+  </div>
+</header>
 
-  <section class="grid-pattern">
-    <div class="max-w-5xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
-      <div class="max-w-3xl hero-in">
-        <span class="inline-block text-xs font-medium accent-ink tracking-wider uppercase mb-4">Rubros · Retail</span>
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">Un vendedor que conoce<br><span class="serif-i text-[1.15em] accent">todo tu catálogo.</span></h1>
-        <p class="mt-6 text-lg text-gray-600 leading-relaxed">El agente del chat de tu web recomienda, compara y lleva al carrito sin salir de la conversación. Siempre con precios y stock reales de tu catálogo, las 24 horas.</p>
-        <div class="mt-8 flex flex-col sm:flex-row gap-3">
-          <a href="#agenda" class="inline-flex items-center justify-center bg-gray-900 text-white text-sm font-medium px-5 py-3 rounded-lg hover:bg-[#b8731a] btn">Agendá una demo</a>
-          <a href="#funciones" class="inline-flex items-center justify-center text-sm font-medium px-5 py-3 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 btn btn-secondary">Ver cómo funciona</a>
-        </div>
+<main>
+<!-- Hero -->
+<section class="page-hero rb-hero">
+  <div class="dots"></div>
+  <div class="dots b"></div>
+  <div class="glow l drift" style="width:560px;height:560px;right:-160px;top:-180px;opacity:.36"></div>
+  <div class="glow o drift slow" style="width:520px;height:520px;right:16%;bottom:-360px;opacity:.3"></div>
+  <div class="glow p" style="width:340px;height:340px;left:-150px;top:34%;opacity:.12"></div>
+
+  <div class="wrap">
+    <div class="page-hero-grid solo"><div class="hero-in">
+      <span class="eyebrow">Rubros · Retail</span>
+      <h1>Un vendedor que conoce<br><span class="grad-text">todo tu catálogo.</span></h1>
+      <p class="lead">El agente del chat de tu web recomienda, compara y lleva al carrito sin salir de la conversación. Siempre con precios y stock reales de tu catálogo, las 24 horas.</p>
+      <div class="ctas">
+        <a href="#agenda" class="btn btn-grad magnetic">Agendá una demo</a>
+        <a href="#funciones" class="btn btn-ghost">Ver cómo funciona</a>
       </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- Pensado para tiendas online (fija, con pasos de costado) -->
+<section id="funciones" class="how" data-pin>
+  <div class="how-pin">
+    <div class="how-bg">
+      <div class="glow o" style="width:620px;height:620px;left:-180px;top:10%"></div>
+      <div class="glow p" style="width:560px;height:560px;left:38%;top:30%;opacity:.45"></div>
+      <div class="glow l" style="width:620px;height:620px;right:-200px;top:-10%"></div>
+      <div class="dots"></div>
     </div>
-  </section>
 
-  <section id="funciones" class="border-t border-gray-100">
-    <div class="max-w-5xl mx-auto px-6 py-20">
-      <div class="max-w-2xl">
-        <span class="eyebrow" aria-hidden="true"></span>
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Pensado para tiendas online</h2>
-        <p class="mt-3 text-gray-600">Todo lo que hace MABAI en cualquier negocio, más lo que necesita una tienda.</p>
+    <div class="wrap how-head">
+      <div>
+        <span class="eyebrow">Cómo funciona</span>
+        <h2>Pensado para tiendas online</h2>
+        <p>Todo lo que hace MABAI en cualquier negocio, más lo que necesita una tienda.</p>
       </div>
-      <div class="mt-14 space-y-16 md:space-y-24">
-        <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
-          <div class="max-w-md">
-            <span class="step-num">01</span>
-            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Busca en todo tu catálogo</h3>
-            <p class="mt-3 text-gray-600 leading-relaxed">Con cada mensaje, el agente busca los productos que coinciden con lo que pide el cliente. Responde con precio, stock y características reales, tengas 200 o 100.000 productos.</p>
+      <div class="counter"><b>01</b> / 04</div>
+    </div>
+    <div class="wrap"><div class="progress"><i></i></div></div>
+
+    <div class="how-track">
+      <!-- 01 -->
+      <article class="step">
+        <div class="step-in">
+          <div>
+            <div class="num grad-text">01</div>
+            <h3>Busca en todo tu catálogo</h3>
+            <p>Con cada mensaje, el agente busca los productos que coinciden con lo que pide el cliente. Responde con precio, stock y características reales, tengas 200 o 100.000 productos.</p>
           </div>
-          <div class="lc-dark rounded-3xl p-5 md:p-8 min-w-0">
-            <div class="bg-white rounded-2xl overflow-hidden shadow-lg shadow-black/20 max-w-sm mx-auto">
-              <div class="bg-gray-900 text-white px-4 py-2.5 flex items-center justify-between">
-                <div class="text-sm font-semibold">Asistente · Tu tienda</div><span class="text-white/60 text-sm" aria-hidden="true">×</span>
-              </div>
-              <div class="bg-gray-50 px-3 py-4 flex flex-col gap-2">
-                <div class="msg msg-web">¿Tienen la caja organizadora de 30 litros en blanco?</div>
-                <div class="msg msg-in">Sí, la Caja organizadora 30 L viene en blanco. Está $ 6.499 (antes $ 8.299) con stock disponible. Tiene tapa con traba, se puede apilar.</div>
-                <div class="msg msg-web">¿Y en transparente?</div>
-                <div class="msg msg-in">En transparente no la tenemos. Te puedo mostrar otras de 30 litros que sí lo son.</div>
+          <div class="vis fit">
+            <div class="card chat">
+              <div class="chat-head"><div class="who"><span class="store"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></svg></span>Asistente · Tu tienda</div><span class="x" aria-hidden="true">×</span></div>
+              <div class="chat-body">
+                <div class="bub c">¿Tienen la caja organizadora de 30 litros en blanco?</div>
+                <div class="bub a">Sí, la Caja organizadora 30&nbsp;L viene en blanco. Está $&nbsp;6.499 (antes $&nbsp;8.299) con stock disponible. Tiene tapa con traba, se puede apilar.</div>
+                <div class="bub c">¿Y en transparente?</div>
+                <div class="bub a">En transparente no la tenemos. Te puedo mostrar otras de 30 litros que sí lo son.</div>
               </div>
             </div>
           </div>
         </div>
+      </article>
 
-        <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
-          <div class="max-w-md lg:order-2">
-            <span class="step-num">02</span>
-            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Recomienda con tarjetas</h3>
-            <p class="mt-3 text-gray-600 leading-relaxed">Si el cliente pide una sugerencia, el agente elige de 1 a 4 productos con stock. Los muestra como tarjetas dentro del chat: foto, nombre, precio, precio anterior. Si le falta información para elegir, primero pregunta.</p>
+      <!-- 02 -->
+      <article class="step">
+        <div class="step-in">
+          <div>
+            <div class="num grad-text">02</div>
+            <h3>Recomienda con tarjetas</h3>
+            <p>Si el cliente pide una sugerencia, el agente elige de 1 a 4 productos con stock. Los muestra como tarjetas dentro del chat: foto, nombre, precio, precio anterior. Si le falta información para elegir, primero pregunta.</p>
           </div>
-          <div class="lc-dark rounded-3xl p-5 md:p-8 min-w-0 lg:order-1">
-            <div class="bg-white rounded-2xl overflow-hidden shadow-lg shadow-black/20 max-w-sm mx-auto">
-              <div class="bg-gray-900 text-white px-4 py-2.5 flex items-center justify-between">
-                <div class="text-sm font-semibold">Asistente · Tu tienda</div><span class="text-white/60 text-sm" aria-hidden="true">×</span>
-              </div>
-              <div class="bg-gray-50 px-3 py-4 flex flex-col gap-2">
-                <div class="msg msg-web">¿Tenés algo para ordenar el placard?</div>
-                <div class="msg msg-in">¡Sí! Para ordenar el placard te recomiendo estos:</div>
+          <div class="vis fit">
+            <div class="card chat">
+              <div class="chat-head"><div class="who"><span class="store"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></svg></span>Asistente · Tu tienda</div><span class="x" aria-hidden="true">×</span></div>
+              <div class="chat-body">
+                <div class="bub c">¿Tenés algo para ordenar el placard?</div>
+                <div class="bub a">¡Sí! Para ordenar el placard te recomiendo estos:</div>
                 <div class="pcards">
                   <div class="pcard">
-                    <div class="pimg"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="1.5"/><path d="M9 7v12M15 7v12M3 13h6"/></svg></div>
-                    <div class="mt-2 text-[11.5px] font-semibold text-gray-900 leading-snug truncate">Organizador de cajón</div>
-                    <div class="text-[13px] font-semibold accent-ink tabular-nums">$ 3.999</div>
-                    <div class="text-[10.5px] text-gray-400 line-through tabular-nums">$ 5.899</div>
-                    <div class="mt-1.5 text-center text-[10.5px] font-medium rounded-full py-1 bg-gray-900 text-white">Agregar al carrito</div>
+                    <div class="pimg"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="1.5"/><path d="M9 7v12M15 7v12M3 13h6"/></svg></div>
+                    <b>Organizador de cajón</b>
+                    <span class="pr">$ 3.999</span>
+                    <s>$ 5.899</s>
+                    <span class="add">Agregar al carrito</span>
                   </div>
                   <div class="pcard">
-                    <div class="pimg"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 8h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M3 5h18v3H3z"/><path d="M10 12h4"/></svg></div>
-                    <div class="mt-2 text-[11.5px] font-semibold text-gray-900 leading-snug truncate">Caja organizadora 30 L</div>
-                    <div class="text-[13px] font-semibold accent-ink tabular-nums">$ 6.499</div>
-                    <div class="text-[10.5px] text-gray-400 line-through tabular-nums">$ 8.299</div>
-                    <div class="mt-1.5 text-center text-[10.5px] font-medium rounded-full py-1 bg-gray-900 text-white">Agregar al carrito</div>
+                    <div class="pimg"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M3 5h18v3H3z"/><path d="M10 12h4"/></svg></div>
+                    <b>Caja organizadora 30&nbsp;L</b>
+                    <span class="pr">$ 6.499</span>
+                    <s>$ 8.299</s>
+                    <span class="add">Agregar al carrito</span>
                   </div>
                   <div class="pcard">
-                    <div class="pimg"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M12 8a2 2 0 1 1 2-2c0 1-2 1.5-2 3"/><path d="M12 9l-9 7a1 1 0 0 0 .6 1.8h16.8A1 1 0 0 0 21 16z"/></svg></div>
-                    <div class="mt-2 text-[11.5px] font-semibold text-gray-900 leading-snug truncate">Set de perchas x10</div>
-                    <div class="text-[13px] font-semibold accent-ink tabular-nums">$ 4.299</div>
-                    <div class="text-[10.5px]">&nbsp;</div>
-                    <div class="mt-1.5 text-center text-[10.5px] font-medium rounded-full py-1 bg-gray-900 text-white">Agregar al carrito</div>
+                    <div class="pimg"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a2 2 0 1 1 2-2c0 1-2 1.5-2 3"/><path d="M12 9l-9 7a1 1 0 0 0 .6 1.8h16.8A1 1 0 0 0 21 16z"/></svg></div>
+                    <b>Set de perchas x10</b>
+                    <span class="pr">$ 4.299</span>
+                    <s></s>
+                    <span class="add">Agregar al carrito</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </article>
 
-        <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
-          <div class="max-w-md">
-            <span class="step-num">03</span>
-            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Compara para decidir</h3>
-            <p class="mt-3 text-gray-600 leading-relaxed">Si el cliente duda entre dos o tres productos, el agente arma un cuadro comparativo con sus características, más una recomendación con el motivo.</p>
-            <p class="mt-3 text-gray-600 leading-relaxed">Si un dato no está en el catálogo, pone «No especifica»: nunca lo inventa. Si los productos no se pueden comparar, lo explica.</p>
+      <!-- 03 -->
+      <article class="step">
+        <div class="step-in">
+          <div>
+            <div class="num grad-text">03</div>
+            <h3>Compara para decidir</h3>
+            <p>Si el cliente duda entre dos o tres productos, el agente arma un cuadro comparativo con sus características, más una recomendación con el motivo.</p>
+            <p>Si un dato no está en el catálogo, pone «No especifica»: nunca lo inventa. Si los productos no se pueden comparar, lo explica.</p>
           </div>
-          <div class="lc-dark rounded-3xl p-5 md:p-8 min-w-0">
-            <div class="bg-white rounded-2xl overflow-hidden shadow-lg shadow-black/20 max-w-sm mx-auto">
-              <div class="bg-gray-900 text-white px-4 py-2.5 flex items-center justify-between">
-                <div class="text-sm font-semibold">Asistente · Tu tienda</div><span class="text-white/60 text-sm" aria-hidden="true">×</span>
-              </div>
-              <div class="bg-gray-50 px-3 py-4 flex flex-col gap-2">
-                <div class="msg msg-web">¿Cuál me conviene, la batería de 5 o la de 7 piezas?</div>
-                <div class="bg-white rounded-xl p-2 shadow-[inset_0_0_0_1px_rgba(0,0,0,.08)]">
+          <div class="vis fit">
+            <div class="card chat">
+              <div class="chat-head"><div class="who"><span class="store"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/></svg></span>Asistente · Tu tienda</div><span class="x" aria-hidden="true">×</span></div>
+              <div class="chat-body">
+                <div class="bub c">¿Cuál me conviene, la batería de 5 o la de 7 piezas?</div>
+                <div class="cmp-card">
                   <table class="cmp">
-                    <thead><tr><th class="border-t-0"></th>
-                      <td class="border-t-0"><div class="pimg w-12 mx-auto"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M2 10h2M20 10h2M9 7h6"/></svg></div><div class="mt-1 font-semibold">5 piezas</div><div class="accent-ink font-semibold tabular-nums">$ 54.999</div></td>
-                      <td class="border-t-0"><div class="pimg w-12 mx-auto"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M2 10h2M20 10h2M9 7h6"/></svg></div><div class="mt-1 font-semibold">7 piezas</div><div class="accent-ink font-semibold tabular-nums">$ 99.999</div></td></tr></thead>
+                    <thead><tr><th></th>
+                      <td><div class="pimg"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M2 10h2M20 10h2M9 7h6"/></svg></div><div class="nm">5 piezas</div><div class="pr">$ 54.999</div></td>
+                      <td><div class="pimg"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M2 10h2M20 10h2M9 7h6"/></svg></div><div class="nm">7 piezas</div><div class="pr">$ 99.999</div></td></tr></thead>
                     <tbody>
                       <tr><th>Tapas</th><td>Vidrio</td><td>Vidrio templado</td></tr>
                       <tr><th>Mango</th><td>Soft touch</td><td>Símil madera</td></tr>
                       <tr><th>Color</th><td>Bordo</td><td>Gris granito</td></tr>
-                      <tr><th>Inducción</th><td>Sí</td><td class="text-gray-400">No especifica</td></tr>
+                      <tr><th>Inducción</th><td>Sí</td><td class="na">No especifica</td></tr>
                     </tbody>
                   </table>
                 </div>
-                <div class="msg msg-in">Si cocinás para 2 o 3, te conviene la de 5 piezas: sale $ 45.000 menos.</div>
+                <div class="bub a">Si cocinás para 2 o 3, te conviene la de 5 piezas: sale $&nbsp;45.000 menos.</div>
               </div>
             </div>
           </div>
         </div>
+      </article>
 
-        <div class="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
-          <div class="max-w-md lg:order-2">
-            <span class="step-num">04</span>
-            <h3 class="mt-4 text-xl md:text-2xl font-semibold tracking-tight text-gray-900">Lleva al carrito</h3>
-            <p class="mt-3 text-gray-600 leading-relaxed">Cada tarjeta tiene el botón «Agregar al carrito», que abre el carrito de tu tienda con el producto cargado. Si el producto tiene talle o color, lleva a su página para elegir. Si tu tienda es Tiendanube, lo suma sin salir de la página, así el cliente sigue comprando.</p>
+      <!-- 04 -->
+      <article class="step">
+        <div class="step-in">
+          <div>
+            <div class="num grad-text">04</div>
+            <h3>Lleva al carrito</h3>
+            <p>Cada tarjeta tiene el botón «Agregar al carrito», que abre el carrito de tu tienda con el producto cargado. Si el producto tiene talle o color, lleva a su página para elegir. Si tu tienda es Tiendanube, lo suma sin salir de la página, así el cliente sigue comprando.</p>
           </div>
-          <div class="lc-dark rounded-3xl p-5 md:p-8 min-w-0 lg:order-1">
-            <div class="bg-white rounded-xl p-4 shadow-lg shadow-black/20 max-w-sm mx-auto">
-              <div class="flex items-center justify-between gap-3">
-                <div class="text-sm font-semibold text-gray-900">Tu carrito</div>
-                <span class="text-[11px] text-gray-500">tutienda.com.ar</span>
+          <div class="vis fit">
+            <div class="card">
+              <h4>Tu carrito <span class="dom"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>tutienda.com.ar</span></h4>
+              <div class="item">
+                <div class="pimg"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="1.5"/><path d="M9 7v12M15 7v12M3 13h6"/></svg></div>
+                <div><b>Organizador de cajón</b><small>Cantidad: 1</small></div>
+                <span class="pr">$ 3.999</span>
               </div>
-              <div class="mt-3 flex items-center gap-3">
-                <div class="pimg w-12 shrink-0"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="1.5"/><path d="M9 7v12M15 7v12M3 13h6"/></svg></div>
-                <div class="flex-1 min-w-0">
-                  <div class="text-sm text-gray-900 truncate">Organizador de cajón</div>
-                  <div class="text-[11px] text-gray-500">Cantidad: 1</div>
-                </div>
-                <div class="text-sm font-semibold text-gray-900 tabular-nums">$ 3.999</div>
-              </div>
-              <div class="mt-4 rounded-lg bg-gray-900 text-white text-center text-sm font-medium py-2">Finalizar compra</div>
-              <div class="mt-2 text-center text-[11px] text-gray-500">Abierto desde el chat, con el producto ya cargado</div>
+              <div class="checkout">Finalizar compra</div>
+              <div class="note">Abierto desde el chat, con el producto ya cargado</div>
             </div>
           </div>
         </div>
-      </div>
+      </article>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="border-t border-gray-100">
-    <div class="max-w-5xl mx-auto px-6 py-16">
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="card rounded-xl p-6 bg-white">
-          <h3 class="font-semibold text-gray-900">Nunca inventa un dato</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Las tarjetas y el cuadro los arma el sistema con los datos de tu catálogo, no la IA. Ningún precio puede salir mal.</p>
-        </div>
-        <div class="card rounded-xl p-6 bg-white">
-          <h3 class="font-semibold text-gray-900">Con los colores de tu marca</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Pensado primero para celular. Tu equipo ve las mismas tarjetas en Chats, dentro del panel de MABAI.</p>
-        </div>
-        <div class="card rounded-xl p-6 bg-white">
-          <h3 class="font-semibold text-gray-900">También en WhatsApp e Instagram</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Ahí el agente usa el mismo catálogo, pero responde en texto. Las tarjetas, el comparador y el carrito son del chat de tu web.</p>
-        </div>
+<!-- Garantías + Tiendanube -->
+<section class="section feats">
+  <div class="glow p" style="width:520px;height:520px;right:-180px;bottom:-200px;opacity:.14"></div>
+  <div class="glow o" style="width:420px;height:420px;left:-200px;top:-120px;opacity:.1"></div>
+  <div class="wrap">
+    <div class="grid-3">
+      <div class="fcard" data-reveal>
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" style="stroke:url(#rb-ico-l)"><path d="M12 3l7 3v5.5c0 4.4-3 7.8-7 9.5-4-1.7-7-5.1-7-9.5V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg></div>
+        <h3>Nunca inventa un dato</h3>
+        <p>Las tarjetas y el cuadro los arma el sistema con los datos de tu catálogo, no la IA. Ningún precio puede salir mal.</p>
       </div>
-      <div class="mt-6 card rounded-xl p-6 bg-white flex flex-col sm:flex-row gap-4 sm:gap-6">
-        <div class="shrink-0 w-12 h-12 rounded-xl bg-[#eef4fd] flex items-center justify-center"><svg viewBox="0 0 37.48 27" width="30" height="22" fill="#0050C3" aria-hidden="true"><path d="M24.0068 0H23.9915C23.9915 0 23.983 0 23.9779 0C20.4547 0.00509626 17.098 1.38958 14.5923 3.82559C13.3097 3.28199 11.9287 3 10.5017 3C4.71065 3 0 7.71065 0 13.5C0 19.2894 4.71065 24 10.5 24C11.9049 24 13.2945 23.7129 14.5804 23.1727C17.013 25.5391 20.3307 27 23.9847 27C31.4287 27 37.4847 20.9439 37.4847 13.5C37.4847 6.05606 31.4405 0.0118913 24.0068 0ZM23.9847 24C18.1954 24 13.4847 19.2894 13.4847 13.5H10.4847C10.4847 16.1484 11.2542 18.6183 12.5759 20.7044C11.9032 20.8981 11.205 21 10.5 21C6.36523 21 3 17.6348 3 13.5C3 9.36523 6.36523 6 10.5 6C12.1376 6 13.6937 6.51812 14.9983 7.4983C16.906 8.93035 18 11.1183 18 13.5H21C21 10.359 19.6393 7.45923 17.2491 5.4581C19.1263 3.88335 21.5062 3.0017 23.9915 3C29.7775 3.0034 34.483 7.71234 34.483 13.5C34.483 19.2877 29.7724 24 23.983 24H23.9847Z"/></svg></div>
-        <div>
-          <h3 class="font-semibold text-gray-900">Conectado a Tiendanube</h3>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Conectás tu tienda desde el panel de MABAI en un paso. MABAI trae tu catálogo completo, con precios, promociones, stock, fotos y links.</p>
-          <p class="mt-2 text-sm text-gray-600 leading-relaxed">Se mantiene al día solo: si cambiás un precio, el stock o agregás un producto, se entera en segundos. Solo tiene permiso para leer tus productos: no puede cambiar nada de tu tienda.</p>
-        </div>
+      <div class="fcard" data-reveal>
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" style="stroke:url(#rb-ico-l)"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.7-.8 1.7-1.7 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.8-1.7 1.7-1.7H16a5 5 0 0 0 5-5c0-4-4-7.2-9-7.2z"/><circle cx="7.5" cy="11.5" r="1.1"/><circle cx="10.5" cy="7.5" r="1.1"/><circle cx="15" cy="7.8" r="1.1"/></svg></div>
+        <h3>Con los colores de tu marca</h3>
+        <p>Pensado primero para celular. Tu equipo ve las mismas tarjetas en Chats, dentro del panel de MABAI.</p>
+      </div>
+      <div class="fcard" data-reveal>
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" style="stroke:url(#rb-ico-l)"><path d="M20.5 11.5a8 8 0 0 1-11.7 7.1L4 20l1.4-4.4a8 8 0 1 1 15.1-4.1z"/><path d="M8.5 11.5h.01M12.5 11.5h.01M16.5 11.5h.01"/></svg></div>
+        <h3>También en WhatsApp e Instagram</h3>
+        <p>Ahí el agente usa el mismo catálogo, pero responde en texto. Las tarjetas, el comparador y el carrito son del chat de tu web.</p>
       </div>
     </div>
-  </section>
 
-  <section id="agenda" class="border-t border-gray-100 bg-gray-50">
-    <div class="max-w-5xl mx-auto px-6 py-20">
-      <div class="max-w-2xl">
-        <span class="eyebrow" aria-hidden="true"></span>
-        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">¿Tenés una tienda online?</h2>
-        <p class="mt-3 text-lg text-gray-600">Agendá una demo de 30 minutos sin costo.</p>
-        <p class="mt-4 text-gray-600 leading-relaxed">Te mostramos el agente respondiendo con productos de tu catálogo, con tarjetas, comparador y carrito.</p>
+    <div class="tn-card" data-reveal>
+      <div class="dots"></div>
+      <div class="tn-logo"><svg viewBox="0 0 37.48 27" width="34" height="25" fill="#0050C3" aria-hidden="true"><path d="M24.0068 0H23.9915C23.9915 0 23.983 0 23.9779 0C20.4547 0.00509626 17.098 1.38958 14.5923 3.82559C13.3097 3.28199 11.9287 3 10.5017 3C4.71065 3 0 7.71065 0 13.5C0 19.2894 4.71065 24 10.5 24C11.9049 24 13.2945 23.7129 14.5804 23.1727C17.013 25.5391 20.3307 27 23.9847 27C31.4287 27 37.4847 20.9439 37.4847 13.5C37.4847 6.05606 31.4405 0.0118913 24.0068 0ZM23.9847 24C18.1954 24 13.4847 19.2894 13.4847 13.5H10.4847C10.4847 16.1484 11.2542 18.6183 12.5759 20.7044C11.9032 20.8981 11.205 21 10.5 21C6.36523 21 3 17.6348 3 13.5C3 9.36523 6.36523 6 10.5 6C12.1376 6 13.6937 6.51812 14.9983 7.4983C16.906 8.93035 18 11.1183 18 13.5H21C21 10.359 19.6393 7.45923 17.2491 5.4581C19.1263 3.88335 21.5062 3.0017 23.9915 3C29.7775 3.0034 34.483 7.71234 34.483 13.5C34.483 19.2877 29.7724 24 23.983 24H23.9847Z"/></svg></div>
+      <div class="tn-txt">
+        <h3>Conectado a Tiendanube</h3>
+        <div class="tn-cols">
+          <p>Conectás tu tienda desde el panel de MABAI en un paso. MABAI trae tu catálogo completo, con precios, promociones, stock, fotos y links.</p>
+          <p>Se mantiene al día solo: si cambiás un precio, el stock o agregás un producto, se entera en segundos. Solo tiene permiso para leer tus productos: no puede cambiar nada de tu tienda.</p>
+        </div>
       </div>
-      <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
-        <button type="button" data-cal-namespace="llamada-inicial" data-cal-link="hola-mabai/llamada-inicial" data-cal-config='{"layout":"month_view","theme":"light"}' class="inline-flex items-center justify-center gap-2 text-sm font-medium px-5 py-3 rounded-lg btn btn-accent">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          Agendar demo · 30 min
-        </button>
-      </div>
-      <p class="mt-4 text-xs text-gray-500">También podés reservar en <a href="https://cal.com/hola-mabai/llamada-inicial" target="_blank" rel="noopener" class="underline">cal.com/hola-mabai/llamada-inicial</a> o escribirnos a <a href="mailto:hola@mabai.com.ar" class="underline">hola@mabai.com.ar</a>.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="border-t border-gray-100 py-10 bg-white">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-between gap-6 text-sm text-gray-500">
-        <div class="space-y-2">
-          <img src="/mabai-logo.svg" alt="MABAI" class="h-5 w-auto">
-          <p class="text-xs leading-relaxed max-w-sm">IA powered solutions. Operado desde Buenos Aires, Argentina.</p>
-          <p class="text-xs">Contacto: <a href="mailto:hola@mabai.com.ar" class="underline hover:text-gray-700">hola@mabai.com.ar</a></p>
-          <p class="text-xs leading-relaxed max-w-md text-gray-500">MABAI es proveedor de tecnología de Meta para WhatsApp.</p>
-        </div>
-        <div class="flex flex-col gap-2 md:items-end">
-          <div class="flex gap-5">
-            <a href="/privacy" class="nav-link hover:text-gray-900">Política de privacidad</a>
-            <a href="/terms" class="nav-link hover:text-gray-900">Términos</a>
-          </div>
-          <span class="text-xs">© 2026 MABAI. Todos los derechos reservados.</span>
-        </div>
+<!-- Agenda -->
+<section id="agenda" class="contact">
+  <div class="wrap">
+    <div class="contact-card" data-reveal>
+      <div class="bloom"></div>
+      <div class="dots"></div>
+      <div class="contact-in">
+        <span class="eyebrow">Contacto</span>
+        <h2>¿Tenés una tienda online?</h2>
+        <p class="lead">Agendá una demo de 30 minutos sin costo.</p>
+        <p class="t">Te mostramos el agente respondiendo con productos de tu catálogo, con tarjetas, comparador y carrito.</p>
+        <div class="ctas"><a class="btn btn-dark magnetic" href="https://cal.com/hola-mabai/llamada-inicial" target="_blank" rel="noopener" data-cal-namespace="llamada-inicial" data-cal-link="hola-mabai/llamada-inicial" data-cal-config='{"layout":"month_view","theme":"light"}'>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Agendar demo · 30 min</a></div>
+        <small>También podés reservar en <a href="https://cal.com/hola-mabai/llamada-inicial" target="_blank" rel="noopener">cal.com/hola-mabai/llamada-inicial</a> o escribirnos a <a href="mailto:hola@mabai.com.ar">hola@mabai.com.ar</a>.</small>
       </div>
     </div>
-  </footer>
-  <script>
-    (function () {
-      var wraps = [].slice.call(document.querySelectorAll('[data-dropdown]'));
-      var hover = window.matchMedia('(hover: hover)').matches;
-      function closeAll() { wraps.forEach(function (w) { w._set(false); }); }
-      wraps.forEach(function (wrap) {
-        var btn = wrap.querySelector('button'), menu = wrap.querySelector('.nav-menu');
-        wrap._set = function (open) { menu.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); };
-        btn.addEventListener('click', function (e) {
-          e.stopPropagation();
-          var open = !menu.classList.contains('open');
-          closeAll(); wrap._set(open);
-        });
-        if (hover) {
-          wrap.addEventListener('mouseenter', function () { wrap._set(true); });
-          wrap.addEventListener('mouseleave', function () { wrap._set(false); });
-        }
-      });
-      document.addEventListener('click', closeAll);
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
-    })();
-  </script>
-  <script type="text/javascript">
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <img src="/assets/mabai-logo-white.svg" alt="MABAI">
+      <p><span class="brand">IA powered solutions.</span> Operado desde Buenos Aires, Argentina.</p>
+      <p>Contacto: <a href="mailto:hola@mabai.com.ar" style="text-decoration:underline">hola@mabai.com.ar</a></p>
+      <p>MABAI es proveedor de tecnología de Meta para WhatsApp.</p>
+    </div>
+    <div class="foot-r">
+      <div class="foot-links">
+        <a href="/privacy">Política de privacidad</a>
+        <a href="/terms">Términos</a>
+        <a class="ig" href="https://www.instagram.com/mabai.ai/" target="_blank" rel="noopener" aria-label="Instagram de MABAI"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ig"/></svg></a>
+      </div>
+      <span>© 2026 MABAI. Todos los derechos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="/assets/mabai.js"></script>
+<script type="text/javascript">
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", "llamada-inicial", { origin: "https://app.cal.com" });
     Cal.ns["llamada-inicial"]("ui", { theme: "light", styles: { branding: { brandColor: "#111827" } }, hideEventTypeDetails: false, layout: "month_view" });
   </script>
-  <script src="/logo-anim.js"></script>
-  <script src="https://api.mabai.app/web/widget.js?key=mw_5Y9a4CVi5P1Xjs1pehjsJXY0hxyEp2Gj" async></script>
+<script src="https://api.mabai.app/web/widget.js?key=mw_5Y9a4CVi5P1Xjs1pehjsJXY0hxyEp2Gj" async></script>
 </body>
 </html>

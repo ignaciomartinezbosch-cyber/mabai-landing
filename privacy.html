@@ -1,186 +1,270 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Política de privacidad — MABAI</title>
-  <meta name="description" content="Política de privacidad de MABAI: cómo recolectamos, usamos y protegemos la información personal de los usuarios y clientes." />
-  <link rel="canonical" href="https://www.mabai.com.ar/privacy" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <style>body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }</style>
-  <link rel="stylesheet" href="/tailwind.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de privacidad — MABAI</title>
+<meta name="description" content="Política de privacidad de MABAI: cómo recolectamos, usamos y protegemos la información personal de los usuarios y clientes." />
+<link rel="canonical" href="https://www.mabai.com.ar/privacy" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/mabai.css">
+<style>
+  .legal-hero{padding:170px 0 36px}
+  .legal-hero .dots{-webkit-mask-image:radial-gradient(ellipse 50% 70% at 85% 0%,rgba(0,0,0,.65),transparent 72%);mask-image:radial-gradient(ellipse 50% 70% at 85% 0%,rgba(0,0,0,.65),transparent 72%)}
+  .legal-hero h1{margin-top:0}
+  .hero-bg{position:absolute;inset:0;pointer-events:none;-webkit-mask-image:linear-gradient(#000 35%,transparent 96%);mask-image:linear-gradient(#000 35%,transparent 96%)}
+  .legal-hero .updated{margin-top:18px;font-size:14px;color:var(--dim)}
+  .doc{padding-top:8px;border-top:1px solid var(--line)}
+  .doc section:first-child{margin-top:44px}
+  .doc li::marker{color:var(--p)}
+  .doc a{overflow-wrap:anywhere}
+  .doc code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;padding:2px 6px;border-radius:6px;background:rgba(255,255,255,.07);color:var(--ink)}
+  .doc .en{font-style:italic;color:rgba(246,243,239,.56)}
+  .doc-back{margin-top:64px;padding-top:28px;border-top:1px solid var(--line)}
+  .doc .doc-back a{font-size:14px;color:var(--muted);text-decoration:none;transition:color .15s}
+  .doc .doc-back a:hover{color:#fff}
+  @media (max-width:1020px){.legal-hero{padding:140px 0 30px}}
+</style>
 </head>
-<body class="bg-white text-gray-900 antialiased">
+<body>
 
-  <nav class="border-b border-gray-100 bg-white">
-    <div class="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2">
-        <img src="/mabai-logo.svg" alt="MABAI" class="h-7 w-auto">
-      </a>
+<!-- íconos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gstroke" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffa45c"/><stop offset=".52" stop-color="#f59cb2"/><stop offset="1" stop-color="#e39df4"/></linearGradient>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></symbol>
+    <symbol id="i-fb" viewBox="0 0 24 24"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></symbol>
+    <symbol id="i-tn" viewBox="0 0 37.48 27"><path d="M24.0068 0H23.9915C23.9915 0 23.983 0 23.9779 0C20.4547 0.00509626 17.098 1.38958 14.5923 3.82559C13.3097 3.28199 11.9287 3 10.5017 3C4.71065 3 0 7.71065 0 13.5C0 19.2894 4.71065 24 10.5 24C11.9049 24 13.2945 23.7129 14.5804 23.1727C17.013 25.5391 20.3307 27 23.9847 27C31.4287 27 37.4847 20.9439 37.4847 13.5C37.4847 6.05606 31.4405 0.0118913 24.0068 0ZM23.9847 24C18.1954 24 13.4847 19.2894 13.4847 13.5H10.4847C10.4847 16.1484 11.2542 18.6183 12.5759 20.7044C11.9032 20.8981 11.205 21 10.5 21C6.36523 21 3 17.6348 3 13.5C3 9.36523 6.36523 6 10.5 6C12.1376 6 13.6937 6.51812 14.9983 7.4983C16.906 8.93035 18 11.1183 18 13.5H21C21 10.359 19.6393 7.45923 17.2491 5.4581C19.1263 3.88335 21.5062 3.0017 23.9915 3C29.7775 3.0034 34.483 7.71234 34.483 13.5C34.483 19.2877 29.7724 24 23.983 24H23.9847Z"/></symbol>
+    <symbol id="i-tt" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></symbol>
+    <symbol id="i-gcal" viewBox="0 0 24 24"><path d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zm-7.207 6.25v-.065c.272-.144.5-.349.687-.617s.279-.595.279-.982c0-.379-.099-.72-.3-1.025a2.05 2.05 0 0 0-.832-.714 2.703 2.703 0 0 0-1.197-.257c-.6 0-1.094.156-1.481.467-.386.311-.65.671-.793 1.078l1.085.452c.086-.249.224-.461.413-.633.189-.172.445-.257.767-.257.33 0 .602.088.816.264a.86.86 0 0 1 .322.703c0 .33-.12.589-.36.778-.24.19-.535.284-.886.284h-.567v1.085h.633c.407 0 .748.109 1.02.327.272.218.407.499.407.843 0 .336-.129.614-.387.832s-.565.327-.924.327c-.351 0-.651-.103-.897-.311-.248-.208-.422-.502-.521-.881l-1.096.452c.178.616.505 1.082.977 1.401.472.319.984.478 1.538.477a2.84 2.84 0 0 0 1.293-.291c.382-.193.684-.458.902-.794.218-.336.327-.72.327-1.149 0-.429-.115-.797-.344-1.105a2.067 2.067 0 0 0-.881-.689zm2.093-1.931l.602.913L15 10.045v5.744h1.187V8.446h-.827l-2.158 1.557zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zm-3.289 23.5l4.684-4.684h-4.684V23.5zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z"/></symbol>
+    <symbol id="i-gsh" viewBox="0 0 24 24"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></symbol>
+    <symbol id="i-an" viewBox="0 0 24 24"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></symbol>
+    <symbol id="i-web" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.8 3 2.8 16 0 19M12 2.5c-2.8 3-2.8 16 0 19"/></g></symbol>
+    <symbol id="i-msg" viewBox="0 0 24 24"><path d="M12 1.5C6.2 1.5 1.75 5.8 1.75 11.3c0 2.9 1.2 5.4 3.2 7.1v3.6l3.3-1.8c1.2.3 2.4.5 3.75.5 5.8 0 10.25-4.3 10.25-9.8S17.8 1.5 12 1.5Zm1.1 13.1-2.6-2.8-5 2.8 5.5-5.9 2.7 2.8 4.9-2.8-5.5 5.9Z"/></symbol>
+  </defs>
+</svg>
+
+<!-- Nav -->
+<header class="nav">
+  <div class="nav-pill">
+    <a href="/" class="nav-logo" aria-label="MABAI, inicio"><img src="/assets/mabai-logo-white.svg" alt="MABAI"></a>
+    <nav class="nav-links" aria-label="Principal">
+      <div class="dd" data-dd>
+        <button type="button" aria-haspopup="true" aria-expanded="false">Soluciones <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dd-menu"><div class="dd-box">
+          <a href="/">Agentes de IA</a>
+          <a href="/soluciones-a-medida">Soluciones a medida</a>
+        </div></div>
+      </div>
+      <div class="dd" data-dd>
+        <button type="button" aria-haspopup="true" aria-expanded="false">Rubros <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="dd-menu dd-wide"><div class="dd-box">
+          <a href="/inmobiliarias"><b>Inmobiliarias</b><small>Conectado a Tokko: ofrece tus propiedades con foto y ficha.</small></a>
+          <a href="/retail"><b>Retail</b><small>Catálogo en el chat de tu web: recomienda, compara y lleva al carrito.</small></a>
+        </div></div>
+      </div>
+      <a href="/partners">Partners</a>
+      <a href="/precios">Precios</a>
+      <a href="/#como-funciona">Cómo funciona</a>
+    </nav>
+    <div class="nav-right">
+      <a href="/#contacto" class="btn btn-light btn-sm">Contacto</a>
+      <button class="nav-burger" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
     </div>
-  </nav>
+  </div>
+  <div class="nav-sheet">
+    <p>Soluciones</p>
+    <a href="/">Agentes de IA</a>
+    <a href="/soluciones-a-medida">Soluciones a medida</a>
+    <p>Rubros</p>
+    <a href="/inmobiliarias">Inmobiliarias</a>
+    <a href="/retail">Retail</a>
+    <p>MABAI</p>
+    <a href="/partners">Partners</a>
+    <a href="/precios">Precios</a>
+    <a href="/#como-funciona">Cómo funciona</a>
+  </div>
+</header>
 
-  <main class="max-w-3xl mx-auto px-6 py-16">
-    <h1 class="text-3xl font-bold tracking-tight text-gray-900">Política de privacidad</h1>
-    <p class="text-sm text-gray-500 mt-2">Última actualización: 16 de noviembre de 2026</p>
-
-    <div class="mt-8 space-y-8 text-gray-700 leading-relaxed">
-
-      <section>
-        <h2 class="text-xl font-semibold text-gray-900">1. Identificación del responsable</h2>
-        <p class="mt-2">MABAI ("MABAI", "nosotros") es un servicio de asistencia automatizada para la atención de clientes a través de WhatsApp Business API, Instagram y chat web, orientado a empresas de distintos rubros y operado desde la Ciudad Autónoma de Buenos Aires, República Argentina.</p>
-        <p class="mt-2">El responsable del tratamiento de los datos es Martinez Bosch Ignacio, CUIT 20-46501970-1, con domicilio en Av. Pueyrredón 1993, Piso 4 Dpto A, CABA (1119).</p>
-        <p class="mt-2">Para cualquier consulta sobre el tratamiento de datos personales podés contactarnos a <a class="underline" href="mailto:hola@mabai.com.ar">hola@mabai.com.ar</a>.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-gray-900">2. Alcance</h2>
-        <p class="mt-2">Esta política se aplica a:</p>
-        <ul class="list-disc pl-6 mt-2 space-y-1">
-          <li>Personas físicas que interactúan con un agente automatizado MABAI a través de WhatsApp ("usuarios finales").</li>
-          <li>Empresas y profesionales que contratan el servicio MABAI para operar agentes automatizados ("clientes").</li>
-          <li>Visitantes del sitio web <a class="underline" href="https://www.mabai.com.ar/">mabai.com.ar</a>.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-gray-900">3. Información que recolectamos</h2>
-        <p class="mt-2"><strong>De usuarios finales (personas que escriben a una empresa por WhatsApp, Instagram, Facebook Messenger o el chat de su sitio web):</strong></p>
-        <ul class="list-disc pl-6 mt-2 space-y-1">
-          <li>Mensajes entrantes y salientes intercambiados con el agente, incluyendo texto, audios y documentos.</li>
-          <li>Número de teléfono y nombre de perfil público de WhatsApp.</li>
-          <li>Metadatos de la conversación: timestamps, estado, etiquetas generadas por el sistema.</li>
-        </ul>
-        <p class="mt-3">Si escribís por Instagram o Facebook Messenger a una empresa que usa MABAI, tratamos los mensajes que intercambiás con el agente (texto, imágenes, audios o archivos), los comentarios que dejes en sus publicaciones de Instagram, tu nombre de usuario o nombre público, más el identificador que Meta asigna a tu cuenta para esa empresa. No accedemos a tu contraseña, a tus contactos ni a conversaciones con otras cuentas.</p>
-        <p class="mt-3"><strong>De clientes (empresas contratantes):</strong></p>
-        <ul class="list-disc pl-6 mt-2 space-y-1">
-          <li>Email de acceso, datos de facturación y contacto comercial.</li>
-          <li>Configuración del agente: tono, instrucciones, catálogo, calendario.</li>
-          <li>Archivos cargados en la plataforma (catálogos, fichas técnicas, brochures).</li>
-        </ul>
-        <p class="mt-3">Si una empresa conecta su cuenta profesional de Instagram o su página de Facebook, guardamos el identificador de la cuenta o de la página, su nombre público, más el token de acceso que entrega Meta. La empresa puede desconectarla desde Integraciones cuando quiera; al hacerlo borramos el token.</p>
-        <p class="mt-3"><strong>De visitantes del sitio:</strong> el sitio no utiliza cookies de seguimiento ni servicios de analítica que identifiquen al visitante.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-gray-900">4. Finalidades del tratamiento</h2>
-        <ul class="list-disc pl-6 mt-2 space-y-1">
-          <li>Generar respuestas automáticas mediante modelos de lenguaje a las consultas recibidas en WhatsApp.</li>
-          <li>Coordinar citas, recordatorios y seguimientos comerciales.</li>
-          <li>Permitir que los asesores humanos del cliente lean y tomen control de las conversaciones cuando sea necesario.</li>
-          <li>Brindar soporte técnico y administrar la cuenta del cliente.</li>
-          <li>Diagnosticar errores, mejorar el servicio y prevenir el abuso de la plataforma.</li>
-          <li>Cumplir con obligaciones legales aplicables.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-gray-900">5. Base legal del tratamiento</h2>
-        <p class="mt-2">El tratamiento se basa en (i) la ejecución del contrato de servicio con el cliente; (ii) el consentimiento del usuario final al iniciar una conversación con un canal operado por una empresa que utiliza MABAI; (iii) el interés legítimo en operar y mejorar el servicio; y (iv) el cumplimiento de obligaciones legales.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-gray-900">6. Encargados de tratamiento y terceros con quienes compartimos datos</h2>
-        <p class="mt-2">Los datos se procesan a través de proveedores que nos asisten en la operación del servicio. Cada uno cumple sus propias políticas de seguridad y privacidad:</p>
-        <ul class="list-disc pl-6 mt-2 space-y-1">
-          <li><strong>Meta Platforms, Inc.</strong> — entrega y recepción de mensajes por la API de WhatsApp Business, la API de Instagram o la plataforma de Messenger, más la gestión de comentarios de Instagram.</li>
-          <li><strong>Anthropic, PBC</strong> — generación de respuestas mediante el modelo Claude.</li>
-          <li><strong>OpenAI, L.L.C.</strong> — transcripción de audios, clasificación de mensajes, extracción de datos de las conversaciones (por ejemplo, la fecha de una cita), descripción de imágenes o documentos recibidos, revisión de respuestas del agente, más la generación de respuestas de respaldo cuando Claude no está disponible.</li>
-          <li><strong>Supabase Inc.</strong> — almacenamiento cifrado de conversaciones, contactos y configuración.</li>
-          <li><strong>Google LLC</strong> — sincronización de calendarios y lectura de planillas cuando el cliente conecta su cuenta de Google.</li>
-          <li><strong>Railway / Vercel</strong> — alojamiento de la infraestructura y del sitio web.</li>
-        </ul>
-        <p class="mt-3">No vendemos información personal a terceros y no realizamos transferencias con fines publicitarios externos al servicio contratado.</p>
-        <h3 class="mt-5 text-lg font-semibold text-gray-900">Uso de datos de Google (Google Calendar y Google Sheets)</h3>
-        <p class="mt-2">Cuando un cliente conecta su cuenta de Google desde el panel de MABAI, solicitamos únicamente los permisos necesarios para las funciones que el cliente activa:</p>
-        <ul class="list-disc pl-6 mt-2 space-y-1">
-          <li><strong>Google Calendar</strong> (permiso <code>calendar.events</code>): leer, crear y actualizar eventos en el calendario del cliente. Sirve para agendar, confirmar o cancelar las citas que coordina el agente de IA, para no ofrecer un horario ya ocupado y para mostrarle al usuario sus eventos en el calendario de MABAI.</li>
-          <li><strong>Google Sheets</strong> (permiso <code>spreadsheets.readonly</code>): leer las planillas que el cliente indique expresamente, para que el agente las use como fuente de información (por ejemplo, listados de productos o propiedades) o para importar a su CRM los contactos de una planilla de leads.</li>
-          <li><strong>Dirección de email</strong> de la cuenta conectada, para identificar la cuenta vinculada en el panel.</li>
-        </ul>
-        <p class="mt-3">Los tokens de acceso se almacenan de forma segura y se usan exclusivamente para brindar estas funciones al cliente que los otorgó. No usamos datos obtenidos de Google con fines publicitarios, no los vendemos ni los cedemos a terceros, salvo a los proveedores de infraestructura indicados en esta sección y en la medida necesaria para prestar el servicio. El personal de MABAI no accede a estos datos, salvo para soporte solicitado por el cliente, por motivos de seguridad o cuando la ley lo exija.</p>
-        <p class="mt-3">El uso y la transferencia a cualquier otra aplicación de la información recibida de las APIs de Google por parte de MABAI se ajustan a la <a class="underline" href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Política de Datos de Usuario de los Servicios API de Google</a>, incluidos los requisitos de Uso Limitado.</p>
-        <p class="mt-3"><strong>Datos de Google e inteligencia artificial.</strong> El contenido de las planillas que el cliente conecta, junto con los datos derivados de ellas, se usa solo para prestarle el servicio a ese cliente: como información del negocio para que su agente de IA responda, o para cargar en su CRM los contactos de las planillas de leads que indique. De Google Calendar, MABAI lee los eventos del usuario que conecta su calendario. Al agente de IA solo le pasa el inicio y fin de los eventos marcados como ocupados, nunca el título, la descripción ni los invitados, para que no ofrezca un turno ocupado. El título de cada evento, con su horario, se ve en el calendario de MABAI solo para ese usuario. Nada de esto se guarda ni se usa para entrenar modelos.</p>
-        <p class="mt-3">Para que el agente responda, esa información se procesa mediante las APIs de Anthropic (Claude) y OpenAI. Según sus condiciones comerciales, ninguno de los dos usa los datos recibidos por API para entrenar sus modelos.</p>
-        <p class="mt-3">Ni MABAI ni sus proveedores de IA usan datos de usuarios de Google, en bruto, agregados, anonimizados o derivados, para crear, entrenar o mejorar modelos de inteligencia artificial o aprendizaje automático generalizados.</p>
-        <p class="mt-3 italic text-gray-600" lang="en">The use of raw or derived user data received from Google Workspace APIs will adhere to the Google User Data Policy, including the Limited Use requirements. Neither MABAI nor its AI providers use Google user data, whether raw, aggregated, anonymized or derived, to create, train or improve generalized AI or machine learning models.</p>
-        <p class="mt-3">El cliente puede desconectar su cuenta de Google en cualquier momento desde el panel de MABAI (lo que elimina los tokens asociados) o revocar el acceso desde <a class="underline" href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-gray-900">7. Conservación</h2>
-        <p class="mt-2">Las conversaciones, contactos y archivos se conservan mientras la cuenta del cliente esté activa, salvo que el cliente o el usuario final solicite su eliminación. Tras la baja del servicio, los datos se eliminan o anonimizan en un plazo razonable, conservándose únicamente lo requerido por obligaciones legales (por ejemplo, registros contables).</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-gray-900">8. Seguridad</h2>
-        <p class="mt-2">Aplicamos medidas técnicas y organizativas razonables para proteger la información: cifrado en tránsito (HTTPS/TLS) y en reposo, control de acceso por roles, aislamiento por inquilino (multi-tenant) y registro de actividad. Ningún sistema es 100% inviolable; ante un incidente que afecte datos personales, lo notificaremos a los afectados conforme a la legislación aplicable.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-gray-900">9. Derechos de los titulares</h2>
-        <p class="mt-2">Conforme a la Ley 25.326 de Protección de Datos Personales de la República Argentina y a las normas equivalentes que apliquen según la jurisdicción, todo titular tiene derecho a:</p>
-        <ul class="list-disc pl-6 mt-2 space-y-1">
-          <li>Acceder a la información personal que tenemos sobre él.</li>
-          <li>Solicitar la rectificación, actualización o supresión de sus datos.</li>
-          <li>Oponerse al tratamiento o solicitar su limitación.</li>
-          <li>Solicitar la portabilidad de sus datos cuando técnicamente sea posible.</li>
-          <li>Retirar el consentimiento previamente otorgado.</li>
-        </ul>
-        <p class="mt-3">Para ejercer estos derechos podés escribirnos a <a class="underline" href="mailto:hola@mabai.com.ar">hola@mabai.com.ar</a>. Procesamos los pedidos en un plazo razonable conforme a la legislación aplicable.</p>
-        <p class="mt-3">Si una empresa quita el acceso de MABAI desde la configuración de Instagram, o pide a Meta la eliminación de sus datos, Meta nos avisa. En ese caso desconectamos la cuenta: borramos su token, la fecha de vencimiento del token, sus identificadores, más los datos de perfil que guardamos. Las conversaciones, contactos y mensajes siguen en el panel de la empresa, porque son datos de su relación con sus clientes. Para pedir que se borren, la empresa o la persona interesada pueden escribirnos a <a class="underline" href="mailto:hola@mabai.com.ar">hola@mabai.com.ar</a>.</p>
-        <p class="mt-3">La Agencia de Acceso a la Información Pública (Argentina) es el organismo de control en materia de protección de datos personales. Tenés derecho a presentar reclamos ante dicha autoridad.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-gray-900">10. Menores de edad</h2>
-        <p class="mt-2">El servicio no está dirigido a menores de 18 años. Si detectamos información de un menor, la eliminaremos a la brevedad. Si sos padre, madre o tutor y detectás que un menor a cargo nos proporcionó datos, podés solicitar su eliminación al email indicado.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-gray-900">11. Transferencias internacionales</h2>
-        <p class="mt-2">Algunos de los proveedores listados en la sección 6 procesan datos en servidores ubicados fuera de Argentina (principalmente en Estados Unidos y la Unión Europea). En esos casos exigimos a los proveedores garantías contractuales y técnicas equivalentes a las exigidas por la normativa argentina.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-gray-900">12. Modificaciones</h2>
-        <p class="mt-2">Podemos actualizar esta política para reflejar cambios legales o del servicio. La fecha de "última actualización" indica la versión vigente. Cuando los cambios sean materiales lo notificaremos por email a los clientes con razonable anticipación.</p>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold text-gray-900">13. Contacto</h2>
-        <p class="mt-2">Cualquier consulta o reclamo sobre el tratamiento de tu información personal podés dirigirla a <a class="underline" href="mailto:hola@mabai.com.ar">hola@mabai.com.ar</a>.</p>
-      </section>
-
-    </div>
-
-    <div class="mt-12 pt-8 border-t border-gray-100">
-      <a href="/" class="text-sm text-gray-500 hover:text-gray-900">← Volver al inicio</a>
-    </div>
-  </main>
-
-  <footer class="border-t border-gray-100 py-10 bg-white">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row justify-between gap-6 text-sm text-gray-500">
-        <div class="space-y-2">
-          <img src="/mabai-logo.svg" alt="MABAI" class="h-5 w-auto">
-          <p class="text-xs leading-relaxed max-w-sm">IA powered solutions. Operado desde Buenos Aires, Argentina.</p>
-          <p class="text-xs">Contacto: <a href="mailto:hola@mabai.com.ar" class="underline hover:text-gray-700">hola@mabai.com.ar</a></p>
-          <p class="text-xs leading-relaxed max-w-md text-gray-500">MABAI es proveedor de tecnología de Meta para WhatsApp.</p>
-        </div>
-        <div class="flex flex-col gap-2 md:items-end">
-          <div class="flex gap-5">
-            <a href="/privacy" class="nav-link hover:text-gray-900">Política de privacidad</a>
-            <a href="/terms" class="nav-link hover:text-gray-900">Términos</a>
-          </div>
-          <span class="text-xs">© 2026 MABAI. Todos los derechos reservados.</span>
-        </div>
+<main>
+<section class="page-hero legal-hero">
+  <div class="hero-bg">
+    <div class="dots"></div>
+    <div class="glow l" style="width:520px;height:520px;right:-160px;top:-240px;opacity:.3"></div>
+    <div class="glow o" style="width:420px;height:420px;left:-220px;top:20%;opacity:.14"></div>
+  </div>
+  <div class="wrap">
+    <div class="page-hero-grid solo">
+      <div>
+        <h1>Política de privacidad</h1>
+        <p class="updated">Última actualización: 16 de noviembre de 2026</p>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script src="/logo-anim.js"></script>
-  <script src="https://api.mabai.app/web/widget.js?key=mw_5Y9a4CVi5P1Xjs1pehjsJXY0hxyEp2Gj" async></script>
+<div class="wrap">
+  <div class="doc">
+
+    <section>
+      <h2>1. Identificación del responsable</h2>
+      <p>MABAI ("MABAI", "nosotros") es un servicio de asistencia automatizada para la atención de clientes a través de WhatsApp Business API, Instagram y chat web, orientado a empresas de distintos rubros y operado desde la Ciudad Autónoma de Buenos Aires, República Argentina.</p>
+      <p>El responsable del tratamiento de los datos es Martinez Bosch Ignacio, CUIT 20-46501970-1, con domicilio en Av. Pueyrredón 1993, Piso 4 Dpto A, CABA (1119).</p>
+      <p>Para cualquier consulta sobre el tratamiento de datos personales podés contactarnos a <a href="mailto:hola@mabai.com.ar">hola@mabai.com.ar</a>.</p>
+    </section>
+
+    <section>
+      <h2>2. Alcance</h2>
+      <p>Esta política se aplica a:</p>
+      <ul>
+        <li>Personas físicas que interactúan con un agente automatizado MABAI a través de WhatsApp ("usuarios finales").</li>
+        <li>Empresas y profesionales que contratan el servicio MABAI para operar agentes automatizados ("clientes").</li>
+        <li>Visitantes del sitio web <a href="https://www.mabai.com.ar/">mabai.com.ar</a>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. Información que recolectamos</h2>
+      <p><strong>De usuarios finales (personas que escriben a una empresa por WhatsApp, Instagram, Facebook Messenger o el chat de su sitio web):</strong></p>
+      <ul>
+        <li>Mensajes entrantes y salientes intercambiados con el agente, incluyendo texto, audios y documentos.</li>
+        <li>Número de teléfono y nombre de perfil público de WhatsApp.</li>
+        <li>Metadatos de la conversación: timestamps, estado, etiquetas generadas por el sistema.</li>
+      </ul>
+      <p>Si escribís por Instagram o Facebook Messenger a una empresa que usa MABAI, tratamos los mensajes que intercambiás con el agente (texto, imágenes, audios o archivos), los comentarios que dejes en sus publicaciones de Instagram, tu nombre de usuario o nombre público, más el identificador que Meta asigna a tu cuenta para esa empresa. No accedemos a tu contraseña, a tus contactos ni a conversaciones con otras cuentas.</p>
+      <p><strong>De clientes (empresas contratantes):</strong></p>
+      <ul>
+        <li>Email de acceso, datos de facturación y contacto comercial.</li>
+        <li>Configuración del agente: tono, instrucciones, catálogo, calendario.</li>
+        <li>Archivos cargados en la plataforma (catálogos, fichas técnicas, brochures).</li>
+      </ul>
+      <p>Si una empresa conecta su cuenta profesional de Instagram o su página de Facebook, guardamos el identificador de la cuenta o de la página, su nombre público, más el token de acceso que entrega Meta. La empresa puede desconectarla desde Integraciones cuando quiera; al hacerlo borramos el token.</p>
+      <p><strong>De visitantes del sitio:</strong> el sitio no utiliza cookies de seguimiento ni servicios de analítica que identifiquen al visitante.</p>
+    </section>
+
+    <section>
+      <h2>4. Finalidades del tratamiento</h2>
+      <ul>
+        <li>Generar respuestas automáticas mediante modelos de lenguaje a las consultas recibidas en WhatsApp.</li>
+        <li>Coordinar citas, recordatorios y seguimientos comerciales.</li>
+        <li>Permitir que los asesores humanos del cliente lean y tomen control de las conversaciones cuando sea necesario.</li>
+        <li>Brindar soporte técnico y administrar la cuenta del cliente.</li>
+        <li>Diagnosticar errores, mejorar el servicio y prevenir el abuso de la plataforma.</li>
+        <li>Cumplir con obligaciones legales aplicables.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>5. Base legal del tratamiento</h2>
+      <p>El tratamiento se basa en (i) la ejecución del contrato de servicio con el cliente; (ii) el consentimiento del usuario final al iniciar una conversación con un canal operado por una empresa que utiliza MABAI; (iii) el interés legítimo en operar y mejorar el servicio; y (iv) el cumplimiento de obligaciones legales.</p>
+    </section>
+
+    <section>
+      <h2>6. Encargados de tratamiento y terceros con quienes compartimos datos</h2>
+      <p>Los datos se procesan a través de proveedores que nos asisten en la operación del servicio. Cada uno cumple sus propias políticas de seguridad y privacidad:</p>
+      <ul>
+        <li><strong>Meta Platforms, Inc.</strong> — entrega y recepción de mensajes por la API de WhatsApp Business, la API de Instagram o la plataforma de Messenger, más la gestión de comentarios de Instagram.</li>
+        <li><strong>Anthropic, PBC</strong> — generación de respuestas mediante el modelo Claude.</li>
+        <li><strong>OpenAI, L.L.C.</strong> — transcripción de audios, clasificación de mensajes, extracción de datos de las conversaciones (por ejemplo, la fecha de una cita), descripción de imágenes o documentos recibidos, revisión de respuestas del agente, más la generación de respuestas de respaldo cuando Claude no está disponible.</li>
+        <li><strong>Supabase Inc.</strong> — almacenamiento cifrado de conversaciones, contactos y configuración.</li>
+        <li><strong>Google LLC</strong> — sincronización de calendarios y lectura de planillas cuando el cliente conecta su cuenta de Google.</li>
+        <li><strong>Railway / Vercel</strong> — alojamiento de la infraestructura y del sitio web.</li>
+      </ul>
+      <p>No vendemos información personal a terceros y no realizamos transferencias con fines publicitarios externos al servicio contratado.</p>
+      <h3>Uso de datos de Google (Google Calendar y Google Sheets)</h3>
+      <p>Cuando un cliente conecta su cuenta de Google desde el panel de MABAI, solicitamos únicamente los permisos necesarios para las funciones que el cliente activa:</p>
+      <ul>
+        <li><strong>Google Calendar</strong> (permiso <code>calendar.events</code>): leer, crear y actualizar eventos en el calendario del cliente. Sirve para agendar, confirmar o cancelar las citas que coordina el agente de IA, para no ofrecer un horario ya ocupado y para mostrarle al usuario sus eventos en el calendario de MABAI.</li>
+        <li><strong>Google Sheets</strong> (permiso <code>spreadsheets.readonly</code>): leer las planillas que el cliente indique expresamente, para que el agente las use como fuente de información (por ejemplo, listados de productos o propiedades) o para importar a su CRM los contactos de una planilla de leads.</li>
+        <li><strong>Dirección de email</strong> de la cuenta conectada, para identificar la cuenta vinculada en el panel.</li>
+      </ul>
+      <p>Los tokens de acceso se almacenan de forma segura y se usan exclusivamente para brindar estas funciones al cliente que los otorgó. No usamos datos obtenidos de Google con fines publicitarios, no los vendemos ni los cedemos a terceros, salvo a los proveedores de infraestructura indicados en esta sección y en la medida necesaria para prestar el servicio. El personal de MABAI no accede a estos datos, salvo para soporte solicitado por el cliente, por motivos de seguridad o cuando la ley lo exija.</p>
+      <p>El uso y la transferencia a cualquier otra aplicación de la información recibida de las APIs de Google por parte de MABAI se ajustan a la <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Política de Datos de Usuario de los Servicios API de Google</a>, incluidos los requisitos de Uso Limitado.</p>
+      <p><strong>Datos de Google e inteligencia artificial.</strong> El contenido de las planillas que el cliente conecta, junto con los datos derivados de ellas, se usa solo para prestarle el servicio a ese cliente: como información del negocio para que su agente de IA responda, o para cargar en su CRM los contactos de las planillas de leads que indique. De Google Calendar, MABAI lee los eventos del usuario que conecta su calendario. Al agente de IA solo le pasa el inicio y fin de los eventos marcados como ocupados, nunca el título, la descripción ni los invitados, para que no ofrezca un turno ocupado. El título de cada evento, con su horario, se ve en el calendario de MABAI solo para ese usuario. Nada de esto se guarda ni se usa para entrenar modelos.</p>
+      <p>Para que el agente responda, esa información se procesa mediante las APIs de Anthropic (Claude) y OpenAI. Según sus condiciones comerciales, ninguno de los dos usa los datos recibidos por API para entrenar sus modelos.</p>
+      <p>Ni MABAI ni sus proveedores de IA usan datos de usuarios de Google, en bruto, agregados, anonimizados o derivados, para crear, entrenar o mejorar modelos de inteligencia artificial o aprendizaje automático generalizados.</p>
+      <p class="en" lang="en">The use of raw or derived user data received from Google Workspace APIs will adhere to the Google User Data Policy, including the Limited Use requirements. Neither MABAI nor its AI providers use Google user data, whether raw, aggregated, anonymized or derived, to create, train or improve generalized AI or machine learning models.</p>
+      <p>El cliente puede desconectar su cuenta de Google en cualquier momento desde el panel de MABAI (lo que elimina los tokens asociados) o revocar el acceso desde <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</p>
+    </section>
+
+    <section>
+      <h2>7. Conservación</h2>
+      <p>Las conversaciones, contactos y archivos se conservan mientras la cuenta del cliente esté activa, salvo que el cliente o el usuario final solicite su eliminación. Tras la baja del servicio, los datos se eliminan o anonimizan en un plazo razonable, conservándose únicamente lo requerido por obligaciones legales (por ejemplo, registros contables).</p>
+    </section>
+
+    <section>
+      <h2>8. Seguridad</h2>
+      <p>Aplicamos medidas técnicas y organizativas razonables para proteger la información: cifrado en tránsito (HTTPS/TLS) y en reposo, control de acceso por roles, aislamiento por inquilino (multi-tenant) y registro de actividad. Ningún sistema es 100% inviolable; ante un incidente que afecte datos personales, lo notificaremos a los afectados conforme a la legislación aplicable.</p>
+    </section>
+
+    <section>
+      <h2>9. Derechos de los titulares</h2>
+      <p>Conforme a la Ley 25.326 de Protección de Datos Personales de la República Argentina y a las normas equivalentes que apliquen según la jurisdicción, todo titular tiene derecho a:</p>
+      <ul>
+        <li>Acceder a la información personal que tenemos sobre él.</li>
+        <li>Solicitar la rectificación, actualización o supresión de sus datos.</li>
+        <li>Oponerse al tratamiento o solicitar su limitación.</li>
+        <li>Solicitar la portabilidad de sus datos cuando técnicamente sea posible.</li>
+        <li>Retirar el consentimiento previamente otorgado.</li>
+      </ul>
+      <p>Para ejercer estos derechos podés escribirnos a <a href="mailto:hola@mabai.com.ar">hola@mabai.com.ar</a>. Procesamos los pedidos en un plazo razonable conforme a la legislación aplicable.</p>
+      <p>Si una empresa quita el acceso de MABAI desde la configuración de Instagram, o pide a Meta la eliminación de sus datos, Meta nos avisa. En ese caso desconectamos la cuenta: borramos su token, la fecha de vencimiento del token, sus identificadores, más los datos de perfil que guardamos. Las conversaciones, contactos y mensajes siguen en el panel de la empresa, porque son datos de su relación con sus clientes. Para pedir que se borren, la empresa o la persona interesada pueden escribirnos a <a href="mailto:hola@mabai.com.ar">hola@mabai.com.ar</a>.</p>
+      <p>La Agencia de Acceso a la Información Pública (Argentina) es el organismo de control en materia de protección de datos personales. Tenés derecho a presentar reclamos ante dicha autoridad.</p>
+    </section>
+
+    <section>
+      <h2>10. Menores de edad</h2>
+      <p>El servicio no está dirigido a menores de 18 años. Si detectamos información de un menor, la eliminaremos a la brevedad. Si sos padre, madre o tutor y detectás que un menor a cargo nos proporcionó datos, podés solicitar su eliminación al email indicado.</p>
+    </section>
+
+    <section>
+      <h2>11. Transferencias internacionales</h2>
+      <p>Algunos de los proveedores listados en la sección 6 procesan datos en servidores ubicados fuera de Argentina (principalmente en Estados Unidos y la Unión Europea). En esos casos exigimos a los proveedores garantías contractuales y técnicas equivalentes a las exigidas por la normativa argentina.</p>
+    </section>
+
+    <section>
+      <h2>12. Modificaciones</h2>
+      <p>Podemos actualizar esta política para reflejar cambios legales o del servicio. La fecha de "última actualización" indica la versión vigente. Cuando los cambios sean materiales lo notificaremos por email a los clientes con razonable anticipación.</p>
+    </section>
+
+    <section>
+      <h2>13. Contacto</h2>
+      <p>Cualquier consulta o reclamo sobre el tratamiento de tu información personal podés dirigirla a <a href="mailto:hola@mabai.com.ar">hola@mabai.com.ar</a>.</p>
+    </section>
+
+    <div class="doc-back">
+      <a href="/">← Volver al inicio</a>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <img src="/assets/mabai-logo-white.svg" alt="MABAI">
+      <p><span class="brand">IA powered solutions.</span> Operado desde Buenos Aires, Argentina.</p>
+      <p>Contacto: <a href="mailto:hola@mabai.com.ar" style="text-decoration:underline">hola@mabai.com.ar</a></p>
+      <p>MABAI es proveedor de tecnología de Meta para WhatsApp.</p>
+    </div>
+    <div class="foot-r">
+      <div class="foot-links">
+        <a href="/privacy">Política de privacidad</a>
+        <a href="/terms">Términos</a>
+        <a class="ig" href="https://www.instagram.com/mabai.ai/" target="_blank" rel="noopener" aria-label="Instagram de MABAI"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ig"/></svg></a>
+      </div>
+      <span>© 2026 MABAI. Todos los derechos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="/assets/mabai.js"></script>
+<script src="https://api.mabai.app/web/widget.js?key=mw_5Y9a4CVi5P1Xjs1pehjsJXY0hxyEp2Gj" async></script>
 </body>
 </html>
